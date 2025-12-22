@@ -1,0 +1,359 @@
+[
+    {
+        "id": "xpg-mainweb",
+        "name": "XPG Main Website",
+        "repoUrl": "https://github.com/justinetobithe/XPG-LTD_XPGMainWebsite",
+        "liveUrl": "https://xpg.live",
+        "prodUrls": [
+            "https://xpg.live"
+        ],
+        "vercelUrls": [],
+        "description": "Official marketing website for XPG. Built to present products/services clearly with responsive sections, modern layout, and conversion-focused landing pages. Includes reusable UI sections, structured page content, and optimized UX for desktop and mobile.",
+        "tags": [
+            "UI",
+            "Website",
+            "Production",
+            "Marketing",
+            "Responsive",
+            "XPG"
+        ],
+        "images": [
+            "/projects/xpg-mainweb.png"
+        ]
+    },
+    {
+        "id": "xpg-clientarea-ui",
+        "name": "XPG Client Area UI",
+        "repoUrl": "https://github.com/justinetobithe/xpg-clientarea-ui",
+        "liveUrl": "https://clientarea.xpg.live",
+        "prodUrls": [
+            "https://clientarea.xpg.live"
+        ],
+        "vercelUrls": [
+            "https://xpg-clientarea-ui.vercel.app"
+        ],
+        "description": "Customer client portal UI for XPG. Includes authentication-ready layouts, dashboard UI, navigation patterns, profile/settings pages, and scalable components. Designed for clean workflows, fast iteration, and consistent user experience across portal features.",
+        "tags": [
+            "UI",
+            "Client Portal",
+            "React",
+            "Vite",
+            "Production",
+            "Vercel",
+            "XPG"
+        ],
+        "images": [
+            "/projects/xpg-clientarea-ui.png"
+        ]
+    },
+    {
+        "id": "xpg-cadmin",
+        "name": "XPG Admin Panel (CAdmin)",
+        "repoUrl": "https://github.com/justinetobithe/XPG-LTD_XPGCAdmin",
+        "liveUrl": "https://cadmin.xpg.live",
+        "prodUrls": [
+            "https://cadmin.xpg.live"
+        ],
+        "vercelUrls": [],
+        "description": "Admin dashboard UI for XPG. Built for managing content and internal workflows with clean tables, forms, and admin navigation. Focused on usability, clear information hierarchy, and fast admin operations with consistent components.",
+        "tags": [
+            "UI",
+            "Admin Panel",
+            "Dashboard",
+            "Production",
+            "XPG"
+        ],
+        "images": [
+            "/projects/xpg-cadmin.png"
+        ]
+    },
+    {
+        "id": "xpg-manual",
+        "name": "XPG Manual",
+        "repoUrl": "https://github.com/justinetobithe/xpg-manual",
+        "liveUrl": "https://manual.xpg.live",
+        "prodUrls": [
+            "https://manual.xpg.live"
+        ],
+        "vercelUrls": [
+            "https://xpg-manual.vercel.app"
+        ],
+        "description": "Documentation/manual UI for XPG. Organized pages for guides, sections, and step-by-step instructions. Built with readable layout, consistent typography, and navigation that makes it easy to find help content quickly.",
+        "tags": [
+            "UI",
+            "Docs",
+            "Manual",
+            "Production",
+            "Vercel",
+            "XPG"
+        ],
+        "images": [
+            "/projects/xpg-manual.png"
+        ]
+    },
+    {
+        "id": "xpg-ui",
+        "name": "XPG UI (Components / Screens)",
+        "repoUrl": "https://github.com/justinetobithe/xpg-ui",
+        "liveUrl": "",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "Front-end UI work for XPG focused on reusable screens, page layouts, and component patterns. Used as a base for consistent styling and rapid UI building across multiple XPG interfaces.",
+        "tags": [
+            "UI",
+            "React",
+            "Frontend",
+            "Components",
+            "XPG"
+        ],
+        "images": [
+            "/projects/xpg-ui.png"
+        ]
+    },
+    {
+        "id": "minitweet-ui",
+        "name": "MiniTweet UI",
+        "repoUrl": "https://github.com/justinetobithe/minitweet-ui",
+        "liveUrl": "",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "Mini social posting UI concept with feed layout, create-post flow, and basic interaction screens. Focused on clean UX, readable content layout, and scalable UI structure for social features.",
+        "tags": [
+            "UI",
+            "TypeScript",
+            "Frontend",
+            "Social"
+        ],
+        "images": [
+            "/projects/minitweet-ui.png"
+        ]
+    },
+    {
+        "id": "mrspinny-marketing",
+        "name": "MrSpinny Marketing",
+        "repoUrl": "https://github.com/justinetobithe/mrspinny-marketing",
+        "liveUrl": "https://mrspinny-marketing.vercel.app",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "Marketing landing page UI for MrSpinny with modern hero sections, clear CTAs, and responsive layout. Designed to highlight product value, improve readability, and keep a professional brand look.",
+        "tags": [
+            "UI",
+            "Landing Page",
+            "Marketing",
+            "Responsive"
+        ],
+        "images": [
+            "/projects/mrspinny-marketing.png"
+        ]
+    },
+    {
+        "id": "file-management-client",
+        "name": "File Management Client",
+        "repoUrl": "https://github.com/justinetobithe/file-management-client",
+        "liveUrl": "https://pagcor-file-management.vercel.app/",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "Client UI for a file management system featuring browsing, previews, file actions, and structured navigation. Designed to keep workflows simple while supporting scalable UI for folders, metadata, and user controls.",
+        "tags": [
+            "UI",
+            "TypeScript",
+            "Next.js",
+            "Client"
+        ],
+        "images": [
+            "/projects/file-management-client.png"
+        ]
+    },
+    {
+        "id": "commish-togo-client",
+        "name": "Commish To-Go Client",
+        "repoUrl": "https://github.com/justinetobithe/commish-togo-client",
+        "liveUrl": "https://commish-togo.vercel.app",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "Client-side UI for Commish To-Go featuring user-facing screens, navigation, and UI flows designed for speed and clarity. Focused on consistent layout patterns and clean presentation for common user actions.",
+        "tags": [
+            "UI",
+            "TypeScript",
+            "Client",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/commish-togo-client.png"
+        ]
+    },
+    {
+        "id": "attendease-client",
+        "name": "AttendEase Client",
+        "repoUrl": "https://github.com/justinetobithe/attendease-client",
+        "liveUrl": "https://attendease-teal.vercel.app",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "Attendance management UI featuring dashboards, listing views, detail screens, and action controls. Built with a clear information layout to support day-to-day attendance tracking and reporting use-cases.",
+        "tags": [
+            "UI",
+            "TypeScript",
+            "Client",
+            "Dashboard"
+        ],
+        "images": [
+            "/projects/attendease-client.png"
+        ]
+    },
+    {
+        "id": "mapua-tindahan-client",
+        "name": "Mapua Tindahan Client",
+        "repoUrl": "https://github.com/justinetobithe/mapua-tindahan-client",
+        "liveUrl": "https://mapua-tindahan.vercel.app",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "E-commerce client UI with product browsing, product details, cart, and checkout flow screens. Structured for scalable catalog presentation and improved UX for shopping experiences on mobile and desktop.",
+        "tags": [
+            "UI",
+            "TypeScript",
+            "E-commerce",
+            "Client"
+        ],
+        "images": [
+            "/projects/mapua-tindahan-client.png"
+        ]
+    },
+    {
+        "id": "mapuaccess-client",
+        "name": "MapuAccess Client",
+        "repoUrl": "https://github.com/justinetobithe/mapuaccess-client",
+        "liveUrl": "https://mapuaccess.vercel.app",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "Client UI for MapuAccess focused on user workflows and records/access interfaces. Includes structured screens and UI components designed for clarity, form usability, and consistent navigation.",
+        "tags": [
+            "UI",
+            "TypeScript",
+            "Client",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/mapuaccess-client.png"
+        ]
+    },
+    {
+        "id": "mapuaccess-ui",
+        "name": "MapuAccess (Mobile)",
+        "repoUrl": "https://github.com/justinetobithe/MapuAccess",
+        "liveUrl": "",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "UI project for MapuAccess with page layouts, navigation, and user-focused screens. Built as a front-end layer to support access workflows with clean UI composition and consistent styling.",
+        "tags": [
+            "UI",
+            "JavaScript",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/mapuaccess.png"
+        ]
+    },
+    {
+        "id": "attendease-ui",
+        "name": "AttendEase (Mobile)",
+        "repoUrl": "https://github.com/justinetobithe/AttendEase",
+        "liveUrl": "",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "Standalone AttendEase UI with interface pages and layouts supporting attendance features. Emphasizes clear structure, easy navigation, and scalable components for future additions.",
+        "tags": [
+            "UI",
+            "JavaScript",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/attendease.png"
+        ]
+    },
+    {
+        "id": "ctexpress-client",
+        "name": "CTExpress Client",
+        "repoUrl": "https://github.com/justinetobithe/ctexpress-client",
+        "liveUrl": "https://ctexpress-client.vercel.app",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "Client-side UI for CTExpress featuring screens and workflows for users. Designed with consistent spacing, predictable navigation patterns, and reusable UI sections for growth.",
+        "tags": [
+            "UI",
+            "TypeScript",
+            "Client",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/ctexpress-client.png"
+        ]
+    },
+    {
+        "id": "ctexpress-ui",
+        "name": "CTExpress (Mobile)",
+        "repoUrl": "https://github.com/justinetobithe/CTExpress",
+        "liveUrl": "",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "CTExpress UI project with layouts and components for a web interface. Focused on structured screens, clean visual hierarchy, and reusable front-end patterns.",
+        "tags": [
+            "UI",
+            "JavaScript",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/ctexpress.png"
+        ]
+    },
+    {
+        "id": "clicpoint-ui",
+        "name": "Clicpoint (Mobile)",
+        "repoUrl": "https://github.com/justinetobithe/clicpoint",
+        "liveUrl": "",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "UI screens and layout work for Clicpoint. Designed with simple navigation and clear sections to support common app flows and web interface presentation.",
+        "tags": [
+            "UI",
+            "JavaScript",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/clicpoint.png"
+        ]
+    },
+    {
+        "id": "clicpoint-mobile-ui",
+        "name": "Clicpoint Mobile (Mobile)",
+        "repoUrl": "https://github.com/justinetobithe/Clicpoint-Mobile",
+        "liveUrl": "",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "Mobile-focused UI for the Clicpoint concept. Includes screen structure and mobile-friendly layout patterns for a smaller form factor experience.",
+        "tags": [
+            "UI",
+            "Mobile",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/clicpoint-mobile.png"
+        ]
+    },
+    {
+        "id": "fitfrail-ui",
+        "name": "FitFrail (Mobile)",
+        "repoUrl": "https://github.com/justinetobithe/Fitfrail",
+        "liveUrl": "",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "Fitness-themed UI project featuring screens, components, and layout patterns. Designed to be visually clean while supporting typical fitness flows like dashboards, progress sections, and detail views.",
+        "tags": [
+            "UI",
+            "JavaScript",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/fitfrail.png"
+        ]
+    }
+]

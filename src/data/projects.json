@@ -1,0 +1,273 @@
+[
+    {
+        "id": "xpg-clientarea-ui",
+        "name": "XPG Client Area UI",
+        "repoUrl": "https://github.com/justinetobithe/xpg-clientarea-ui",
+        "liveUrl": "https://xpg-clientarea-ui.vercel.app",
+        "description": "Client area user interface for XPG — pages, components, and UI flows for customer access.",
+        "tags": [
+            "UI",
+            "React",
+            "Vite",
+            "Client Portal"
+        ],
+        "images": [
+            "/projects/xpg-clientarea-ui.png"
+        ]
+    },
+    {
+        "id": "xpg-ui",
+        "name": "XPG UI",
+        "repoUrl": "https://github.com/justinetobithe/xpg-ui",
+        "liveUrl": "",
+        "description": "Front-end UI project for XPG — reusable screens and interface layouts.",
+        "tags": [
+            "UI",
+            "React",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/xpg-ui.png"
+        ]
+    },
+    {
+        "id": "minitweet-ui",
+        "name": "MiniTweet UI",
+        "repoUrl": "https://github.com/justinetobithe/minitweet-ui",
+        "liveUrl": "",
+        "description": "UI for a mini social posting app — feeds, posting, and basic interactions.",
+        "tags": [
+            "UI",
+            "TypeScript",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/minitweet-ui.png"
+        ]
+    },
+    {
+        "id": "mrspinny-marketing",
+        "name": "MrSpinny Marketing",
+        "repoUrl": "https://github.com/justinetobithe/mrspinny-marketing",
+        "liveUrl": "",
+        "description": "Marketing/landing pages UI for MrSpinny.",
+        "tags": [
+            "Landing Page",
+            "Marketing",
+            "UI"
+        ],
+        "images": [
+            "/projects/mrspinny-marketing.png"
+        ]
+    },
+    {
+        "id": "file-management-client",
+        "name": "File Management Client",
+        "repoUrl": "https://github.com/justinetobithe/file-management-client",
+        "liveUrl": "",
+        "description": "Client UI for a file management system — browsing, viewing, and organizing files.",
+        "tags": [
+            "UI",
+            "TypeScript",
+            "Next.js"
+        ],
+        "images": [
+            "/projects/file-management-client.png"
+        ]
+    },
+    {
+        "id": "commish-togo-client",
+        "name": "Commish To-Go Client",
+        "repoUrl": "https://github.com/justinetobithe/commish-togo-client",
+        "liveUrl": "",
+        "description": "Client UI for Commish To-Go — screens and interface for user-facing actions.",
+        "tags": [
+            "UI",
+            "TypeScript",
+            "Client"
+        ],
+        "images": [
+            "/projects/commish-togo-client.png"
+        ]
+    },
+    {
+        "id": "attendease-client",
+        "name": "AttendEase Client",
+        "repoUrl": "https://github.com/justinetobithe/attendease-client",
+        "liveUrl": "",
+        "description": "Client UI for attendance management — dashboards, lists, and actions.",
+        "tags": [
+            "UI",
+            "TypeScript",
+            "Client"
+        ],
+        "images": [
+            "/projects/attendease-client.png"
+        ]
+    },
+    {
+        "id": "mapua-tindahan-client",
+        "name": "Mapua Tindahan Client",
+        "repoUrl": "https://github.com/justinetobithe/mapua-tindahan-client",
+        "liveUrl": "",
+        "description": "E-commerce client UI — product browsing, cart, and checkout flows.",
+        "tags": [
+            "UI",
+            "TypeScript",
+            "E-commerce"
+        ],
+        "images": [
+            "/projects/mapua-tindahan-client.png"
+        ]
+    },
+    {
+        "id": "mapuaccess-client",
+        "name": "MapuAccess Client",
+        "repoUrl": "https://github.com/justinetobithe/mapuaccess-client",
+        "liveUrl": "",
+        "description": "Client UI for MapuAccess — interface for access/records workflows.",
+        "tags": [
+            "UI",
+            "TypeScript",
+            "Client"
+        ],
+        "images": [
+            "/projects/mapuaccess-client.png"
+        ]
+    },
+    {
+        "id": "MapuAccess",
+        "name": "MapuAccess (UI)",
+        "repoUrl": "https://github.com/justinetobithe/MapuAccess",
+        "liveUrl": "",
+        "description": "MapuAccess front-end project — UI screens and app flow.",
+        "tags": [
+            "UI",
+            "JavaScript",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/mapuaccess.png"
+        ]
+    },
+    {
+        "id": "AttendEase",
+        "name": "AttendEase (UI)",
+        "repoUrl": "https://github.com/justinetobithe/AttendEase",
+        "liveUrl": "",
+        "description": "AttendEase UI project — pages and interface for attendance features.",
+        "tags": [
+            "UI",
+            "JavaScript",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/attendease.png"
+        ]
+    },
+    {
+        "id": "ctexpress-client",
+        "name": "CTExpress Client",
+        "repoUrl": "https://github.com/justinetobithe/ctexpress-client",
+        "liveUrl": "",
+        "description": "Client UI for CTExpress — front-end screens and user workflows.",
+        "tags": [
+            "UI",
+            "TypeScript",
+            "Client"
+        ],
+        "images": [
+            "/projects/ctexpress-client.png"
+        ]
+    },
+    {
+        "id": "CTExpress",
+        "name": "CTExpress (UI)",
+        "repoUrl": "https://github.com/justinetobithe/CTExpress",
+        "liveUrl": "",
+        "description": "CTExpress UI project — web interface and layout components.",
+        "tags": [
+            "UI",
+            "JavaScript",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/ctexpress.png"
+        ]
+    },
+    {
+        "id": "clicpoint",
+        "name": "Clicpoint (UI)",
+        "repoUrl": "https://github.com/justinetobithe/clicpoint",
+        "liveUrl": "",
+        "description": "Clicpoint UI project — web interface screens and layout work.",
+        "tags": [
+            "UI",
+            "JavaScript",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/clicpoint.png"
+        ]
+    },
+    {
+        "id": "Clicpoint-Mobile",
+        "name": "Clicpoint Mobile (UI)",
+        "repoUrl": "https://github.com/justinetobithe/Clicpoint-Mobile",
+        "liveUrl": "",
+        "description": "Mobile UI version/project for Clicpoint.",
+        "tags": [
+            "UI",
+            "Mobile",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/clicpoint-mobile.png"
+        ]
+    },
+    {
+        "id": "Fitfrail",
+        "name": "FitFrail (UI)",
+        "repoUrl": "https://github.com/justinetobithe/Fitfrail",
+        "liveUrl": "",
+        "description": "Fitness-themed UI project — screens, components, and UI layout.",
+        "tags": [
+            "UI",
+            "JavaScript",
+            "Frontend"
+        ],
+        "images": [
+            "/projects/fitfrail.png"
+        ]
+    },
+    {
+        "id": "survey",
+        "name": "Survey Builder",
+        "repoUrl": "https://github.com/justinetobithe/survey",
+        "liveUrl": "https://survey-black.vercel.app",
+        "description": "Form builder UI for creating surveys and collecting responses.",
+        "tags": [
+            "UI",
+            "Form Builder",
+            "Vercel"
+        ],
+        "images": [
+            "/projects/survey.png"
+        ]
+    },
+    {
+        "id": "Medicio",
+        "name": "Medicio (HTML to React UI)",
+        "repoUrl": "https://github.com/justinetobithe/Medicio",
+        "liveUrl": "",
+        "description": "UI conversion project: transforming an HTML template into a React-based interface.",
+        "tags": [
+            "UI",
+            "React",
+            "Conversion"
+        ],
+        "images": [
+            "/projects/medicio.png"
+        ]
+    }
+]
