@@ -8,7 +8,7 @@
             "https://xpg.live"
         ],
         "vercelUrls": [],
-        "description": "Official marketing website for XPG. Built to present products/services clearly with responsive sections, modern layout, and conversion-focused landing pages. Includes reusable UI sections, structured page content, and optimized UX for desktop and mobile.",
+        "description": "Official marketing website for XPG. Built to present products and services clearly with responsive sections, modern layout, and conversion-focused landing pages. Includes reusable UI sections, structured content blocks, and optimized UX for desktop and mobile.",
         "tags": [
             "UI",
             "Website",
@@ -32,7 +32,7 @@
         "vercelUrls": [
             "https://xpg-clientarea-ui.vercel.app"
         ],
-        "description": "Customer client portal UI for XPG. Includes authentication-ready layouts, dashboard UI, navigation patterns, profile/settings pages, and scalable components. Designed for clean workflows, fast iteration, and consistent user experience across portal features.",
+        "description": "Customer client portal UI for XPG. Includes authentication-ready layouts, dashboard UI, navigation patterns, profile and settings pages, and scalable components. Designed for clean workflows, fast iteration, and consistent user experience across portal features.",
         "tags": [
             "UI",
             "Client Portal",
@@ -78,7 +78,7 @@
         "vercelUrls": [
             "https://xpg-manual.vercel.app"
         ],
-        "description": "Documentation/manual UI for XPG. Organized pages for guides, sections, and step-by-step instructions. Built with readable layout, consistent typography, and navigation that makes it easy to find help content quickly.",
+        "description": "Documentation and manual UI for XPG. Organized pages for guides, sections, and step-by-step instructions. Built with a readable layout, consistent typography, and navigation that makes it easy to find help content quickly.",
         "tags": [
             "UI",
             "Docs",
@@ -90,6 +90,45 @@
         "images": [
             "/projects/xpg-manual.png"
         ]
+    },
+    {
+        "id": "uglq-portal",
+        "name": "UGLQ",
+        "repoUrl": "",
+        "liveUrl": "https://connect.uglq.org.au/",
+        "prodUrls": [
+            "https://connect.uglq.org.au/"
+        ],
+        "vercelUrls": [],
+        "description": "Member portal for UGLQ (Australia). Built as a modern internal platform for lodge members with powerful tools like a report builder, form builder, and a full Masonic name builder. Designed for structured workflows, fast access to member utilities, and scalable feature growth.",
+        "tags": [
+            "Portal",
+            "Next.js",
+            "Zustand",
+            "Laravel",
+            "Reports",
+            "Form Builder",
+            "Australia"
+        ],
+        "images": []
+    },
+    {
+        "id": "your-reformer",
+        "name": "Your Reformer (E-commerce)",
+        "repoUrl": "",
+        "liveUrl": "",
+        "prodUrls": [],
+        "vercelUrls": [],
+        "description": "E-commerce platform for AU and NZ focused on yoga products and digital eBooks. Integrated Shopify webhooks and built a smooth product and order flow with a custom front-end experience. Uses React on the client and Laravel on the backend for scalable commerce operations.",
+        "tags": [
+            "E-commerce",
+            "React",
+            "Laravel",
+            "Shopify",
+            "Webhooks",
+            "AU/NZ"
+        ],
+        "images": []
     },
     {
         "id": "xpg-ui",
@@ -134,13 +173,16 @@
         "repoUrl": "https://github.com/justinetobithe/mrspinny-marketing",
         "liveUrl": "https://mrspinny-marketing.vercel.app",
         "prodUrls": [],
-        "vercelUrls": [],
+        "vercelUrls": [
+            "https://mrspinny-marketing.vercel.app"
+        ],
         "description": "Marketing landing page UI for MrSpinny with modern hero sections, clear CTAs, and responsive layout. Designed to highlight product value, improve readability, and keep a professional brand look.",
         "tags": [
             "UI",
             "Landing Page",
             "Marketing",
-            "Responsive"
+            "Responsive",
+            "Vercel"
         ],
         "images": [
             "/projects/mrspinny-marketing.png"
@@ -152,13 +194,16 @@
         "repoUrl": "https://github.com/justinetobithe/file-management-client",
         "liveUrl": "https://pagcor-file-management.vercel.app/",
         "prodUrls": [],
-        "vercelUrls": [],
+        "vercelUrls": [
+            "https://pagcor-file-management.vercel.app/"
+        ],
         "description": "Client UI for a file management system featuring browsing, previews, file actions, and structured navigation. Designed to keep workflows simple while supporting scalable UI for folders, metadata, and user controls.",
         "tags": [
             "UI",
             "TypeScript",
             "Next.js",
-            "Client"
+            "Client",
+            "Vercel"
         ],
         "images": [
             "/projects/file-management-client.png"
@@ -170,13 +215,16 @@
         "repoUrl": "https://github.com/justinetobithe/commish-togo-client",
         "liveUrl": "https://commish-togo.vercel.app",
         "prodUrls": [],
-        "vercelUrls": [],
+        "vercelUrls": [
+            "https://commish-togo.vercel.app"
+        ],
         "description": "Client-side UI for Commish To-Go featuring user-facing screens, navigation, and UI flows designed for speed and clarity. Focused on consistent layout patterns and clean presentation for common user actions.",
         "tags": [
             "UI",
             "TypeScript",
             "Client",
-            "Frontend"
+            "Frontend",
+            "Vercel"
         ],
         "images": [
             "/projects/commish-togo-client.png"
@@ -188,13 +236,16 @@
         "repoUrl": "https://github.com/justinetobithe/attendease-client",
         "liveUrl": "https://attendease-teal.vercel.app",
         "prodUrls": [],
-        "vercelUrls": [],
+        "vercelUrls": [
+            "https://attendease-teal.vercel.app"
+        ],
         "description": "Attendance management UI featuring dashboards, listing views, detail screens, and action controls. Built with a clear information layout to support day-to-day attendance tracking and reporting use-cases.",
         "tags": [
             "UI",
             "TypeScript",
             "Client",
-            "Dashboard"
+            "Dashboard",
+            "Vercel"
         ],
         "images": [
             "/projects/attendease-client.png"
@@ -206,13 +257,16 @@
         "repoUrl": "https://github.com/justinetobithe/mapua-tindahan-client",
         "liveUrl": "https://mapua-tindahan.vercel.app",
         "prodUrls": [],
-        "vercelUrls": [],
-        "description": "E-commerce client UI with product browsing, product details, cart, and checkout flow screens. Structured for scalable catalog presentation and improved UX for shopping experiences on mobile and desktop.",
+        "vercelUrls": [
+            "https://mapua-tindahan.vercel.app"
+        ],
+        "description": "E-commerce client UI with product browsing, product details, cart, and checkout flows. Structured for scalable catalog presentation and improved UX for shopping experiences on mobile and desktop.",
         "tags": [
             "UI",
             "TypeScript",
             "E-commerce",
-            "Client"
+            "Client",
+            "Vercel"
         ],
         "images": [
             "/projects/mapua-tindahan-client.png"
@@ -224,13 +278,16 @@
         "repoUrl": "https://github.com/justinetobithe/mapuaccess-client",
         "liveUrl": "https://mapuaccess.vercel.app",
         "prodUrls": [],
-        "vercelUrls": [],
+        "vercelUrls": [
+            "https://mapuaccess.vercel.app"
+        ],
         "description": "Client UI for MapuAccess focused on user workflows and records/access interfaces. Includes structured screens and UI components designed for clarity, form usability, and consistent navigation.",
         "tags": [
             "UI",
             "TypeScript",
             "Client",
-            "Frontend"
+            "Frontend",
+            "Vercel"
         ],
         "images": [
             "/projects/mapuaccess-client.png"
@@ -276,13 +333,16 @@
         "repoUrl": "https://github.com/justinetobithe/ctexpress-client",
         "liveUrl": "https://ctexpress-client.vercel.app",
         "prodUrls": [],
-        "vercelUrls": [],
+        "vercelUrls": [
+            "https://ctexpress-client.vercel.app"
+        ],
         "description": "Client-side UI for CTExpress featuring screens and workflows for users. Designed with consistent spacing, predictable navigation patterns, and reusable UI sections for growth.",
         "tags": [
             "UI",
             "TypeScript",
             "Client",
-            "Frontend"
+            "Frontend",
+            "Vercel"
         ],
         "images": [
             "/projects/ctexpress-client.png"

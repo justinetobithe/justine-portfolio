@@ -102,7 +102,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="relative h-20 w-20 overflow-hidden rounded-2xl border bg-muted md:h-24 md:w-24"
+                className="relative h-28 w-28 overflow-hidden rounded-2xl border bg-muted sm:h-36 sm:w-36 md:h-44 md:w-44 lg:h-52 lg:w-52"
               >
                 <Image src="/profile.jpg" alt="Justine Tobithe" fill className="object-cover" priority />
               </motion.div>

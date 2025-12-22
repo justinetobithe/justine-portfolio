@@ -26,16 +26,16 @@ export default function AboutPage() {
         <div className="space-y-8">
             <Reveal>
                 <section className="rounded-2xl border bg-card/60 p-6 backdrop-blur">
-                    <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-                        <div className="flex items-center gap-4">
+                    <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+                        <div className="flex items-center gap-5">
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.96 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true, amount: 0.35 }}
                                 transition={{ duration: 0.35, ease: "easeOut" }}
-                                className="relative h-20 w-20 overflow-hidden rounded-2xl border bg-muted md:h-24 md:w-24"
+                                className="relative h-28 w-28 overflow-hidden rounded-2xl border bg-muted sm:h-32 sm:w-32 md:h-40 md:w-40 lg:h-44 lg:w-44"
                             >
-                                <Image src="/profile.jpg" alt="Justine Tobithe" fill className="object-cover" />
+                                <Image src="/profile.jpg" alt="Justine Tobithe" fill className="object-cover" priority />
                             </motion.div>
 
                             <div className="space-y-1">
