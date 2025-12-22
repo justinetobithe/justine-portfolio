@@ -23,7 +23,11 @@ import {
   TrendingUp,
   Layers,
   Code2,
-  ChevronUp
+  ChevronUp,
+  Smartphone,
+  Database,
+  Store,
+  Globe
 } from "lucide-react";
 
 function Stat({ icon: Icon, label, value }: { icon: any; label: string; value: string }) {
@@ -39,6 +43,20 @@ function Stat({ icon: Icon, label, value }: { icon: any; label: string; value: s
             <div className="text-lg font-semibold tracking-tight">{value}</div>
           </div>
         </CardContent>
+      </Card>
+    </motion.div>
+  );
+}
+
+function Highlight({ icon: Icon, title, text }: { icon: any; title: string; text: string }) {
+  return (
+    <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.2 }}>
+      <Card className="rounded-2xl bg-card/60 backdrop-blur transition-shadow hover:shadow-xl">
+        <CardHeader className="flex flex-row items-center gap-2 font-semibold">
+          <Icon className="h-5 w-5" />
+          {title}
+        </CardHeader>
+        <CardContent className="text-sm text-muted-foreground">{text}</CardContent>
       </Card>
     </motion.div>
   );
@@ -67,12 +85,9 @@ export default function HomePage() {
     queryFn: fetchProjects
   });
 
-  const featured = useMemo(() => {
-    const list = (data || []) as Project[];
-    return list.slice(0, 3);
-  }, [data]);
-
-  const totalProjects = (data || []).length;
+  const list = (data || []) as Project[];
+  const featured = useMemo(() => list.slice(0, 3), [list]);
+  const totalProjects = list.length;
 
   return (
     <div id="top" className="space-y-8">
@@ -101,7 +116,7 @@ export default function HomePage() {
                   className="inline-flex items-center gap-2 rounded-full border bg-background/40 px-3 py-1 text-xs text-muted-foreground"
                 >
                   <Sparkles className="h-3.5 w-3.5" />
-                  Full Stack Developer • Systems Analyst • Multimedia Design
+                  Full Stack Developer • React/Next Specialist • UI/UX Builder
                 </motion.div>
 
                 <motion.h1
@@ -121,8 +136,9 @@ export default function HomePage() {
                   transition={{ duration: 0.35, ease: "easeOut", delay: 0.1 }}
                   className="text-sm text-muted-foreground"
                 >
-                  I specialize in full-stack development, system analysis, and multimedia design,
-                  delivering innovative solutions and seamless user experiences.
+                  I build modern web apps with strong UI details, smooth UX, and scalable architecture. I’m expert in
+                  React/Next.js, experienced in React Native (mobile), and I also work with Firebase, Shopify, and
+                  WordPress to deliver production-ready solutions.
                 </motion.p>
 
                 <motion.div
@@ -153,11 +169,13 @@ export default function HomePage() {
                   transition={{ duration: 0.35, ease: "easeOut", delay: 0.2 }}
                   className="flex flex-wrap gap-2 pt-2"
                 >
-                  {["React", "Next.js", "TypeScript", "Laravel", "PHP", "UI/UX"].map((t) => (
-                    <Badge key={t} variant="secondary" className="rounded-full">
-                      {t}
-                    </Badge>
-                  ))}
+                  {["React", "Next.js", "TypeScript", "Laravel", "Firebase", "React Native", "Shopify", "WordPress"].map(
+                    (t) => (
+                      <Badge key={t} variant="secondary" className="rounded-full">
+                        {t}
+                      </Badge>
+                    )
+                  )}
                 </motion.div>
               </div>
             </div>
@@ -217,51 +235,35 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-3">
-        {[
-          {
-            title: "Core Skills",
-            body: (
-              <div className="flex flex-wrap gap-2">
-                {["Front-end", "Back-end", "Systems Analysis", "UI/UX", "Web Design", "Multimedia Editing"].map((t) => (
-                  <Badge key={t} variant="secondary" className="rounded-full">
-                    {t}
-                  </Badge>
-                ))}
-              </div>
-            )
-          },
-          {
-            title: "Tech Focus",
-            body: (
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <div>React JS • Next JS • TypeScript</div>
-                <div>Laravel • PHP</div>
-                <div>UI components with shadcn/ui</div>
-              </div>
-            )
-          },
-          {
-            title: "Experience",
-            body: (
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <div>Full Stack Developer</div>
-                <div>Systems Developer</div>
-                <div>IT Staff - Software</div>
-                <div>Research Assistant / Developer</div>
-              </div>
-            )
-          }
-        ].map((item, idx) => (
-          <Reveal key={item.title} delay={0.05 * (idx + 1)}>
-            <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.2 }}>
-              <Card className="rounded-2xl bg-card/60 backdrop-blur transition-shadow hover:shadow-xl">
-                <CardHeader className="font-semibold">{item.title}</CardHeader>
-                <CardContent>{item.body}</CardContent>
-              </Card>
-            </motion.div>
-          </Reveal>
-        ))}
+      <section className="grid gap-4 md:grid-cols-4">
+        <Reveal>
+          <Highlight
+            icon={Globe}
+            title="React & Next.js Expert"
+            text="Modern UI architecture, reusable components, routing patterns, performance improvements, and production-ready responsive layouts."
+          />
+        </Reveal>
+        <Reveal delay={0.05}>
+          <Highlight
+            icon={Smartphone}
+            title="Mobile with React Native"
+            text="Mobile-first thinking with clean screens, navigation flows, and scalable UI structure for real products."
+          />
+        </Reveal>
+        <Reveal delay={0.1}>
+          <Highlight
+            icon={Database}
+            title="Firebase Skills"
+            text="Auth, Firestore, storage uploads, role-based UI, and real-time data patterns for modern web apps."
+          />
+        </Reveal>
+        <Reveal delay={0.15}>
+          <Highlight
+            icon={Store}
+            title="Shopify & WordPress"
+            text="Theme/UI customization, page building, integration-friendly layouts, and client-focused delivery for marketing and commerce."
+          />
+        </Reveal>
       </section>
 
       <Reveal>
@@ -271,7 +273,7 @@ export default function HomePage() {
               <div className="text-xs text-muted-foreground">Featured</div>
               <h2 className="text-xl font-semibold tracking-tight">Featured UI Projects</h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                A few highlights from my GitHub UI/client work.
+                Live production and portfolio highlights with previews, links, and tags.
               </p>
             </div>
 
@@ -296,7 +298,7 @@ export default function HomePage() {
             <div>
               <h2 className="text-xl font-semibold tracking-tight">Let’s work together</h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                I’m open to full-stack development, UI/UX, and modern web projects.
+                Open to full-stack development, UI/UX projects, landing pages, dashboards, and client portals.
               </p>
             </div>
 

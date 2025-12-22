@@ -1,26 +1,56 @@
+"use client";
+
 import Image from "next/image";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, GraduationCap, Mail, Phone } from "lucide-react";
+import { Briefcase, GraduationCap, Mail, Phone, Sparkles, Layers, Smartphone, Database, Store } from "lucide-react";
 import Reveal from "@/components/reveal";
 import ExperienceCard from "@/components/experience-card";
+import { motion } from "framer-motion";
 
 export default function AboutPage() {
+    const skills = [
+        "React JS / Next JS Expert",
+        "TypeScript",
+        "React Native (Mobile)",
+        "Firebase (Auth, Firestore, Storage)",
+        "Laravel / PHP",
+        "UI/UX and Web Design",
+        "Shopify Theme Customization",
+        "WordPress Page Builder + Custom UI",
+        "System Analysis",
+        "Multimedia Editing"
+    ];
+
     return (
         <div className="space-y-8">
             <Reveal>
                 <section className="rounded-2xl border bg-card/60 p-6 backdrop-blur">
                     <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                         <div className="flex items-center gap-4">
-                            <div className="relative h-20 w-20 overflow-hidden rounded-2xl border bg-muted md:h-24 md:w-24">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.96 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true, amount: 0.35 }}
+                                transition={{ duration: 0.35, ease: "easeOut" }}
+                                className="relative h-20 w-20 overflow-hidden rounded-2xl border bg-muted md:h-24 md:w-24"
+                            >
                                 <Image src="/profile.jpg" alt="Justine Tobithe" fill className="object-cover" />
-                            </div>
+                            </motion.div>
+
                             <div className="space-y-1">
-                                <h1 className="text-2xl font-semibold tracking-tight">About</h1>
+                                <div className="inline-flex items-center gap-2 rounded-full border bg-background/40 px-3 py-1 text-xs text-muted-foreground">
+                                    <Sparkles className="h-3.5 w-3.5" />
+                                    About Me
+                                </div>
+
+                                <h1 className="text-2xl font-semibold tracking-tight">Justine Tobithe</h1>
+
                                 <p className="text-sm text-muted-foreground">
-                                    I specialize in full-stack development, system analysis, and multimedia design,
-                                    delivering innovative solutions and seamless user experiences.
+                                    Full-stack developer focused on clean UI, fast workflows, and maintainable systems. I’m expert in
+                                    React/Next.js, experienced in React Native, and I ship real apps using Firebase + Laravel.
                                 </p>
+
                                 <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
                                     <div className="flex items-center gap-2 text-sm">
                                         <Mail className="h-4 w-4" />
@@ -34,11 +64,25 @@ export default function AboutPage() {
                             </div>
                         </div>
 
-                        <div className="grid gap-2">
-                            <div className="text-sm text-muted-foreground">Quick Summary</div>
-                            <div className="text-sm">
-                                Full-stack developer with strong experience in React/Next.js and Laravel/PHP, plus
-                                multimedia editing and UI/UX design.
+                        <div className="grid gap-3 md:max-w-md">
+                            <div className="text-sm text-muted-foreground">What I’m known for</div>
+                            <div className="grid gap-2">
+                                <div className="flex items-start gap-2 text-sm">
+                                    <Layers className="mt-0.5 h-4 w-4" />
+                                    <span>Reusable UI systems and component-driven design for fast development.</span>
+                                </div>
+                                <div className="flex items-start gap-2 text-sm">
+                                    <Database className="mt-0.5 h-4 w-4" />
+                                    <span>Firebase-based apps (auth, real-time data, uploads) and clean admin flows.</span>
+                                </div>
+                                <div className="flex items-start gap-2 text-sm">
+                                    <Smartphone className="mt-0.5 h-4 w-4" />
+                                    <span>Mobile-ready UX with React Native and responsive-first web layouts.</span>
+                                </div>
+                                <div className="flex items-start gap-2 text-sm">
+                                    <Store className="mt-0.5 h-4 w-4" />
+                                    <span>Shopify/WordPress builds for marketing, landing pages, and commerce UI.</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -54,9 +98,7 @@ export default function AboutPage() {
                         </CardHeader>
                         <CardContent className="space-y-2">
                             <div className="font-medium">Holy Cross of Davao College Inc.</div>
-                            <div className="text-sm text-muted-foreground">
-                                2015 - 2019 • Sta. Ana Ave., Davao City
-                            </div>
+                            <div className="text-sm text-muted-foreground">2015 - 2019 • Sta. Ana Ave., Davao City</div>
                             <div className="text-sm">Bachelor of Science in Information Technology</div>
                         </CardContent>
                     </Card>
@@ -64,16 +106,9 @@ export default function AboutPage() {
 
                 <Reveal delay={0.1}>
                     <Card className="rounded-2xl bg-card/60 backdrop-blur">
-                        <CardHeader className="font-semibold">Skills</CardHeader>
+                        <CardHeader className="font-semibold">Skills & Tools</CardHeader>
                         <CardContent className="flex flex-wrap gap-2">
-                            {[
-                                "Ability to work under pressure",
-                                "Configuration and Installations",
-                                "Front-end and Back-end Developer",
-                                "Systems Analyst",
-                                "Web Design",
-                                "Multimedia Editing Literate"
-                            ].map((s) => (
+                            {skills.map((s) => (
                                 <Badge key={s} variant="secondary" className="rounded-full">
                                     {s}
                                 </Badge>
@@ -96,11 +131,11 @@ export default function AboutPage() {
                         title="AYP Holdings Inc. — IT Staff (Software)"
                         meta="Apr 2019 – Dec 2019 • G.B CAM Bldg. Monteverde Avenue, Davao City"
                         bullets={[
-                            "Troubleshoot Computer Hardware & Software",
-                            "Manage Network & Servers",
-                            "Configurations and Installations",
-                            "Front-end & Back-end Developer",
-                            "Provide designs and videos for ads and etc."
+                            "Troubleshoot computer hardware & software and resolve daily IT issues",
+                            "Manage network and basic server operations to maintain uptime",
+                            "Handle configurations and installations for office systems",
+                            "Support front-end & back-end tasks when needed",
+                            "Create designs and videos for marketing/ads as requested"
                         ]}
                     />
 
@@ -108,11 +143,11 @@ export default function AboutPage() {
                         title="Power Virtual Solutions — Systems Developer"
                         meta="Dec 2019 – Feb 2021 • Door 1, 726 YLS Bldg, Veloso St. Obrero, Davao City"
                         bullets={[
-                            "Mobile App Developer",
-                            "Front-end & Back-end Developer",
-                            "Manage CMS",
-                            "Manage CRM VoIP App",
-                            "UI/UX Developer"
+                            "Develop mobile app features and UI workflows",
+                            "Build front-end & back-end components for internal tools",
+                            "Manage CMS updates and site/admin maintenance",
+                            "Maintain CRM VoIP app and implement UI/UX improvements",
+                            "Deliver usable layouts for real operations and daily workflows"
                         ]}
                     />
 
@@ -120,9 +155,10 @@ export default function AboutPage() {
                         title="University of Southeastern Philippines — Science Research Assistant / Developer"
                         meta="Apr 2021 – Apr 2023 • Bo. Obrero, Iñigo St, Poblacion District, Davao City"
                         bullets={[
-                            "Full Stack Developer",
-                            "Back-end (Laravel, PHP)",
-                            "Front-end (React JS)"
+                            "Build full-stack modules for research and internal applications",
+                            "Back-end development with Laravel/PHP for APIs and data workflows",
+                            "Front-end development with React JS for dashboards and screens",
+                            "Focus on stable, maintainable code and clear UI usability"
                         ]}
                     />
 
@@ -130,9 +166,10 @@ export default function AboutPage() {
                         title="Code Squirrel — Full Stack Developer"
                         meta="Apr 2023 – May 2025 • Australia Based"
                         bullets={[
-                            "Full Stack Developer",
-                            "Back-end (Laravel, PHP)",
-                            "Front-end (React JS, Next JS)"
+                            "Deliver full-stack features across multiple client projects",
+                            "Back-end development with Laravel/PHP for scalable systems",
+                            "Front-end development with React JS and Next JS",
+                            "Build polished UI with strong attention to detail and performance"
                         ]}
                     />
                 </div>
