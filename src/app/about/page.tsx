@@ -27,15 +27,22 @@ export default function AboutPage() {
             <Reveal>
                 <section className="rounded-2xl border bg-card/60 p-6 backdrop-blur">
                     <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-                        <div className="flex items-center gap-5">
+                        <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.96 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true, amount: 0.35 }}
                                 transition={{ duration: 0.35, ease: "easeOut" }}
-                                className="relative h-28 w-28 overflow-hidden rounded-2xl border bg-muted sm:h-32 sm:w-32 md:h-40 md:w-40 lg:h-44 lg:w-44"
+                                className="relative h-[240px] w-full flex-none overflow-hidden rounded-2xl border bg-muted md:h-[280px] md:w-[210px] lg:h-[320px] lg:w-[240px] xl:h-[340px] xl:w-[260px]"
                             >
-                                <Image src="/profile.jpg" alt="Justine Tobithe" fill className="object-cover" priority />
+                                <Image
+                                    src="/profile.jpg"
+                                    alt="Justine Tobithe"
+                                    fill
+                                    priority
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 210px, (max-width: 1280px) 240px, 260px"
+                                    className="object-cover"
+                                />
                             </motion.div>
 
                             <div className="space-y-1">

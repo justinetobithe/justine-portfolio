@@ -102,9 +102,16 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="relative h-28 w-28 overflow-hidden rounded-2xl border bg-muted sm:h-36 sm:w-36 md:h-44 md:w-44 lg:h-52 lg:w-52"
+                className="relative h-[240px] w-full flex-none overflow-hidden rounded-2xl border bg-muted md:h-[280px] md:w-[210px] lg:h-[320px] lg:w-[240px] xl:h-[340px] xl:w-[260px]"
               >
-                <Image src="/profile.jpg" alt="Justine Tobithe" fill className="object-cover" priority />
+                <Image
+                  src="/profile.jpg"
+                  alt="Justine Tobithe"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 210px, (max-width: 1280px) 240px, 260px"
+                  className="object-cover"
+                />
               </motion.div>
 
               <div className="space-y-2">
