@@ -1,23 +1,31 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchProjects } from "@/lib/projects"; 
-import { useProjectsStore } from "@/store/projects-store"; 
+import { fetchProjects } from "@/lib/projects";
+import { useProjectsStore } from "@/store/projects-store";
 import ProjectCard from "@/components/project-card";
 import Skeleton from "./skeleton";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function ProjectsPage() {
     const { q, tag, setQ, setTag, clear } = useProjectsStore();
+    const reduceMotion = useReducedMotion();
 
     const { data, isLoading, isError } = useQuery({
         queryKey: ["projects"],
-        queryFn: fetchProjects
+        queryFn: fetchProjects,
+        staleTime: 1000 * 60 * 5,
+        refetchOnWindowFocus: false
     });
+
+    const onChangeQ = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement>) => setQ(e.target.value),
+        [setQ]
+    );
 
     const tags = useMemo(() => {
         const base = new Set<string>(["All"]);
@@ -41,37 +49,30 @@ export default function ProjectsPage() {
 
     return (
         <div className="space-y-6">
-            <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+            <motion.section
+                initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
                 transition={{ duration: 0.25 }}
-                className="rounded-2xl border bg-card/60 p-6 backdrop-blur"
+                className="rounded-2xl border bg-card/60 p-4 backdrop-blur sm:p-6"
             >
                 <div className="space-y-2">
                     <h1 className="text-2xl font-semibold tracking-tight">Projects</h1>
-                    <p className="text-sm text-muted-foreground">
-                        UI/client projects from my GitHub (images + links).
-                    </p>
+                    <p className="text-sm text-muted-foreground">UI/client projects from my GitHub (images + links).</p>
                 </div>
 
-                <div className="mt-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                    <div className="flex flex-1 gap-2 md:max-w-xl">
-                        <Input
-                            value={q}
-                            onChange={(e) => setQ(e.target.value)}
-                            placeholder="Search projects..."
-                            className="rounded-xl"
-                        />
-                        <Button variant="outline" onClick={clear} className="rounded-xl">
+                <div className="mt-5 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+                    <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center">
+                        <Input value={q} onChange={onChangeQ} placeholder="Search projects..." className="h-10 rounded-xl" />
+                        <Button variant="outline" onClick={clear} className="h-10 rounded-xl sm:w-auto">
                             Clear
                         </Button>
                     </div>
 
-                    <div className="overflow-x-auto">
+                    <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
                         <Tabs value={tag} onValueChange={setTag}>
-                            <TabsList className="w-max rounded-xl">
-                                {tags.slice(0, 12).map((t) => (
-                                    <TabsTrigger key={t} value={t} className="rounded-lg">
+                            <TabsList className="w-max gap-1 rounded-xl">
+                                {tags.slice(0, 14).map((t) => (
+                                    <TabsTrigger key={t} value={t} className="rounded-lg px-3 text-xs sm:text-sm">
                                         {t}
                                     </TabsTrigger>
                                 ))}
@@ -79,16 +80,15 @@ export default function ProjectsPage() {
                         </Tabs>
                     </div>
                 </div>
-            </motion.div>
+            </motion.section>
 
             {isError ? (
                 <div className="rounded-2xl border bg-destructive/10 p-4 text-sm">
-                    Failed to load <span className="font-semibold">/public/data/projects.json</span>. Make sure
-                    it exists.
+                    Failed to load <span className="font-semibold">/public/data/projects.json</span>. Make sure it exists.
                 </div>
             ) : null}
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                 {isLoading
                     ? Array.from({ length: 9 }).map((_, i) => <Skeleton key={i} />)
                     : filtered.map((p) => <ProjectCard key={p.id} project={p} />)}
