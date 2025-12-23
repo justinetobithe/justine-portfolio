@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -53,9 +52,11 @@ function useIsMobile(breakpoint = 768) {
 }
 
 function useOnScreen<T extends Element>(rootMargin = "200px") {
+    const ref = useRef<T | null>(null);
     const [isIntersecting, setIsIntersecting] = useState(false);
 
-    const ref = useCallback((node: T | null) => {
+    useEffect(() => {
+        const node = ref.current;
         if (!node) return;
 
         const obs = new IntersectionObserver(
@@ -116,7 +117,7 @@ export default function ProjectCard({ project }: { project: Project }) {
     const canRenderIframe = Boolean(project.liveUrl) && !isMobile && isIntersecting && previewEnabled && !iframeFailed;
 
     const PreviewArea = useMemo(() => {
-        if (!project.liveUrl) {
+        if (!project.liveUrl && !img) {
             return (
                 <div className="flex h-full w-full items-center justify-center text-muted-foreground">
                     <ImgIcon className="h-6 w-6" />
@@ -124,7 +125,7 @@ export default function ProjectCard({ project }: { project: Project }) {
             );
         }
 
-        if (canRenderIframe) {
+        if (canRenderIframe && project.liveUrl) {
             return (
                 <a href={project.liveUrl} target="_blank" rel="noreferrer" className="block h-full w-full">
                     <div className="relative h-full w-full overflow-hidden">
@@ -140,10 +141,23 @@ export default function ProjectCard({ project }: { project: Project }) {
         }
 
         if (img) {
-            return (
+            const Img = (
+                <img
+                    src={img}
+                    alt={project.name}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
+                />
+            );
+
+            return project.liveUrl ? (
                 <a href={project.liveUrl} target="_blank" rel="noreferrer" className="block h-full w-full">
-                    <Image src={img} alt={project.name} fill className="object-cover" sizes="(max-width: 640px) 100vw, 33vw" />
+                    {Img}
                 </a>
+            ) : (
+                Img
             );
         }
 
@@ -152,7 +166,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 <ImgIcon className="h-6 w-6" />
             </div>
         );
-    }, [project.liveUrl, canRenderIframe, img, project.name]);
+    }, [project.liveUrl, img, project.name, canRenderIframe]);
 
     return (
         <motion.div
