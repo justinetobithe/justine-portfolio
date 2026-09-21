@@ -1,226 +1,216 @@
 "use client";
 
-import Image from "next/image";
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion, useReducedMotion } from "framer-motion";
 import {
+  ArrowDownRight,
   ArrowRight,
-  Code2,
+  Asterisk,
   Database,
   Download,
   Github,
-  Globe2,
   Layers,
   Mail,
   MapPin,
   Phone,
   Smartphone,
-  Store,
-  TrendingUp
+  Store
 } from "lucide-react";
 import { fetchProjects } from "@/lib/projects";
-import { SITE } from "@/lib/site";
 import type { Project } from "@/lib/projects";
+import { yearsOfExperience } from "@/lib/career";
+import { SITE } from "@/lib/site";
 import AppButton from "@/components/app/app-button";
 import AppCard from "@/components/app/app-card";
-import AppSectionHeading from "@/components/app/app-section-heading";
+import AppSectionHeading, { Mark } from "@/components/app/app-section-heading";
 import Counter from "@/components/counter";
-import FeaturedWork from "@/components/featured-work";
 import FeaturedSkeleton from "@/components/featured-skeleton";
+import FeaturedWork from "@/components/featured-work";
 import Marquee from "@/components/marquee";
+import Polaroid from "@/components/polaroid";
 import Reveal from "@/components/reveal";
 import RotatingText from "@/components/rotating-text";
 
-const roles = ["e-commerce platforms", "custom CMS", "client portals", "mobile apps", "delightful UI"];
+const words = ["online stores", "custom CMS", "client portals", "mobile apps"];
 
-const tech = [
-  "Next.js",
-  "React",
-  "Laravel",
-  "TypeScript",
-  "Supabase",
-  "Shopify",
-  "React Native",
-  "Firebase",
-  "Tailwind CSS",
-  "Webhooks",
-  "WordPress"
-];
-
-const orbit = [
-  { label: "Next.js", angle: 0 },
-  { label: "Laravel", angle: 90 },
-  { label: "Supabase", angle: 180 },
-  { label: "Shopify", angle: 270 }
-];
+const tickerA = ["Next.js", "Laravel", "TypeScript", "Supabase", "Shopify", "React Native", "Firebase", "Webhooks"];
+const tickerB = ["E-commerce", "Custom CMS", "Client portals", "CRM", "Ordering", "Delivery", "Payments", "Dashboards"];
 
 const capabilities = [
   {
     icon: Store,
-    title: "E-commerce that sells",
-    text: "Storefronts with ordering, payments and delivery, built with Next.js and Laravel for shops in Israel, Germany, the US and Mexico."
+    title: "Online stores",
+    text: "Storefronts with ordering, payments and delivery. Next.js on the front, Laravel behind it, shipped for shops in Israel, Germany, the US and Mexico.",
+    tone: "bg-sun"
   },
   {
     icon: Layers,
-    title: "Custom CMS and CRM",
-    text: "Admin panels your team can actually use: content, orders and customers, connected through webhooks and Shopify."
+    title: "CMS and CRM",
+    text: "Admin panels the team can actually run: content, orders, customers. Connected to Shopify and other tools through webhooks.",
+    tone: "bg-sky"
   },
   {
     icon: Database,
     title: "Data and auth",
-    text: "Supabase, Firebase and Laravel APIs for auth, role-based access, storage and real-time data."
+    text: "Laravel APIs, Supabase and Firebase for login, roles, storage and information systems that stay tidy as they grow.",
+    tone: "bg-blush"
   },
   {
     icon: Smartphone,
     title: "Web and mobile",
-    text: "Responsive-first interfaces on the web, and React Native screens when the product needs to live in a pocket."
+    text: "Layouts that hold up from a phone to a wide monitor, plus React Native screens when the product needs an app.",
+    tone: "bg-sage"
   }
 ];
 
-function Hero() {
+const steps = [
+  { title: "Understand", text: "What the business sells, who buys it and where orders get stuck today." },
+  { title: "Shape", text: "Sketch the flow and the pages first, so the build has a clear target." },
+  { title: "Build", text: "Next.js front end, Laravel or Supabase back end, tested on real devices." },
+  { title: "Ship and support", text: "Launch, watch how it behaves in production, then keep improving it." }
+];
+
+function Squiggle() {
   const reduce = useReducedMotion();
 
-  const fade = (delay: number) => ({
-    initial: reduce ? false : { opacity: 0, y: 20 },
+  return (
+    <svg aria-hidden viewBox="0 0 300 22" fill="none" preserveAspectRatio="none" className="absolute -bottom-[0.12em] left-0 h-[0.2em] w-full text-tomato">
+      <motion.path
+        d="M3 14 C 28 2, 48 22, 74 12 S 122 2, 148 12 S 196 22, 222 11 S 270 3, 297 12"
+        stroke="currentColor"
+        strokeWidth="6"
+        strokeLinecap="round"
+        initial={reduce ? false : { pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 0.9, ease: "easeInOut", delay: 0.5 }}
+      />
+    </svg>
+  );
+}
+
+function Sticker() {
+  return (
+    <a
+      href="#work"
+      aria-label="Scroll to selected work"
+      className="group absolute -right-3 -top-9 z-10 grid h-28 w-28 place-items-center rounded-full border-2 border-foreground bg-tomato shadow-hard transition-transform hover:scale-105 sm:-right-10 sm:h-32 sm:w-32"
+    >
+      <svg viewBox="0 0 120 120" className="spin-slow absolute inset-0 h-full w-full">
+        <defs>
+          <path id="sticker-ring" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0" />
+        </defs>
+        <text fontSize="11" fontWeight="700" letterSpacing="2" className="fill-foreground font-mono uppercase">
+          <textPath href="#sticker-ring" textLength="278" lengthAdjust="spacing">
+            Open to work ✶ Open to work ✶
+          </textPath>
+        </text>
+      </svg>
+      <ArrowDownRight className="h-8 w-8 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" strokeWidth={3} />
+    </a>
+  );
+}
+
+function Hero() {
+  const reduce = useReducedMotion();
+  const years = yearsOfExperience();
+
+  const rise = (delay: number) => ({
+    initial: reduce ? false : { opacity: 0, y: 24 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: "easeOut" as const, delay }
+    transition: { duration: 0.55, ease: "easeOut" as const, delay }
   });
 
   return (
-    <section className="relative grid items-center gap-14 pt-4 lg:grid-cols-[1.15fr_0.85fr] lg:pt-12">
+    <section className="grid items-center gap-14 lg:grid-cols-[1.25fr_0.75fr] lg:gap-8">
       <div className="space-y-7">
-        <motion.div {...fade(0)}>
-          <span className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm text-foreground/90 backdrop-blur">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/70" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
-            </span>
-            Open to new projects
+        <motion.div {...rise(0)}>
+          <span className="inline-flex items-center gap-2 rounded-full border-2 border-foreground bg-card px-3.5 py-1.5 font-mono text-xs font-medium uppercase tracking-wider shadow-hard-sm">
+            <span className="blink h-2.5 w-2.5 rounded-full bg-tomato" />
+            Looking for remote work
           </span>
         </motion.div>
 
         <motion.h1
-          {...fade(0.08)}
-          className="font-display text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
+          {...rise(0.06)}
+          className="font-display text-[clamp(2.6rem,9.5vw,6.25rem)] font-extrabold leading-[0.95] tracking-tight"
         >
+          Hi, I&apos;m{" "}
+          <span className="relative inline-block">
+            {SITE.firstName}.
+            <Squiggle />
+          </span>
+          <br />
           I build
           <br />
-          <RotatingText words={roles} />
-          <br />
-          that people trust.
+          <RotatingText words={words} />
         </motion.h1>
 
-        <motion.p {...fade(0.16)} className="max-w-xl text-lg leading-relaxed text-muted-foreground">
-          I&apos;m <span className="font-semibold text-foreground">Justine Tobithe Doloiras</span>, a full stack developer
-          shipping production e-commerce, CMS and portal projects with Next.js, Laravel and Supabase for clients around
-          the world.
+        <motion.div {...rise(0.1)}>
+          <span className="inline-block -rotate-2 rounded-md border-2 border-foreground bg-card px-3 py-1.5 font-mono text-sm shadow-hard-sm">
+            psst, you can call me <strong className="bg-sun px-1.5 font-bold">{SITE.nickname}</strong>
+          </span>
+        </motion.div>
+
+        <motion.p {...rise(0.14)} className="max-w-xl text-lg leading-relaxed text-foreground/80">
+          Full stack developer from Davao City with{" "}
+          <strong className="font-bold text-foreground" suppressHydrationWarning>
+            {years}+ years
+          </strong>{" "}
+          of experience. I make e-commerce sites, custom CMS and client portals with Next.js, Laravel and Supabase.{" "}
+          <strong className="bg-sun px-1.5 font-bold text-foreground">
+            Now open to remote work, full-time or part-time.
+          </strong>
         </motion.p>
 
-        <motion.div {...fade(0.24)} className="flex flex-wrap gap-3">
+        <motion.div {...rise(0.22)} className="flex flex-wrap gap-3">
+          <AppButton href={`mailto:${SITE.email}`} variant="tomato" icon={Mail}>
+            Hire me
+          </AppButton>
           <AppButton href="/projects" iconEnd={ArrowRight}>
-            View projects
+            See my work
           </AppButton>
-          <AppButton href="/about" variant="glass">
-            About me
+          <AppButton href={SITE.resumeUrl} download={SITE.resumeFileName} variant="paper" icon={Download}>
+            Resume
           </AppButton>
-          <AppButton href="https://github.com/justinetobithe" variant="glass" icon={Github}>
+          <AppButton href={SITE.github} variant="paper" icon={Github}>
             GitHub
           </AppButton>
-          <AppButton href={SITE.resumeUrl} download={SITE.resumeFileName} variant="ghost" icon={Download}>
-            Download Resume
-          </AppButton>
         </motion.div>
 
-        <motion.div
-          {...fade(0.32)}
-          className="flex flex-col gap-3 text-sm text-muted-foreground sm:flex-row sm:flex-wrap sm:gap-x-6"
+        <motion.ul
+          {...rise(0.3)}
+          className="flex flex-col gap-2 font-mono text-sm sm:flex-row sm:flex-wrap sm:gap-x-6"
         >
-          <span className="inline-flex items-center gap-2">
-            <Mail className="h-4 w-4 text-violet-300" />
-            justine.tobithe27@gmail.com
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Phone className="h-4 w-4 text-cyan-300" />
-            09276192326
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <MapPin className="h-4 w-4 text-emerald-300" />
-            Davao City, Philippines
-          </span>
-        </motion.div>
+          <li className="inline-flex items-center gap-2">
+            <Mail className="h-4 w-4 flex-none" />
+            {SITE.email}
+          </li>
+          <li className="inline-flex items-center gap-2">
+            <Phone className="h-4 w-4 flex-none" />
+            {SITE.phone}
+          </li>
+          <li className="inline-flex items-center gap-2">
+            <MapPin className="h-4 w-4 flex-none" />
+            {SITE.location}
+          </li>
+        </motion.ul>
       </div>
 
-      <motion.div
-        initial={reduce ? false : { opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
-        className="relative mx-auto w-[min(72vw,340px)] lg:w-[min(100%,380px)]"
-      >
-        <div className="orbit pointer-events-none absolute -inset-10 sm:-inset-14">
-          <div className="absolute inset-0 rounded-full border border-dashed border-white/20" />
-          {orbit.map((o) => (
-            <div key={o.label} className="absolute inset-0" style={{ transform: `rotate(${o.angle}deg)` }}>
-              <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
-                <div className="orbit-reverse">
-                  <span
-                    className="inline-block rounded-full border border-white/15 bg-background/80 px-3 py-1 text-xs font-medium backdrop-blur"
-                    style={{ transform: `rotate(${-o.angle}deg)` }}
-                  >
-                    {o.label}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="float-y relative">
-          <div
-            aria-hidden
-            className="absolute -inset-6 rounded-full bg-linear-to-br from-violet-500/40 via-cyan-400/25 to-emerald-400/30 blur-3xl"
-          />
-          <div className="relative overflow-hidden rounded-4xl p-0.75">
-            <div className="spin-slow absolute -inset-[60%] bg-[conic-gradient(from_0deg,#8b5cf6,#22d3ee,#34d399,#8b5cf6)]" />
-            <div className="relative aspect-4/5 overflow-hidden rounded-[23px] bg-muted">
-              <Image
-                src="/profile.jpg"
-                alt="Justine Tobithe Doloiras"
-                fill
-                priority
-                sizes="(max-width: 1024px) 72vw, 380px"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-background/50 via-transparent to-transparent" />
-            </div>
-          </div>
-        </div>
-      </motion.div>
+      <div className="relative mx-auto pb-6">
+        <Polaroid caption="justine aka jah · davao, ph" />
+        <Sticker />
+      </div>
     </section>
   );
 }
 
-function StatCard({
-  icon: Icon,
-  label,
-  children
-}: {
-  icon: typeof TrendingUp;
-  label: string;
-  children: React.ReactNode;
-}) {
+function Stat({ tone, label, children }: { tone: string; label: string; children: React.ReactNode }) {
   return (
-    <AppCard className="rounded-2xl">
-      <div className="flex items-center gap-4 p-5">
-        <div className="grid h-11 w-11 flex-none place-items-center rounded-xl bg-linear-to-br from-violet-500/30 to-cyan-400/20">
-          <Icon className="h-5 w-5" />
-        </div>
-        <div>
-          <div className="font-display text-2xl font-semibold tracking-tight">{children}</div>
-          <div className="text-sm text-muted-foreground">{label}</div>
-        </div>
-      </div>
-    </AppCard>
+    <div className={`${tone} space-y-1 p-5 sm:p-6`}>
+      <div className="font-display text-5xl font-extrabold leading-none tracking-tight sm:text-6xl">{children}</div>
+      <div className="font-mono text-xs font-medium uppercase tracking-wider">{label}</div>
+    </div>
   );
 }
 
@@ -232,49 +222,51 @@ export default function HomePage() {
 
   const list = useMemo(() => (data || []) as Project[], [data]);
   const featured = useMemo(() => list.filter((p) => p.featured), [list]);
+  const years = yearsOfExperience();
 
   return (
-    <div id="top" className="space-y-24">
+    <div id="top" className="space-y-24 md:space-y-32">
       <Hero />
 
-      <div className="-mx-4 sm:mx-0">
-        <Marquee items={tech} />
+      <div className="relative left-1/2 w-screen -translate-x-1/2 py-6" aria-hidden>
+        <Marquee items={tickerB} tone="sun" reverse className="absolute inset-x-0 top-1/2 -translate-y-1/2 rotate-1" />
+        <Marquee items={tickerA} className="relative -rotate-1" />
       </div>
 
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Reveal>
-          <StatCard icon={TrendingUp} label="Years of experience">
-            <Counter to={5} suffix="+" />
-          </StatCard>
-        </Reveal>
-        <Reveal delay={0.06}>
-          <StatCard icon={Layers} label="Projects delivered">
+      <Reveal>
+        <section className="grid grid-cols-2 gap-0.5 overflow-hidden rounded-2xl border-2 border-foreground bg-foreground shadow-hard-lg md:grid-cols-4">
+          <Stat tone="bg-sun" label="Years of experience">
+            <span suppressHydrationWarning>
+              <Counter to={years} suffix="+" />
+            </span>
+          </Stat>
+          <Stat tone="bg-sky" label="Projects delivered">
             <Counter to={Math.max(list.length, 20)} suffix="+" />
-          </StatCard>
-        </Reveal>
-        <Reveal delay={0.12}>
-          <StatCard icon={Globe2} label="Countries served">
+          </Stat>
+          <Stat tone="bg-blush" label="Countries served">
             <Counter to={6} />
-          </StatCard>
-        </Reveal>
-        <Reveal delay={0.18}>
-          <StatCard icon={Code2} label="Main stack">
-            Next · Laravel
-          </StatCard>
-        </Reveal>
-      </section>
+          </Stat>
+          <Stat tone="bg-sage" label="Main stack">
+            <span className="text-3xl sm:text-4xl">
+              Next.js
+              <br />+ Laravel
+            </span>
+          </Stat>
+        </section>
+      </Reveal>
 
-      <section className="space-y-10">
+      <section id="work" className="scroll-mt-28 space-y-12">
         <AppSectionHeading
+          index="01"
           eyebrow="Selected work"
           title={
             <>
-              Live products, <span className="text-gradient">real customers</span>
+              Sites people <Mark>order from</Mark>
             </>
           }
-          description="Production stores and platforms I built for clients across four continents, each with ordering, delivery, CMS or CRM work behind the interface."
+          description="Live stores and platforms I built for clients in four regions. Each one has ordering, delivery, CMS or CRM work behind the pretty part."
           action={
-            <AppButton href="/projects" variant="glass" size="default" iconEnd={ArrowRight}>
+            <AppButton href="/projects" variant="paper" iconEnd={ArrowRight}>
               All projects
             </AppButton>
           }
@@ -282,22 +274,28 @@ export default function HomePage() {
         {isLoading ? <FeaturedSkeleton count={2} /> : <FeaturedWork projects={featured} />}
       </section>
 
-      <section className="space-y-10">
+      <section className="space-y-12">
         <AppSectionHeading
+          index="02"
           eyebrow="What I do"
-          title="From storefront to back office"
-          description="I own the whole path: the interface people see and the systems that keep the business running."
+          title={
+            <>
+              Storefront to <Mark>back office</Mark>
+            </>
+          }
+          description="I own the whole path: what visitors see, and the systems that keep the business running behind it."
         />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {capabilities.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.06}>
-              <AppCard className="h-full">
-                <div className="space-y-3 p-6">
-                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-linear-to-br from-violet-500/30 to-cyan-400/20">
-                    <c.icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="font-display text-lg font-semibold tracking-tight">{c.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{c.text}</p>
+              <AppCard className={i % 2 === 0 ? "h-full lg:-rotate-1" : "h-full lg:rotate-1"}>
+                <div className={`${c.tone} flex items-center justify-between border-b-2 border-foreground px-5 py-4`}>
+                  <c.icon className="h-7 w-7" strokeWidth={2.25} />
+                  <span className="font-mono text-xs font-bold">0{i + 1}</span>
+                </div>
+                <div className="space-y-2 p-5">
+                  <h3 className="font-display text-2xl font-extrabold tracking-tight">{c.title}</h3>
+                  <p className="text-[15px] leading-relaxed text-foreground/80">{c.text}</p>
                 </div>
               </AppCard>
             </Reveal>
@@ -305,31 +303,53 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="space-y-12">
+        <AppSectionHeading
+          index="03"
+          eyebrow="How I work"
+          title={
+            <>
+              Simple, <Mark>no surprises</Mark>
+            </>
+          }
+        />
+        <ol className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+          {steps.map((s, i) => (
+            <Reveal key={s.title} delay={i * 0.06}>
+              <li className="space-y-3 border-t-4 border-foreground pt-4">
+                <div className="text-outline font-display text-6xl font-extrabold leading-none">{i + 1}</div>
+                <h3 className="font-display text-2xl font-extrabold tracking-tight">{s.title}</h3>
+                <p className="text-[15px] leading-relaxed text-foreground/80">{s.text}</p>
+              </li>
+            </Reveal>
+          ))}
+        </ol>
+      </section>
+
       <Reveal>
-        <AppCard className="rounded-4xl" glow="rgba(34, 211, 238, 0.18)">
-          <div className="relative flex flex-col gap-8 p-8 sm:p-12 md:flex-row md:items-center md:justify-between">
-            <div
-              aria-hidden
-              className="spin-slow pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full border border-dashed border-white/15"
-            />
-            <div className="relative max-w-xl space-y-3">
-              <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-                Have a store or platform in mind? <span className="text-gradient">Let&apos;s build it.</span>
-              </h2>
-              <p className="text-base leading-relaxed text-muted-foreground">
-                Open to full-stack development, e-commerce, custom CMS, dashboards and client portals.
-              </p>
+        <section className="relative overflow-hidden rounded-3xl border-2 border-foreground bg-foreground p-7 text-background shadow-hard-lg sm:p-12">
+          <Asterisk
+            aria-hidden
+            className="spin-slower pointer-events-none absolute -right-10 -top-10 h-40 w-40 text-sun sm:h-56 sm:w-56"
+            strokeWidth={2.5}
+          />
+          <div className="relative max-w-3xl space-y-6">
+            <div className="font-mono text-xs uppercase tracking-[0.18em] text-sun">
+              Open to remote work · full-time or part-time
             </div>
-            <div className="relative flex flex-wrap gap-3">
-              <AppButton href="mailto:justine.tobithe27@gmail.com" icon={Mail}>
-                Email me
+            <h2 className="font-display text-4xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl">
+              Need a remote developer? Full-time or part-time, <span className="bg-sun px-2 text-foreground">let&apos;s talk.</span>
+            </h2>
+            <div className="flex flex-wrap gap-3">
+              <AppButton href={`mailto:${SITE.email}`} variant="tomato" icon={Mail}>
+                {SITE.email}
               </AppButton>
-              <AppButton href="/projects" variant="glass">
-                See my work
+              <AppButton href={SITE.resumeUrl} download={SITE.resumeFileName} variant="paper" icon={Download}>
+                Download resume
               </AppButton>
             </div>
           </div>
-        </AppCard>
+        </section>
       </Reveal>
     </div>
   );

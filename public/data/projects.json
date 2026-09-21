@@ -32,6 +32,13 @@
         ],
         "images": [
             "/projects/shanyliving.png"
+        ],
+        "scope": [
+            "Storefront UI",
+            "Ordering",
+            "Online payments",
+            "Custom CMS",
+            "Laravel API"
         ]
     },
     {
@@ -66,6 +73,12 @@
         ],
         "images": [
             "/projects/wecare.png"
+        ],
+        "scope": [
+            "Storefront UI",
+            "Ordering",
+            "Delivery",
+            "Laravel API"
         ]
     },
     {
@@ -101,6 +114,14 @@
         ],
         "images": [
             "/projects/roote.png"
+        ],
+        "scope": [
+            "Storefront UI",
+            "CRM",
+            "Webhooks",
+            "Ordering",
+            "Delivery",
+            "Laravel API"
         ]
     },
     {
@@ -140,6 +161,14 @@
         ],
         "images": [
             "/projects/sanovida.png"
+        ],
+        "scope": [
+            "Storefront UI",
+            "Custom CMS",
+            "Shopify webhooks",
+            "Ordering",
+            "Delivery",
+            "Laravel API"
         ]
     },
     {
@@ -174,6 +203,12 @@
         ],
         "images": [
             "/projects/rootedperformance.png"
+        ],
+        "scope": [
+            "Information management",
+            "Custom CMS",
+            "Supabase data and auth",
+            "Website UI"
         ]
     },
     {

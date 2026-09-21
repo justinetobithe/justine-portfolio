@@ -5,94 +5,66 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 export default function AbstractBackground() {
     const reduce = useReducedMotion();
     const { scrollY } = useScroll();
-    const up = useTransform(scrollY, [0, 2400], [0, -320]);
-    const down = useTransform(scrollY, [0, 2400], [0, 240]);
-    const spin = useTransform(scrollY, [0, 2400], [0, 200]);
+    const up = useTransform(scrollY, [0, 3000], [0, -360]);
+    const down = useTransform(scrollY, [0, 3000], [0, 260]);
+    const turn = useTransform(scrollY, [0, 3000], [0, 240]);
 
     return (
-        <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-background">
-            <div className="blob blob-a -left-40 -top-40 h-[34rem] w-[34rem] bg-violet-600/35" />
-            <div className="blob blob-b -right-32 top-1/4 h-[30rem] w-[30rem] bg-cyan-500/25" />
-            <div className="blob blob-c bottom-[-10rem] left-1/3 h-[32rem] w-[32rem] bg-emerald-500/20" />
+        <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+            <div className="dot-grid absolute inset-0" />
 
-            <div className="grid-lines absolute inset-0" />
-
-            <motion.svg
+            <motion.div
                 style={reduce ? undefined : { y: up }}
-                className="absolute left-[6%] top-[22%] h-28 w-28 text-violet-300/40"
-                viewBox="0 0 100 100"
-                fill="none"
-            >
-                <motion.circle
-                    cx="50"
-                    cy="50"
-                    r="42"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeDasharray="4 8"
-                    animate={reduce ? undefined : { rotate: 360 }}
-                    transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                    style={{ transformOrigin: "50px 50px" }}
-                />
-                <circle cx="50" cy="50" r="22" stroke="currentColor" strokeWidth="1.5" />
-            </motion.svg>
+                className="blob-morph absolute -right-20 top-24 h-56 w-56 border-2 border-foreground bg-sun sm:-right-10 sm:h-72 sm:w-72"
+            />
 
-            <motion.svg
-                style={reduce ? undefined : { y: down, rotate: spin }}
-                className="absolute right-[9%] top-[16%] h-24 w-24 text-cyan-300/40"
-                viewBox="0 0 100 100"
-                fill="none"
-            >
-                <polygon points="50,8 92,86 8,86" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-                <polygon points="50,34 71,72 29,72" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-            </motion.svg>
+            <motion.div
+                style={reduce ? undefined : { y: down }}
+                className="absolute -left-14 top-[42%] h-36 w-36 rounded-full border-2 border-foreground bg-tomato sm:h-48 sm:w-48"
+            />
 
-            <motion.svg
-                style={reduce ? undefined : { y: up }}
-                className="absolute bottom-[14%] right-[12%] h-20 w-20 text-emerald-300/40"
-                viewBox="0 0 100 100"
-                fill="none"
-            >
-                <motion.path
-                    d="M50 8 V92 M8 50 H92"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    animate={reduce ? undefined : { rotate: 90 }}
-                    transition={{ duration: 6, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
-                    style={{ transformOrigin: "50px 50px" }}
-                />
-            </motion.svg>
+            <motion.div
+                style={reduce ? undefined : { y: up, rotate: turn }}
+                className="stripes absolute bottom-20 right-[5%] hidden h-28 w-28 border-2 border-foreground bg-card sm:block"
+            />
 
             <motion.svg
                 style={reduce ? undefined : { y: down }}
-                className="absolute bottom-[26%] left-[10%] h-16 w-40 text-fuchsia-300/35"
-                viewBox="0 0 160 64"
+                className="absolute right-[8%] top-[58%] hidden h-24 w-24 text-cobalt sm:block"
+                viewBox="0 0 100 100"
+                fill="none"
+            >
+                <g className="spin-slow" style={{ transformOrigin: "50px 50px" }} stroke="currentColor" strokeWidth="7" strokeLinecap="round">
+                    <path d="M50 8 V92" />
+                    <path d="M8 50 H92" />
+                    <path d="M20 20 L80 80" />
+                    <path d="M80 20 L20 80" />
+                </g>
+            </motion.svg>
+
+            <motion.svg
+                style={reduce ? undefined : { y: up }}
+                className="absolute bottom-[12%] left-[6%] hidden h-14 w-44 text-cobalt md:block"
+                viewBox="0 0 176 56"
                 fill="none"
             >
                 <motion.path
-                    d="M4 32 C 24 4, 44 60, 64 32 S 104 4, 124 32 S 148 50, 156 32"
+                    d="M4 28 C 22 2, 40 54, 58 28 S 94 2, 112 28 S 150 54, 172 26"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="5"
                     strokeLinecap="round"
                     initial={{ pathLength: 0 }}
                     animate={reduce ? { pathLength: 1 } : { pathLength: [0, 1, 1, 0] }}
-                    transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
                 />
             </motion.svg>
 
             <motion.div
-                style={reduce ? undefined : { y: up }}
-                className="absolute left-[46%] top-[8%] h-3 w-3 rounded-full bg-violet-300/60"
-            />
-            <motion.div
                 style={reduce ? undefined : { y: down }}
-                className="absolute right-[30%] top-[55%] h-2 w-2 rounded-full bg-cyan-300/60"
+                className="spin-slower absolute left-[7%] top-[14%] hidden h-24 w-24 rounded-full border-2 border-dashed border-foreground/60 md:block"
             />
-            <motion.div
-                style={reduce ? undefined : { y: up }}
-                className="absolute left-[24%] top-[72%] h-2.5 w-2.5 rounded-full bg-emerald-300/60"
-            />
+
+            <div className="grain absolute inset-0" />
         </div>
     );
 }

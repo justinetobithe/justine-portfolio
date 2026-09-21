@@ -1,116 +1,119 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Check, MapPin } from "lucide-react";
+import { ArrowUpRight, Asterisk, Info } from "lucide-react";
 import type { Project } from "@/lib/projects";
+import { panelFor } from "@/lib/accent";
 import { hostOf } from "@/lib/url";
 import { cn } from "@/lib/utils";
 import AppBadge from "@/components/app/app-badge";
-import AppImage from "@/components/app/app-image";
 import AppBrowserFrame from "@/components/app/app-browser-frame";
 import AppButton from "@/components/app/app-button";
-import AppCard from "@/components/app/app-card";
-import AppLink from "@/components/app/app-link";
+import AppImage from "@/components/app/app-image";
+import ProjectDetailSheet from "@/components/project-detail-sheet";
 
 function FeaturedItem({ project, index }: { project: Project; index: number }) {
     const reduce = useReducedMotion();
     const flip = index % 2 === 1;
     const img = project.images?.[0];
-    const mirror = project.vercelUrls?.[0];
 
     return (
         <motion.article
-            initial={reduce ? false : { opacity: 0, y: 32 }}
+            initial={reduce ? false : { opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.55, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="overflow-hidden rounded-3xl border-2 border-foreground bg-card shadow-hard-lg"
         >
-            <AppCard className="p-4 sm:p-6 lg:p-8">
-                <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-                    <div className={cn("relative", flip && "lg:order-2")}>
-                        <div
-                            aria-hidden
-                            className="absolute -inset-4 rounded-4xl bg-linear-to-br from-violet-500/25 via-cyan-400/10 to-emerald-400/20 blur-2xl"
-                        />
-                        <motion.a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label={`Open ${project.name}`}
-                            className="relative block"
-                            whileHover={reduce ? undefined : { y: -6, rotate: flip ? 0.6 : -0.6 }}
-                            transition={{ type: "spring", stiffness: 260, damping: 22 }}
-                        >
-                            <AppBrowserFrame host={hostOf(project.liveUrl)}>
-                                {img ? (
-                                    <AppImage
-                                        src={img}
-                                        alt={`${project.name} website preview`}
-                                        className="aspect-16/10 w-full"
-                                        fallback={<div className="aspect-16/10 w-full bg-muted" />}
-                                    />
-                                ) : (
-                                    <div className="aspect-16/10 w-full bg-muted" />
-                                )}
-                            </AppBrowserFrame>
-                        </motion.a>
+            <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
+                <div
+                    className={cn(
+                        "relative overflow-hidden border-b-2 border-foreground p-5 sm:p-8 lg:border-b-0 lg:p-10",
+                        panelFor(index),
+                        flip ? "lg:order-2 lg:border-l-2" : "lg:border-r-2"
+                    )}
+                >
+                    <span
+                        aria-hidden
+                        className="text-outline pointer-events-none absolute -bottom-6 right-3 select-none font-display text-[8rem] font-extrabold leading-none opacity-40 sm:text-[10rem]"
+                    >
+                        {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <motion.a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`Open ${project.name}`}
+                        className="relative block"
+                        whileHover={reduce ? undefined : { y: -6, rotate: flip ? 1 : -1 }}
+                        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                    >
+                        <AppBrowserFrame host={hostOf(project.liveUrl)} className="shadow-hard">
+                            {img ? (
+                                <AppImage
+                                    src={img}
+                                    alt={`${project.name} website preview`}
+                                    className="aspect-16/10 w-full"
+                                    fallback={<div className="aspect-16/10 w-full bg-muted" />}
+                                />
+                            ) : (
+                                <div className="aspect-16/10 w-full bg-muted" />
+                            )}
+                        </AppBrowserFrame>
+                    </motion.a>
+                </div>
+
+                <div className={cn("space-y-5 p-6 sm:p-8 lg:p-10", flip && "lg:order-1")}>
+                    <div className="flex flex-wrap items-center gap-2">
+                        <AppBadge variant="brand">{project.category}</AppBadge>
+                        {project.region ? <AppBadge variant="sky">{project.region}</AppBadge> : null}
                     </div>
 
-                    <div className={cn("space-y-5", flip && "lg:order-1")}>
-                        <div className="flex flex-wrap items-center gap-3">
-                            <span className="font-display text-sm font-semibold tabular-nums text-violet-300">
-                                {String(index + 1).padStart(2, "0")}
-                            </span>
-                            <span className="h-px w-8 bg-white/20" />
-                            <span className="text-sm font-medium text-muted-foreground">{project.category}</span>
-                            {project.region ? (
-                                <AppBadge variant="glass" icon={MapPin} className="[&>svg]:text-cyan-300">
-                                    {project.region}
-                                </AppBadge>
-                            ) : null}
-                        </div>
+                    <h3 className="font-display text-4xl font-extrabold leading-none tracking-tight sm:text-5xl">
+                        {project.name}
+                    </h3>
 
-                        <h3 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">{project.name}</h3>
+                    <p className="text-base leading-relaxed text-foreground/80">{project.description}</p>
 
-                        <p className="text-base leading-relaxed text-muted-foreground">{project.description}</p>
-
-                        {project.highlights?.length ? (
-                            <ul className="space-y-2.5">
-                                {project.highlights.map((h) => (
-                                    <li key={h} className="flex items-start gap-3 text-[15px] leading-snug">
-                                        <span className="mt-0.5 grid h-5 w-5 flex-none place-items-center rounded-full bg-emerald-400/15 text-emerald-300">
-                                            <Check className="h-3 w-3" strokeWidth={3} />
-                                        </span>
-                                        {h}
-                                    </li>
-                                ))}
-                            </ul>
-                        ) : null}
-
-                        <div className="flex flex-wrap gap-2">
-                            {(project.stack || []).map((s) => (
-                                <AppBadge key={s} variant="brand">
-                                    {s}
-                                </AppBadge>
+                    {project.highlights?.length ? (
+                        <ul className="space-y-2.5">
+                            {project.highlights.map((h) => (
+                                <li key={h} className="flex items-start gap-2.5 text-[15px] leading-snug">
+                                    <Asterisk className="mt-0.5 h-4 w-4 flex-none text-tomato" strokeWidth={3} />
+                                    {h}
+                                </li>
                             ))}
-                        </div>
+                        </ul>
+                    ) : null}
 
-                        <div className="flex flex-wrap items-center gap-4 pt-1">
-                            <AppButton href={project.liveUrl} iconEnd={ArrowUpRight}>
-                                Visit {hostOf(project.liveUrl)}
-                            </AppButton>
-                            {mirror ? <AppLink href={mirror}>{hostOf(mirror)}</AppLink> : null}
-                        </div>
+                    <div className="flex flex-wrap gap-2">
+                        {(project.stack || []).map((s) => (
+                            <AppBadge key={s}>{s}</AppBadge>
+                        ))}
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-3 pt-1">
+                        <AppButton href={project.liveUrl} iconEnd={ArrowUpRight}>
+                            Visit {hostOf(project.liveUrl)}
+                        </AppButton>
+                        <ProjectDetailSheet
+                            project={project}
+                            trigger={
+                                <AppButton variant="paper" icon={Info}>
+                                    Details
+                                </AppButton>
+                            }
+                        />
                     </div>
                 </div>
-            </AppCard>
+            </div>
         </motion.article>
     );
 }
 
 export default function FeaturedWork({ projects }: { projects: Project[] }) {
     return (
-        <div className="space-y-8">
+        <div className="space-y-10 sm:space-y-14">
             {projects.map((p, i) => (
                 <FeaturedItem key={p.id} project={p} index={i} />
             ))}

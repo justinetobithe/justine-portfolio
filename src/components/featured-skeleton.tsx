@@ -1,38 +1,40 @@
-import AppCard from "@/components/app/app-card";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function FeaturedSkeleton({ count = 2 }: { count?: number }) {
     return (
-        <div className="space-y-8" aria-busy="true" aria-label="Loading featured projects">
+        <div className="space-y-10 sm:space-y-14" aria-busy="true" aria-label="Loading featured projects">
             {Array.from({ length: count }).map((_, i) => (
-                <AppCard key={i} spotlight={false} className="p-4 sm:p-6 lg:p-8">
-                    <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-                        <Skeleton className="aspect-16/10 w-full rounded-2xl" />
-                        <div className="space-y-5">
-                            <div className="flex items-center gap-3">
-                                <Skeleton className="h-4 w-8" />
-                                <Skeleton className="h-4 w-28" />
-                                <Skeleton className="h-6 w-24 rounded-full" />
+                <div
+                    key={i}
+                    className="overflow-hidden rounded-3xl border-2 border-foreground bg-card shadow-hard-lg"
+                >
+                    <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
+                        <div className="border-b-2 border-foreground bg-secondary p-5 sm:p-8 lg:border-b-0 lg:border-r-2 lg:p-10">
+                            <Skeleton className="aspect-16/10 w-full rounded-lg bg-foreground/10" />
+                        </div>
+                        <div className="space-y-5 p-6 sm:p-8 lg:p-10">
+                            <div className="flex gap-2">
+                                <Skeleton className="h-6 w-28 rounded-full bg-foreground/10" />
+                                <Skeleton className="h-6 w-20 rounded-full bg-foreground/10" />
                             </div>
-                            <Skeleton className="h-9 w-2/3" />
+                            <Skeleton className="h-11 w-2/3 bg-foreground/10" />
                             <div className="space-y-2">
-                                <Skeleton className="h-4 w-full" />
-                                <Skeleton className="h-4 w-11/12" />
-                                <Skeleton className="h-4 w-3/4" />
+                                <Skeleton className="h-4 w-full bg-foreground/10" />
+                                <Skeleton className="h-4 w-11/12 bg-foreground/10" />
+                                <Skeleton className="h-4 w-3/4 bg-foreground/10" />
                             </div>
                             <div className="space-y-3">
-                                <Skeleton className="h-4 w-4/5" />
-                                <Skeleton className="h-4 w-2/3" />
-                                <Skeleton className="h-4 w-3/4" />
+                                <Skeleton className="h-4 w-4/5 bg-foreground/10" />
+                                <Skeleton className="h-4 w-2/3 bg-foreground/10" />
+                                <Skeleton className="h-4 w-3/4 bg-foreground/10" />
                             </div>
-                            <div className="flex gap-2">
-                                <Skeleton className="h-7 w-20 rounded-full" />
-                                <Skeleton className="h-7 w-20 rounded-full" />
+                            <div className="flex gap-3">
+                                <Skeleton className="h-11 w-44 rounded-full bg-foreground/10" />
+                                <Skeleton className="h-11 w-28 rounded-full bg-foreground/10" />
                             </div>
-                            <Skeleton className="h-11 w-48 rounded-full" />
                         </div>
                     </div>
-                </AppCard>
+                </div>
             ))}
         </div>
     );

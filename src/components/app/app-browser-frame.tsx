@@ -11,17 +11,16 @@ export default function AppBrowserFrame({
     className?: string;
 }) {
     return (
-        <div className={cn("overflow-hidden rounded-2xl border border-white/10 bg-black/40 shadow-2xl shadow-black/40", className)}>
-            <div className="flex items-center gap-3 border-b border-white/10 bg-white/4 px-3 py-2">
+        <div className={cn("overflow-hidden rounded-lg border-2 border-foreground bg-card", className)}>
+            <div className="flex items-center gap-2 border-b-2 border-foreground bg-secondary px-3 py-1.5">
                 <div className="flex items-center gap-1.5">
-                    <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/80" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
+                    <span className="h-2.5 w-2.5 rounded-full border border-foreground bg-tomato" />
+                    <span className="h-2.5 w-2.5 rounded-full border border-foreground bg-sun" />
+                    <span className="h-2.5 w-2.5 rounded-full border border-foreground bg-sage" />
                 </div>
-                <div className="min-w-0 flex-1 truncate rounded-md bg-black/30 px-3 py-1 text-center text-xs text-muted-foreground">
+                <div className="min-w-0 flex-1 truncate rounded border border-foreground/30 bg-card px-2 py-0.5 text-center font-mono text-[11px]">
                     {host || "preview"}
                 </div>
-                <div className="w-10" />
             </div>
             {children}
         </div>

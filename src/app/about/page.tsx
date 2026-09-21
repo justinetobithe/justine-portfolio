@@ -1,162 +1,195 @@
 "use client";
 
-import Image from "next/image";
-import {
-    Briefcase,
-    Database,
-    Download,
-    GraduationCap,
-    Layers,
-    Mail,
-    Phone,
-    Smartphone,
-    Store
-} from "lucide-react";
+import { Download, GraduationCap, Mail, MapPin, Sparkles } from "lucide-react";
+import { JOBS, formatMonth, periodLabel, CAREER_START, yearsOfExperience } from "@/lib/career";
 import { SITE } from "@/lib/site";
 import AppBadge from "@/components/app/app-badge";
 import AppButton from "@/components/app/app-button";
 import AppCard from "@/components/app/app-card";
-import AppSectionHeading from "@/components/app/app-section-heading";
+import AppSectionHeading, { Mark } from "@/components/app/app-section-heading";
 import ExperienceCard from "@/components/experience-card";
+import Polaroid from "@/components/polaroid";
 import Reveal from "@/components/reveal";
 
-const skills = [
-    "React JS / Next JS Expert",
-    "TypeScript",
-    "Laravel / PHP",
-    "Supabase",
-    "React Native (Mobile)",
-    "Firebase (Auth, Firestore, Storage)",
-    "Shopify Webhooks and Themes",
-    "Custom CMS and CRM",
-    "UI/UX and Web Design",
-    "WordPress Page Builder",
-    "System Analysis",
-    "Multimedia Editing"
-];
-
-const strengths = [
-    { icon: Store, text: "E-commerce with ordering, payments and delivery for stores in Israel, Germany, the US and Mexico." },
-    { icon: Layers, text: "Custom CMS, CRM and webhook integrations that keep operations in sync." },
-    { icon: Database, text: "Supabase, Firebase and Laravel APIs for auth, real-time data and clean admin flows." },
-    { icon: Smartphone, text: "Mobile-ready UX with React Native and responsive-first web layouts." }
-];
-
-const experience = [
+const skillGroups = [
     {
-        title: "Code Squirrel — Full Stack Developer",
-        meta: "Apr 2023 – May 2025 • Australia Based",
-        bullets: [
-            "Deliver full-stack features across multiple client projects",
-            "Back-end development with Laravel/PHP for scalable systems",
-            "Front-end development with React JS and Next JS",
-            "Build polished UI with strong attention to detail and performance"
-        ]
+        title: "Front end",
+        tone: "bg-sun",
+        items: ["React JS", "Next JS", "TypeScript", "Tailwind CSS", "shadcn/ui", "Framer Motion", "React Native"]
     },
     {
-        title: "University of Southeastern Philippines — Science Research Assistant / Developer",
-        meta: "Apr 2021 – Apr 2023 • Bo. Obrero, Iñigo St, Poblacion District, Davao City",
-        bullets: [
-            "Build full-stack modules for research and internal applications",
-            "Back-end development with Laravel/PHP for APIs and data workflows",
-            "Front-end development with React JS for dashboards and screens",
-            "Focus on stable, maintainable code and clear UI usability"
-        ]
+        title: "Back end",
+        tone: "bg-sky",
+        items: ["Laravel", "PHP", "Supabase", "Firebase (Auth, Firestore, Storage)", "REST APIs", "Webhooks"]
     },
     {
-        title: "Power Virtual Solutions — Systems Developer",
-        meta: "Dec 2019 – Feb 2021 • Door 1, 726 YLS Bldg, Veloso St. Obrero, Davao City",
-        bullets: [
-            "Develop mobile app features and UI workflows",
-            "Build front-end & back-end components for internal tools",
-            "Manage CMS updates and site/admin maintenance",
-            "Maintain CRM VoIP app and implement UI/UX improvements",
-            "Deliver usable layouts for real operations and daily workflows"
-        ]
+        title: "Commerce and CMS",
+        tone: "bg-blush",
+        items: ["Custom CMS", "CRM integrations", "Shopify webhooks and themes", "WordPress page builders"]
     },
     {
-        title: "AYP Holdings Inc. — IT Staff (Software)",
-        meta: "Apr 2019 – Dec 2019 • G.B CAM Bldg. Monteverde Avenue, Davao City",
-        bullets: [
-            "Troubleshoot computer hardware & software and resolve daily IT issues",
-            "Manage network and basic server operations to maintain uptime",
-            "Handle configurations and installations for office systems",
-            "Support front-end & back-end tasks when needed",
-            "Create designs and videos for marketing/ads as requested"
+        title: "Design and practice",
+        tone: "bg-sage",
+        items: [
+            "UI/UX and web design",
+            "System analysis",
+            "Multimedia editing",
+            "Configuration and installations",
+            "Working under pressure"
         ]
     }
 ];
 
-export default function AboutPage() {
+const markets = [
+    { country: "Israel", work: ["Shany Living"] },
+    { country: "Germany", work: ["WeCare360"] },
+    { country: "United States", work: ["Rooté", "Rooted Performance"] },
+    { country: "Mexico", work: ["Sanovida"] },
+    { country: "Australia and New Zealand", work: ["UGLQ", "Your Reformer"] }
+];
+
+function Fact({ label, children }: { label: string; children: React.ReactNode }) {
     return (
-        <div className="space-y-20">
+        <div className="grid grid-cols-[7rem_1fr] gap-3 border-b-2 border-foreground/15 py-3 text-[15px] last:border-b-0">
+            <dt className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">{label}</dt>
+            <dd className="font-medium">{children}</dd>
+        </div>
+    );
+}
+
+export default function AboutPage() {
+    const years = yearsOfExperience();
+    const latest = JOBS[0];
+
+    return (
+        <div className="space-y-24 md:space-y-32">
+            <section className="grid items-center gap-14 lg:grid-cols-[1.25fr_0.75fr] lg:gap-8">
+                <div className="space-y-7">
+                    <div className="flex items-center gap-3 font-mono text-xs font-medium uppercase tracking-[0.18em]">
+                        <span className="h-0.5 w-10 bg-foreground" />
+                        About me
+                    </div>
+
+                    <h1 className="font-display text-[clamp(2.6rem,9vw,5.5rem)] font-extrabold leading-[0.95] tracking-tight">
+                        Nice to meet you.
+                        <br />
+                        I&apos;m <Mark>Justine</Mark>
+                    </h1>
+
+                    <div className="max-w-xl space-y-4 text-lg leading-relaxed text-foreground/80">
+                        <p>
+                            I&apos;m {SITE.firstName}, but you can call me <strong className="bg-sun px-1.5 font-bold text-foreground">{SITE.nickname}</strong>. I&apos;m a full stack developer in {SITE.location}. I started in {formatMonth(CAREER_START)} as IT
+                            staff, moved into systems development and research software, and for{" "}
+                            <strong className="font-bold text-foreground" suppressHydrationWarning>
+                                {years}+ years
+                            </strong>{" "}
+                            I&apos;ve been building things people use every day.
+                        </p>
+                        <p>
+                            My most recent role was {latest.role} at {latest.company}, an Australia-based team (
+                            {periodLabel(latest)}), where I shipped online stores, custom CMS, CRM and webhook integrations and
+                            client portals with Next.js, Laravel and Supabase.
+                        </p>
+                        <p>
+                            <strong className="bg-sun px-1.5 font-bold text-foreground">
+                                I&apos;m now looking for my next role: remote only, full-time or part-time.
+                            </strong>
+                        </p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-3">
+                        <AppButton href={`mailto:${SITE.email}`} variant="tomato" icon={Mail}>
+                            Hire me
+                        </AppButton>
+                        <AppButton href={SITE.resumeUrl} download={SITE.resumeFileName} variant="paper" icon={Download}>
+                            Download resume
+                        </AppButton>
+                    </div>
+                </div>
+
+                <div className="relative mx-auto pb-4">
+                    <Polaroid caption="call me jah ✶" tilt={3} />
+                </div>
+            </section>
+
             <Reveal>
-                <AppCard className="rounded-4xl">
-                    <div className="grid items-center gap-10 p-6 sm:p-10 lg:grid-cols-[auto_1fr]">
-                        <div className="relative mx-auto w-56 sm:w-64">
-                            <div className="relative overflow-hidden rounded-3xl p-0.75">
-                                <div className="spin-slow absolute -inset-[60%] bg-[conic-gradient(from_0deg,#8b5cf6,#22d3ee,#34d399,#8b5cf6)]" />
-                            <div className="relative aspect-4/5 overflow-hidden rounded-[19px] bg-muted">
-                                <Image
-                                    src="/profile.jpg"
-                                    alt="Justine Tobithe Doloiras"
-                                    fill
-                                    priority
-                                    sizes="256px"
-                                    className="object-cover"
-                                />
-                            </div>
-                            </div>
+                <AppCard interactive={false}>
+                    <dl className="px-5 py-2 sm:px-8">
+                        <Fact label="Based in">
+                            <span className="inline-flex items-center gap-2">
+                                <MapPin className="h-4 w-4" />
+                                {SITE.location}
+                            </span>
+                        </Fact>
+                        <Fact label="Experience">
+                            <span suppressHydrationWarning>{years}+ years, since {formatMonth(CAREER_START)}</span>
+                        </Fact>
+                        <Fact label="Status">
+                            <span className="inline-flex flex-wrap items-center gap-2">
+                                <span className="blink h-2.5 w-2.5 rounded-full bg-tomato" />
+                                Looking for work · remote, full-time or part-time
+                            </span>
+                        </Fact>
+                        <Fact label="Main stack">Next.js, Laravel, Supabase, Tailwind CSS</Fact>
+                        <Fact label="Works with">Claude and ChatGPT as coding assistants</Fact>
+                        <Fact label="Contact">
+                            {SITE.email} · {SITE.phone}
+                        </Fact>
+                    </dl>
+                </AppCard>
+            </Reveal>
+
+            <Reveal>
+                <AppCard interactive={false}>
+                    <div className="grid md:grid-cols-[auto_1fr]">
+                        <div className="flex items-center gap-3 border-b-2 border-foreground bg-sage px-6 py-5 md:border-b-0 md:border-r-2 md:px-8">
+                            <Sparkles className="h-8 w-8" strokeWidth={2.25} />
+                            <span className="font-display text-2xl font-extrabold leading-tight tracking-tight">
+                                How I use
+                                <br />
+                                AI tools
+                            </span>
                         </div>
-
-                        <div className="space-y-6">
-                            <div className="space-y-3">
-                                <AppBadge variant="brand">About me</AppBadge>
-                                <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-                                    Justine Tobithe <span className="text-gradient">Doloiras</span>
-                                </h1>
-                                <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
-                                    Full-stack developer focused on clean UI, fast workflows and maintainable systems. I build
-                                    e-commerce stores, custom CMS and portals with Next.js, Laravel and Supabase, and I&apos;m
-                                    experienced in React Native for mobile.
-                                </p>
-                            </div>
-
-                            <div className="flex flex-col gap-2 text-sm text-muted-foreground sm:flex-row sm:gap-6">
-                                <span className="inline-flex items-center gap-2">
-                                    <Mail className="h-4 w-4 text-violet-300" />
-                                    justine.tobithe27@gmail.com
-                                </span>
-                                <span className="inline-flex items-center gap-2">
-                                    <Phone className="h-4 w-4 text-cyan-300" />
-                                    09276192326
-                                </span>
-                            </div>
-
-                            <div className="flex flex-wrap gap-3">
-                                <AppButton href="mailto:justine.tobithe27@gmail.com" icon={Mail}>
-                                    Get in touch
-                                </AppButton>
-                                <AppButton href={SITE.resumeUrl} download={SITE.resumeFileName} variant="glass" icon={Download}>
-                                    Download Resume
-                                </AppButton>
-                            </div>
+                        <div className="space-y-4 p-6 md:p-8">
+                            <p className="text-lg leading-relaxed">
+                                I keep <strong className="bg-sun px-1.5 font-bold">Claude</strong> and{" "}
+                                <strong className="bg-sky px-1.5 font-bold">ChatGPT</strong> beside me as coding companions,
+                                bringing them in whenever a task calls for a faster path, and leaning on my own judgment for
+                                everything that needs a human touch.
+                            </p>
+                            <p className="text-[15px] leading-relaxed text-muted-foreground">
+                                They help me move quicker on the work in front of me, so more of my time goes into the parts
+                                clients actually feel: how it looks, how it behaves and how it holds up.
+                            </p>
                         </div>
                     </div>
                 </AppCard>
             </Reveal>
 
-            <section className="space-y-8">
-                <AppSectionHeading eyebrow="Strengths" title="What I&rsquo;m known for" />
-                <div className="grid gap-4 sm:grid-cols-2">
-                    {strengths.map((s, i) => (
-                        <Reveal key={s.text} delay={i * 0.06}>
-                            <AppCard className="h-full rounded-2xl">
-                                <div className="flex items-start gap-4 p-5">
-                                    <div className="grid h-11 w-11 flex-none place-items-center rounded-xl bg-linear-to-br from-violet-500/30 to-cyan-400/20">
-                                        <s.icon className="h-5 w-5" />
-                                    </div>
-                                    <p className="text-[15px] leading-relaxed">{s.text}</p>
+            <section className="space-y-12">
+                <AppSectionHeading
+                    index="01"
+                    eyebrow="Toolbox"
+                    title={
+                        <>
+                            What I <Mark>work with</Mark>
+                        </>
+                    }
+                    description="The tools I reach for on client projects, grouped by what they're for."
+                />
+                <div className="grid gap-6 sm:grid-cols-2">
+                    {skillGroups.map((g, i) => (
+                        <Reveal key={g.title} delay={i * 0.05}>
+                            <AppCard className="h-full">
+                                <div className={`${g.tone} border-b-2 border-foreground px-5 py-3 font-display text-xl font-extrabold`}>
+                                    {g.title}
+                                </div>
+                                <div className="flex flex-wrap gap-2 p-5">
+                                    {g.items.map((s) => (
+                                        <AppBadge key={s} className="normal-case tracking-normal text-xs">
+                                            {s}
+                                        </AppBadge>
+                                    ))}
                                 </div>
                             </AppCard>
                         </Reveal>
@@ -164,49 +197,59 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            <section className="grid gap-4 md:grid-cols-2">
+            <section className="space-y-12">
+                <AppSectionHeading
+                    index="02"
+                    eyebrow="Career"
+                    title={
+                        <>
+                            Where I&apos;ve <Mark>worked</Mark>
+                        </>
+                    }
+                    description="Four teams over the years, from office IT to remote client work. Open any role for what I did there."
+                />
+                <div className="relative space-y-6">
+                    <div aria-hidden className="absolute bottom-6 left-0 top-6 w-0.5 bg-foreground" />
+                    {JOBS.map((job, i) => (
+                        <ExperienceCard key={job.company} job={job} defaultOpen={i === 0} />
+                    ))}
+                </div>
+            </section>
+
+            <section className="grid gap-6 lg:grid-cols-2">
                 <Reveal>
-                    <AppCard className="h-full rounded-2xl">
-                        <div className="space-y-4 p-6">
-                            <div className="flex items-center gap-2 font-display text-lg font-semibold">
-                                <GraduationCap className="h-5 w-5 text-violet-300" />
-                                Education
+                    <AppCard interactive={false} className="h-full">
+                        <div className="flex items-center gap-3 border-b-2 border-foreground bg-sun px-5 py-3 font-display text-xl font-extrabold">
+                            <GraduationCap className="h-6 w-6" />
+                            Education
+                        </div>
+                        <div className="space-y-1.5 p-5">
+                            <div className="font-display text-2xl font-extrabold leading-tight tracking-tight">
+                                Bachelor of Science in Information Technology
                             </div>
-                            <div className="space-y-1">
-                                <div className="font-medium">Holy Cross of Davao College Inc.</div>
-                                <div className="text-sm text-muted-foreground">2015 – 2019 • Sta. Ana Ave., Davao City</div>
-                                <div className="text-[15px]">Bachelor of Science in Information Technology</div>
-                            </div>
+                            <div className="font-medium">Holy Cross of Davao College Inc.</div>
+                            <div className="text-sm text-muted-foreground">2015 – 2019 · Sta. Ana Ave., Davao City</div>
                         </div>
                     </AppCard>
                 </Reveal>
 
                 <Reveal delay={0.06}>
-                    <AppCard className="h-full rounded-2xl">
-                        <div className="space-y-4 p-6">
-                            <div className="font-display text-lg font-semibold">Skills &amp; tools</div>
-                            <div className="flex flex-wrap gap-2">
-                                {skills.map((s) => (
-                                    <AppBadge key={s}>{s}</AppBadge>
-                                ))}
-                            </div>
+                    <AppCard interactive={false} className="h-full">
+                        <div className="border-b-2 border-foreground bg-sky px-5 py-3 font-display text-xl font-extrabold">
+                            Places I&apos;ve built for
                         </div>
+                        <ul className="divide-y-2 divide-foreground/15">
+                            {markets.map((m) => (
+                                <li key={m.country} className="flex flex-col gap-1 px-5 py-3 sm:flex-row sm:items-center sm:justify-between">
+                                    <span className="font-medium">{m.country}</span>
+                                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
+                                        {m.work.join(" · ")}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
                     </AppCard>
                 </Reveal>
-            </section>
-
-            <section className="space-y-8">
-                <AppSectionHeading eyebrow="Career" title="Work experience" />
-                <div className="relative space-y-4">
-                    <div aria-hidden className="absolute bottom-4 left-0 top-4 w-px bg-linear-to-b from-violet-400/60 via-cyan-300/30 to-transparent" />
-                    {experience.map((e) => (
-                        <ExperienceCard key={e.title} {...e} />
-                    ))}
-                </div>
-                <div className="flex items-center gap-2 pl-8 text-sm text-muted-foreground">
-                    <Briefcase className="h-4 w-4" />
-                    Available for freelance and full-time roles.
-                </div>
             </section>
         </div>
     );

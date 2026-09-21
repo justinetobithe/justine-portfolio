@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Download, Github, FolderKanban, Home, UserRound } from "lucide-react";
-import { SITE } from "@/lib/site";
+import { Download, FolderKanban, Github, Home, UserRound } from "lucide-react";
 import { motion, useScroll, useSpring } from "framer-motion";
+import { SITE } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import AppButton from "@/components/app/app-button";
 
@@ -20,28 +20,28 @@ export default function SiteHeader() {
     const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
 
     return (
-        <header className="sticky top-0 z-50 border-b border-white/10 bg-background/60 backdrop-blur-xl">
+        <header className="sticky top-0 z-50 border-b-2 border-foreground bg-background/95 backdrop-blur">
             <motion.div
                 aria-hidden
                 style={{ scaleX: progress }}
-                className="absolute inset-x-0 top-0 h-0.5 origin-left bg-linear-to-r from-violet-400 via-cyan-300 to-emerald-300"
+                className="absolute inset-x-0 -bottom-0.5 h-1 origin-left bg-tomato"
             />
 
-            <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-3">
-                <Link href="/" className="group inline-flex items-center gap-3">
-                    <span className="relative grid h-10 w-10 place-items-center overflow-hidden rounded-xl">
-                        <span className="spin-slow absolute -inset-4 bg-[conic-gradient(from_0deg,#8b5cf6,#22d3ee,#34d399,#8b5cf6)]" />
-                        <span className="absolute inset-0.5 rounded-[10px] bg-background" />
-                        <span className="relative font-display text-sm font-bold tracking-tight">JT</span>
+            <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+                <Link href="/" className="group flex min-w-0 items-center gap-3">
+                    <span className="wiggle relative grid h-10 w-10 flex-none place-items-center rounded-lg border-2 border-foreground bg-foreground font-display text-sm font-extrabold text-background shadow-hard-sm">
+                        JT
+                        <span className="absolute -right-1.5 -top-1.5 h-3 w-3 rounded-full border-2 border-foreground bg-tomato" />
                     </span>
-
-                    <div className="leading-tight">
-                        <div className="text-sm font-semibold tracking-tight">Justine Tobithe Doloiras</div>
-                        <div className="text-xs text-muted-foreground">Full Stack Developer</div>
-                    </div>
+                    <span className="min-w-0 leading-tight">
+                        <span className="block truncate font-display text-base font-bold tracking-tight">{SITE.name}</span>
+                        <span className="block truncate font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+                            {SITE.role}
+                        </span>
+                    </span>
                 </Link>
 
-                <div className="flex items-center gap-2">
+                <div className="flex flex-none items-center gap-2">
                     <nav className="hidden items-center gap-1 md:flex">
                         {nav.map((item) => {
                             const active = pathname === item.href;
@@ -52,19 +52,19 @@ export default function SiteHeader() {
                                     key={item.href}
                                     href={item.href}
                                     className={cn(
-                                        "relative inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-sm transition-colors hover:text-foreground",
-                                        active ? "text-foreground" : "text-muted-foreground"
+                                        "relative inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+                                        active ? "text-background" : "hover:bg-sun"
                                     )}
                                 >
                                     {active ? (
                                         <motion.span
                                             layoutId="nav-pill"
-                                            className="absolute inset-0 rounded-xl border border-white/10 bg-white/8"
+                                            className="absolute inset-0 rounded-full bg-foreground"
                                             transition={{ type: "spring", stiffness: 380, damping: 30 }}
                                         />
                                     ) : null}
                                     <Icon className="relative h-4 w-4" />
-                                    <span className="relative font-medium">{item.label}</span>
+                                    <span className="relative">{item.label}</span>
                                 </Link>
                             );
                         })}
@@ -72,27 +72,28 @@ export default function SiteHeader() {
 
                     <AppButton
                         href={SITE.github}
-                        variant="glass"
-                        size="default"
-                        icon={Github}
-                        className="hidden rounded-xl sm:inline-flex"
+                        variant="paper"
+                        size="icon"
+                        aria-label="GitHub"
+                        className="hidden rounded-full sm:inline-flex"
                     >
-                        GitHub
+                        <Github />
                     </AppButton>
                     <AppButton
                         href={SITE.resumeUrl}
                         download={SITE.resumeFileName}
+                        variant="tomato"
                         size="default"
                         icon={Download}
-                        className="rounded-xl"
+                        className="rounded-full"
                     >
                         Resume
                     </AppButton>
                 </div>
             </div>
 
-            <div className="mx-auto w-full max-w-6xl px-4 pb-3 md:hidden">
-                <div className="flex gap-2 overflow-x-auto">
+            <div className="mx-auto w-full max-w-6xl px-4 pb-3 sm:px-6 md:hidden">
+                <div className="flex gap-2 overflow-x-auto pb-1">
                     {nav.map((item) => {
                         const active = pathname === item.href;
                         const Icon = item.icon;
@@ -102,14 +103,12 @@ export default function SiteHeader() {
                                 key={item.href}
                                 href={item.href}
                                 className={cn(
-                                    "inline-flex shrink-0 items-center gap-2 rounded-full border px-3.5 py-2 text-sm",
-                                    active
-                                        ? "border-violet-400/50 bg-violet-400/15 text-foreground"
-                                        : "border-white/10 bg-white/4 text-muted-foreground"
+                                    "inline-flex shrink-0 items-center gap-2 rounded-full border-2 border-foreground px-4 py-1.5 text-sm font-semibold",
+                                    active ? "bg-foreground text-background" : "bg-card"
                                 )}
                             >
                                 <Icon className="h-4 w-4" />
-                                <span className="font-medium">{item.label}</span>
+                                {item.label}
                             </Link>
                         );
                     })}

@@ -14,6 +14,7 @@ export type Project = {
     regionCode?: string;
     highlights?: string[];
     stack?: string[];
+    scope?: string[];
 };
 
 export async function fetchProjects(): Promise<Project[]> {

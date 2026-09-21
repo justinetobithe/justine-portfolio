@@ -3,41 +3,48 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { durationLabel, periodLabel } from "@/lib/career";
+import type { Job } from "@/lib/career";
+import AppBadge from "@/components/app/app-badge";
 import AppButton from "@/components/app/app-button";
 import AppCard from "@/components/app/app-card";
 
-export default function ExperienceCard({
-    title,
-    meta,
-    bullets
-}: {
-    title: string;
-    meta: string;
-    bullets: string[];
-}) {
-    const [open, setOpen] = useState(false);
+export default function ExperienceCard({ job, defaultOpen = false }: { job: Job; defaultOpen?: boolean }) {
+    const [open, setOpen] = useState(defaultOpen);
+    const current = Boolean(job.current);
 
     return (
         <motion.div
-            className="relative pl-8"
-            initial={{ opacity: 0, x: -14 }}
+            className="relative pl-9 sm:pl-12"
+            initial={{ opacity: 0, x: -18 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.22 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
         >
-            <span className="absolute left-0 top-7 h-3 w-3 -translate-x-1/2 rounded-full bg-linear-to-br from-violet-400 to-cyan-300 ring-4 ring-background" />
+            <span
+                className={`absolute left-0 top-7 h-5 w-5 -translate-x-1/2 rounded-full border-2 border-foreground ${
+                    current ? "blink bg-tomato" : "bg-sun"
+                }`}
+            />
 
-            <AppCard className="rounded-2xl">
-                <div className="flex items-start justify-between gap-4 p-5">
-                    <div className="space-y-1">
-                        <div className="font-display text-lg font-semibold tracking-tight">{title}</div>
-                        <div className="text-sm text-muted-foreground">{meta}</div>
+            <AppCard interactive={false}>
+                <div className="flex flex-col gap-4 p-5 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="space-y-2">
+                        <div className="flex flex-wrap items-center gap-2">
+                            <AppBadge variant={current ? "success" : "paper"}>{periodLabel(job)}</AppBadge>
+                            <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
+                                {durationLabel(job)}
+                            </span>
+                        </div>
+                        <h3 className="font-display text-2xl font-extrabold leading-tight tracking-tight">{job.role}</h3>
+                        <div className="text-[15px] font-medium">{job.company}</div>
+                        <div className="text-sm text-muted-foreground">{job.place}</div>
                     </div>
 
                     <AppButton
-                        variant="glass"
+                        variant="paper"
                         size="sm"
-                        className="rounded-xl"
+                        className="self-start rounded-lg"
                         aria-expanded={open}
                         onClick={() => setOpen((v) => !v)}
                     >
@@ -57,21 +64,11 @@ export default function ExperienceCard({
                             transition={{ duration: 0.25, ease: "easeOut" }}
                             className="overflow-hidden"
                         >
-                            <motion.ul
-                                initial="hidden"
-                                animate="show"
-                                variants={{
-                                    hidden: { opacity: 0 },
-                                    show: { opacity: 1, transition: { staggerChildren: 0.06 } }
-                                }}
-                                className="list-disc space-y-1.5 px-5 pb-5 pl-10 text-[15px] leading-relaxed text-muted-foreground"
-                            >
-                                {bullets.map((b) => (
-                                    <motion.li key={b} variants={{ hidden: { opacity: 0, y: 6 }, show: { opacity: 1, y: 0 } }}>
-                                        {b}
-                                    </motion.li>
+                            <ul className="list-disc space-y-1.5 border-t-2 border-foreground bg-secondary/60 px-5 py-4 pl-10 text-[15px] leading-relaxed">
+                                {job.bullets.map((b) => (
+                                    <li key={b}>{b}</li>
                                 ))}
-                            </motion.ul>
+                            </ul>
                         </motion.div>
                     ) : null}
                 </AnimatePresence>

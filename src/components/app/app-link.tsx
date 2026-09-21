@@ -2,14 +2,15 @@ import Link from "next/link";
 import { isExternalHref, isProtocolHref } from "@/lib/url";
 import { cn } from "@/lib/utils";
 
-export default function AppLink({
-    href,
-    className,
-    children,
-    ...props
-}: Omit<React.ComponentProps<"a">, "href"> & { href: string }) {
+type AppLinkProps = Omit<React.ComponentProps<"a">, "href"> & {
+    href: string;
+    tone?: "light" | "dark";
+};
+
+export default function AppLink({ href, tone = "light", className, children, ...props }: AppLinkProps) {
     const classes = cn(
-        "text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline",
+        "underline decoration-2 underline-offset-4 transition-colors",
+        tone === "dark" ? "hover:text-sun hover:decoration-sun" : "hover:bg-sun",
         className
     );
 
