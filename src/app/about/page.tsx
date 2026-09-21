@@ -1,7 +1,7 @@
 "use client";
 
 import { Download, GraduationCap, Mail, MapPin, Sparkles } from "lucide-react";
-import { JOBS, formatMonth, periodLabel, CAREER_START, yearsOfExperience } from "@/lib/career";
+import { JOBS, formatMonth, CAREER_START, yearsOfExperience } from "@/lib/career";
 import { SITE } from "@/lib/site";
 import AppBadge from "@/components/app/app-badge";
 import AppButton from "@/components/app/app-button";
@@ -59,7 +59,6 @@ function Fact({ label, children }: { label: string; children: React.ReactNode })
 
 export default function AboutPage() {
     const years = yearsOfExperience();
-    const latest = JOBS[0];
 
     return (
         <div className="space-y-24 md:space-y-32">
@@ -84,11 +83,6 @@ export default function AboutPage() {
                                 {years}+ years
                             </strong>{" "}
                             I&apos;ve been building things people use every day.
-                        </p>
-                        <p>
-                            My most recent role was {latest.role} at {latest.company}, an Australia-based team (
-                            {periodLabel(latest)}), where I shipped online stores, custom CMS, CRM and webhook integrations and
-                            client portals with Next.js, Laravel and Supabase.
                         </p>
                         <p>
                             <strong className="bg-sun px-1.5 font-bold text-foreground">
