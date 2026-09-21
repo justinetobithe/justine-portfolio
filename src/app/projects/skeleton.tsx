@@ -1,23 +1,29 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import AppCard from "@/components/app/app-card";
+import { Skeleton } from "@/components/ui/skeleton";
 
-export default function Skeleton() {
+export default function ProjectCardSkeleton() {
     return (
-        <Card className="overflow-hidden rounded-2xl">
-            <div className="h-44 w-full animate-pulse bg-muted" />
-            <CardHeader className="space-y-3">
-                <div className="h-4 w-2/3 animate-pulse rounded bg-muted" />
-                <div className="h-3 w-full animate-pulse rounded bg-muted" />
-                <div className="h-3 w-5/6 animate-pulse rounded bg-muted" />
+        <AppCard spotlight={false} aria-busy="true">
+            <div className="p-3">
+                <Skeleton className="aspect-16/10 w-full rounded-2xl" />
+            </div>
+            <div className="space-y-4 px-5 pb-5 pt-2">
+                <Skeleton className="h-6 w-2/3" />
+                <div className="space-y-2">
+                    <Skeleton className="h-3.5 w-full" />
+                    <Skeleton className="h-3.5 w-11/12" />
+                    <Skeleton className="h-3.5 w-3/4" />
+                </div>
                 <div className="flex flex-wrap gap-2">
                     {Array.from({ length: 4 }).map((_, i) => (
-                        <div key={i} className="h-6 w-16 animate-pulse rounded-full bg-muted" />
+                        <Skeleton key={i} className="h-6 w-16 rounded-full" />
                     ))}
                 </div>
-            </CardHeader>
-            <CardContent className="flex gap-2">
-                <div className="h-9 flex-1 animate-pulse rounded-xl bg-muted" />
-                <div className="h-9 flex-1 animate-pulse rounded-xl bg-muted" />
-            </CardContent>
-        </Card>
+                <div className="flex gap-2 pt-1">
+                    <Skeleton className="h-9 flex-1 rounded-xl" />
+                    <Skeleton className="h-9 flex-1 rounded-xl" />
+                </div>
+            </div>
+        </AppCard>
     );
 }

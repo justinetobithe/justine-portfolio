@@ -1,329 +1,335 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchProjects } from "@/lib/projects";
-import type { Project } from "@/lib/projects";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import Reveal from "@/components/reveal";
-import ProjectCard from "@/components/project-card";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
-  Mail,
-  Phone,
-  Github,
-  MapPin,
-  Sparkles,
   ArrowRight,
-  Download,
-  TrendingUp,
-  Layers,
   Code2,
-  ChevronUp,
-  Smartphone,
   Database,
+  Download,
+  Github,
+  Globe2,
+  Layers,
+  Mail,
+  MapPin,
+  Phone,
+  Smartphone,
   Store,
-  Globe
+  TrendingUp
 } from "lucide-react";
+import { fetchProjects } from "@/lib/projects";
+import { SITE } from "@/lib/site";
+import type { Project } from "@/lib/projects";
+import AppButton from "@/components/app/app-button";
+import AppCard from "@/components/app/app-card";
+import AppSectionHeading from "@/components/app/app-section-heading";
+import Counter from "@/components/counter";
+import FeaturedWork from "@/components/featured-work";
+import FeaturedSkeleton from "@/components/featured-skeleton";
+import Marquee from "@/components/marquee";
+import Reveal from "@/components/reveal";
+import RotatingText from "@/components/rotating-text";
 
-function Stat({ icon: Icon, label, value }: { icon: any; label: string; value: string }) {
+const roles = ["e-commerce platforms", "custom CMS", "client portals", "mobile apps", "delightful UI"];
+
+const tech = [
+  "Next.js",
+  "React",
+  "Laravel",
+  "TypeScript",
+  "Supabase",
+  "Shopify",
+  "React Native",
+  "Firebase",
+  "Tailwind CSS",
+  "Webhooks",
+  "WordPress"
+];
+
+const orbit = [
+  { label: "Next.js", angle: 0 },
+  { label: "Laravel", angle: 90 },
+  { label: "Supabase", angle: 180 },
+  { label: "Shopify", angle: 270 }
+];
+
+const capabilities = [
+  {
+    icon: Store,
+    title: "E-commerce that sells",
+    text: "Storefronts with ordering, payments and delivery, built with Next.js and Laravel for shops in Israel, Germany, the US and Mexico."
+  },
+  {
+    icon: Layers,
+    title: "Custom CMS and CRM",
+    text: "Admin panels your team can actually use: content, orders and customers, connected through webhooks and Shopify."
+  },
+  {
+    icon: Database,
+    title: "Data and auth",
+    text: "Supabase, Firebase and Laravel APIs for auth, role-based access, storage and real-time data."
+  },
+  {
+    icon: Smartphone,
+    title: "Web and mobile",
+    text: "Responsive-first interfaces on the web, and React Native screens when the product needs to live in a pocket."
+  }
+];
+
+function Hero() {
+  const reduce = useReducedMotion();
+
+  const fade = (delay: number) => ({
+    initial: reduce ? false : { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: "easeOut" as const, delay }
+  });
+
   return (
-    <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.2 }}>
-      <Card className="rounded-2xl bg-card/60 backdrop-blur transition-shadow hover:shadow-xl">
-        <CardContent className="flex items-center gap-4 p-5">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl border bg-background/40">
-            <Icon className="h-5 w-5" />
+    <section className="relative grid items-center gap-14 pt-4 lg:grid-cols-[1.15fr_0.85fr] lg:pt-12">
+      <div className="space-y-7">
+        <motion.div {...fade(0)}>
+          <span className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm text-foreground/90 backdrop-blur">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/70" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
+            </span>
+            Open to new projects
+          </span>
+        </motion.div>
+
+        <motion.h1
+          {...fade(0.08)}
+          className="font-display text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
+        >
+          I build
+          <br />
+          <RotatingText words={roles} />
+          <br />
+          that people trust.
+        </motion.h1>
+
+        <motion.p {...fade(0.16)} className="max-w-xl text-lg leading-relaxed text-muted-foreground">
+          I&apos;m <span className="font-semibold text-foreground">Justine Tobithe Doloiras</span>, a full stack developer
+          shipping production e-commerce, CMS and portal projects with Next.js, Laravel and Supabase for clients around
+          the world.
+        </motion.p>
+
+        <motion.div {...fade(0.24)} className="flex flex-wrap gap-3">
+          <AppButton href="/projects" iconEnd={ArrowRight}>
+            View projects
+          </AppButton>
+          <AppButton href="/about" variant="glass">
+            About me
+          </AppButton>
+          <AppButton href="https://github.com/justinetobithe" variant="glass" icon={Github}>
+            GitHub
+          </AppButton>
+          <AppButton href={SITE.resumeUrl} download={SITE.resumeFileName} variant="ghost" icon={Download}>
+            Download Resume
+          </AppButton>
+        </motion.div>
+
+        <motion.div
+          {...fade(0.32)}
+          className="flex flex-col gap-3 text-sm text-muted-foreground sm:flex-row sm:flex-wrap sm:gap-x-6"
+        >
+          <span className="inline-flex items-center gap-2">
+            <Mail className="h-4 w-4 text-violet-300" />
+            justine.tobithe27@gmail.com
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <Phone className="h-4 w-4 text-cyan-300" />
+            09276192326
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <MapPin className="h-4 w-4 text-emerald-300" />
+            Davao City, Philippines
+          </span>
+        </motion.div>
+      </div>
+
+      <motion.div
+        initial={reduce ? false : { opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
+        className="relative mx-auto w-[min(72vw,340px)] lg:w-[min(100%,380px)]"
+      >
+        <div className="orbit pointer-events-none absolute -inset-10 sm:-inset-14">
+          <div className="absolute inset-0 rounded-full border border-dashed border-white/20" />
+          {orbit.map((o) => (
+            <div key={o.label} className="absolute inset-0" style={{ transform: `rotate(${o.angle}deg)` }}>
+              <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
+                <div className="orbit-reverse">
+                  <span
+                    className="inline-block rounded-full border border-white/15 bg-background/80 px-3 py-1 text-xs font-medium backdrop-blur"
+                    style={{ transform: `rotate(${-o.angle}deg)` }}
+                  >
+                    {o.label}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="float-y relative">
+          <div
+            aria-hidden
+            className="absolute -inset-6 rounded-full bg-linear-to-br from-violet-500/40 via-cyan-400/25 to-emerald-400/30 blur-3xl"
+          />
+          <div className="relative overflow-hidden rounded-4xl p-0.75">
+            <div className="spin-slow absolute -inset-[60%] bg-[conic-gradient(from_0deg,#8b5cf6,#22d3ee,#34d399,#8b5cf6)]" />
+            <div className="relative aspect-4/5 overflow-hidden rounded-[23px] bg-muted">
+              <Image
+                src="/profile.jpg"
+                alt="Justine Tobithe Doloiras"
+                fill
+                priority
+                sizes="(max-width: 1024px) 72vw, 380px"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-background/50 via-transparent to-transparent" />
+            </div>
           </div>
-          <div className="space-y-0.5">
-            <div className="text-xs text-muted-foreground">{label}</div>
-            <div className="text-lg font-semibold tracking-tight">{value}</div>
-          </div>
-        </CardContent>
-      </Card>
-    </motion.div>
+        </div>
+      </motion.div>
+    </section>
   );
 }
 
-function Highlight({ icon: Icon, title, text }: { icon: any; title: string; text: string }) {
+function StatCard({
+  icon: Icon,
+  label,
+  children
+}: {
+  icon: typeof TrendingUp;
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
-    <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.2 }}>
-      <Card className="rounded-2xl bg-card/60 backdrop-blur transition-shadow hover:shadow-xl">
-        <CardHeader className="flex flex-row items-center gap-2 font-semibold">
+    <AppCard className="rounded-2xl">
+      <div className="flex items-center gap-4 p-5">
+        <div className="grid h-11 w-11 flex-none place-items-center rounded-xl bg-linear-to-br from-violet-500/30 to-cyan-400/20">
           <Icon className="h-5 w-5" />
-          {title}
-        </CardHeader>
-        <CardContent className="text-sm text-muted-foreground">{text}</CardContent>
-      </Card>
-    </motion.div>
-  );
-}
-
-function ScrollTopButton() {
-  return (
-    <motion.a
-      href="#top"
-      className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full border bg-background/70 px-4 py-2 text-sm backdrop-blur"
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.25 }}
-      whileHover={{ y: -2 }}
-      whileTap={{ scale: 0.98 }}
-    >
-      <ChevronUp className="h-4 w-4" />
-      Top
-    </motion.a>
+        </div>
+        <div>
+          <div className="font-display text-2xl font-semibold tracking-tight">{children}</div>
+          <div className="text-sm text-muted-foreground">{label}</div>
+        </div>
+      </div>
+    </AppCard>
   );
 }
 
 export default function HomePage() {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["projects"],
     queryFn: fetchProjects
   });
 
-  const list = (data || []) as Project[];
-  const featured = useMemo(() => list.slice(0, 3), [list]);
-  const totalProjects = list.length;
+  const list = useMemo(() => (data || []) as Project[], [data]);
+  const featured = useMemo(() => list.filter((p) => p.featured), [list]);
 
   return (
-    <div id="top" className="space-y-8">
-      <ScrollTopButton />
+    <div id="top" className="space-y-24">
+      <Hero />
 
-      <Reveal>
-        <section className="rounded-2xl border bg-card/60 p-6 backdrop-blur">
-          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <div className="flex flex-col gap-5 md:flex-row md:items-center">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-                className="relative h-[240px] w-full flex-none overflow-hidden rounded-2xl border bg-muted md:h-[280px] md:w-[210px] lg:h-[320px] lg:w-[240px] xl:h-[340px] xl:w-[260px]"
-              >
-                <Image
-                  src="/profile.jpg"
-                  alt="Justine Tobithe"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 210px, (max-width: 1280px) 240px, 260px"
-                  className="object-cover"
-                />
-              </motion.div>
+      <div className="-mx-4 sm:mx-0">
+        <Marquee items={tech} />
+      </div>
 
-              <div className="space-y-2">
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="inline-flex items-center gap-2 rounded-full border bg-background/40 px-3 py-1 text-xs text-muted-foreground"
-                >
-                  <Sparkles className="h-3.5 w-3.5" />
-                  Full Stack Developer • React/Next Specialist • UI/UX Builder
-                </motion.div>
-
-                <motion.h1
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
-                  transition={{ duration: 0.35, ease: "easeOut", delay: 0.05 }}
-                  className="text-3xl font-semibold tracking-tight"
-                >
-                  DOLOIRAS, JUSTINE TOBITHE L.
-                </motion.h1>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
-                  transition={{ duration: 0.35, ease: "easeOut", delay: 0.1 }}
-                  className="text-sm text-muted-foreground"
-                >
-                  I build modern web apps with strong UI details, smooth UX, and scalable architecture. I’m expert in
-                  React/Next.js, experienced in React Native (mobile), and I also work with Firebase, Shopify, and
-                  WordPress to deliver production-ready solutions.
-                </motion.p>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
-                  transition={{ duration: 0.35, ease: "easeOut", delay: 0.15 }}
-                  className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6"
-                >
-                  <div className="flex items-center gap-2 text-sm">
-                    <Mail className="h-4 w-4" />
-                    <span>justine.tobithe27@gmail.com</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Phone className="h-4 w-4" />
-                    <span>09276192326</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <MapPin className="h-4 w-4" />
-                    <span>Davao City, Philippines</span>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
-                  transition={{ duration: 0.35, ease: "easeOut", delay: 0.2 }}
-                  className="flex flex-wrap gap-2 pt-2"
-                >
-                  {["React", "Next.js", "TypeScript", "Laravel", "Firebase", "React Native", "Shopify", "WordPress"].map(
-                    (t) => (
-                      <Badge key={t} variant="secondary" className="rounded-full">
-                        {t}
-                      </Badge>
-                    )
-                  )}
-                </motion.div>
-              </div>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.35 }}
-              transition={{ duration: 0.35, ease: "easeOut", delay: 0.1 }}
-              className="flex flex-wrap gap-3"
-            >
-              <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
-                <Button asChild className="rounded-xl">
-                  <Link href="/projects">
-                    View Projects <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
-                <Button asChild variant="outline" className="rounded-xl">
-                  <Link href="/about">About Me</Link>
-                </Button>
-              </motion.div>
-
-              <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
-                <Button asChild variant="secondary" className="rounded-xl">
-                  <Link href="https://github.com/justinetobithe" target="_blank" rel="noreferrer">
-                    <Github className="mr-2 h-4 w-4" />
-                    GitHub
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
-                <Button asChild variant="outline" className="rounded-xl">
-                  <Link href="/Justine-Tobithe-CV.pdf" target="_blank" rel="noreferrer">
-                    <Download className="mr-2 h-4 w-4" />
-                    Download CV
-                  </Link>
-                </Button>
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
-      </Reveal>
-
-      <section className="grid gap-4 md:grid-cols-3">
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Reveal>
-          <Stat icon={TrendingUp} label="Years Experience" value="5+ years" />
+          <StatCard icon={TrendingUp} label="Years of experience">
+            <Counter to={5} suffix="+" />
+          </StatCard>
         </Reveal>
         <Reveal delay={0.06}>
-          <Stat icon={Layers} label="Projects" value={`${totalProjects}+ UI projects`} />
+          <StatCard icon={Layers} label="Projects delivered">
+            <Counter to={Math.max(list.length, 20)} suffix="+" />
+          </StatCard>
         </Reveal>
         <Reveal delay={0.12}>
-          <Stat icon={Code2} label="Main Stack" value="React • Next • Laravel" />
+          <StatCard icon={Globe2} label="Countries served">
+            <Counter to={6} />
+          </StatCard>
+        </Reveal>
+        <Reveal delay={0.18}>
+          <StatCard icon={Code2} label="Main stack">
+            Next · Laravel
+          </StatCard>
         </Reveal>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-4">
-        <Reveal>
-          <Highlight
-            icon={Globe}
-            title="React & Next.js Expert"
-            text="Modern UI architecture, reusable components, routing patterns, performance improvements, and production-ready responsive layouts."
-          />
-        </Reveal>
-        <Reveal delay={0.05}>
-          <Highlight
-            icon={Smartphone}
-            title="Mobile with React Native"
-            text="Mobile-first thinking with clean screens, navigation flows, and scalable UI structure for real products."
-          />
-        </Reveal>
-        <Reveal delay={0.1}>
-          <Highlight
-            icon={Database}
-            title="Firebase Skills"
-            text="Auth, Firestore, storage uploads, role-based UI, and real-time data patterns for modern web apps."
-          />
-        </Reveal>
-        <Reveal delay={0.15}>
-          <Highlight
-            icon={Store}
-            title="Shopify & WordPress"
-            text="Theme/UI customization, page building, integration-friendly layouts, and client-focused delivery for marketing and commerce."
-          />
-        </Reveal>
+      <section className="space-y-10">
+        <AppSectionHeading
+          eyebrow="Selected work"
+          title={
+            <>
+              Live products, <span className="text-gradient">real customers</span>
+            </>
+          }
+          description="Production stores and platforms I built for clients across four continents, each with ordering, delivery, CMS or CRM work behind the interface."
+          action={
+            <AppButton href="/projects" variant="glass" size="default" iconEnd={ArrowRight}>
+              All projects
+            </AppButton>
+          }
+        />
+        {isLoading ? <FeaturedSkeleton count={2} /> : <FeaturedWork projects={featured} />}
+      </section>
+
+      <section className="space-y-10">
+        <AppSectionHeading
+          eyebrow="What I do"
+          title="From storefront to back office"
+          description="I own the whole path: the interface people see and the systems that keep the business running."
+        />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {capabilities.map((c, i) => (
+            <Reveal key={c.title} delay={i * 0.06}>
+              <AppCard className="h-full">
+                <div className="space-y-3 p-6">
+                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-linear-to-br from-violet-500/30 to-cyan-400/20">
+                    <c.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="font-display text-lg font-semibold tracking-tight">{c.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{c.text}</p>
+                </div>
+              </AppCard>
+            </Reveal>
+          ))}
+        </div>
       </section>
 
       <Reveal>
-        <section className="rounded-2xl border bg-card/60 p-6 backdrop-blur">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <div className="text-xs text-muted-foreground">Featured</div>
-              <h2 className="text-xl font-semibold tracking-tight">Featured UI Projects</h2>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Live production and portfolio highlights with previews, links, and tags.
+        <AppCard className="rounded-4xl" glow="rgba(34, 211, 238, 0.18)">
+          <div className="relative flex flex-col gap-8 p-8 sm:p-12 md:flex-row md:items-center md:justify-between">
+            <div
+              aria-hidden
+              className="spin-slow pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full border border-dashed border-white/15"
+            />
+            <div className="relative max-w-xl space-y-3">
+              <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+                Have a store or platform in mind? <span className="text-gradient">Let&apos;s build it.</span>
+              </h2>
+              <p className="text-base leading-relaxed text-muted-foreground">
+                Open to full-stack development, e-commerce, custom CMS, dashboards and client portals.
               </p>
             </div>
-
-            <Button asChild variant="outline" className="rounded-xl">
-              <Link href="/projects">
-                View All <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
-            {featured.map((p) => (
-              <ProjectCard key={p.id} project={p} />
-            ))}
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="rounded-2xl border bg-card/60 p-6 backdrop-blur">
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <div>
-              <h2 className="text-xl font-semibold tracking-tight">Let’s work together</h2>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Open to full-stack development, UI/UX projects, landing pages, dashboards, and client portals.
-              </p>
-            </div>
-
-            <div className="flex gap-3">
-              <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
-                <Button asChild variant="outline" className="rounded-xl">
-                  <Link href="mailto:justine.tobithe27@gmail.com">Email Me</Link>
-                </Button>
-              </motion.div>
-
-              <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
-                <Button asChild className="rounded-xl">
-                  <Link href="/projects">See My Work</Link>
-                </Button>
-              </motion.div>
+            <div className="relative flex flex-wrap gap-3">
+              <AppButton href="mailto:justine.tobithe27@gmail.com" icon={Mail}>
+                Email me
+              </AppButton>
+              <AppButton href="/projects" variant="glass">
+                See my work
+              </AppButton>
             </div>
           </div>
-        </section>
+        </AppCard>
       </Reveal>
     </div>
   );

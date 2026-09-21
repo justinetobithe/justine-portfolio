@@ -1,5 +1,182 @@
 [
     {
+        "id": "shanyliving",
+        "name": "Shany Living",
+        "featured": true,
+        "category": "E-commerce",
+        "region": "Israel",
+        "regionCode": "IL",
+        "repoUrl": "",
+        "liveUrl": "https://shanyliving.com",
+        "prodUrls": [
+            "https://shanyliving.com"
+        ],
+        "vercelUrls": [],
+        "description": "Furniture e-commerce store built for the Israeli market. A polished storefront backed by a Laravel API, with a full ordering and payment flow and a custom CMS so the team can manage products, content and orders on their own.",
+        "highlights": [
+            "Ordering and online payment flow",
+            "Custom-built CMS for products and content",
+            "Refined, brand-led storefront UI"
+        ],
+        "stack": [
+            "Next.js",
+            "Laravel"
+        ],
+        "tags": [
+            "E-commerce",
+            "Next.js",
+            "Laravel",
+            "Custom CMS",
+            "Payments",
+            "Israel"
+        ],
+        "images": [
+            "/projects/shanyliving.png"
+        ]
+    },
+    {
+        "id": "wecare",
+        "name": "WeCare360",
+        "featured": true,
+        "category": "E-commerce",
+        "region": "Germany",
+        "regionCode": "DE",
+        "repoUrl": "",
+        "liveUrl": "https://wecare360.de",
+        "prodUrls": [
+            "https://wecare360.de"
+        ],
+        "vercelUrls": [],
+        "description": "CBD wellness store serving customers in Germany. Clean, trustworthy product browsing with a complete ordering and delivery experience, powered by a Next.js front end and a Laravel back end.",
+        "highlights": [
+            "Ordering and delivery tracking",
+            "Product catalogue built for a regulated category",
+            "Fast, responsive Next.js storefront"
+        ],
+        "stack": [
+            "Next.js",
+            "Laravel"
+        ],
+        "tags": [
+            "E-commerce",
+            "Next.js",
+            "Laravel",
+            "Delivery",
+            "Germany"
+        ],
+        "images": [
+            "/projects/wecare.png"
+        ]
+    },
+    {
+        "id": "roote",
+        "name": "Rooté",
+        "featured": true,
+        "category": "E-commerce + CRM",
+        "region": "United States",
+        "regionCode": "US",
+        "repoUrl": "",
+        "liveUrl": "https://roote.us",
+        "prodUrls": [
+            "https://roote.us"
+        ],
+        "vercelUrls": [],
+        "description": "Personalized hair-growth brand for the US market. Combines a premium storefront with a CRM and webhook integrations, plus the same ordering and delivery pipeline, all on Next.js and Laravel.",
+        "highlights": [
+            "CRM connected through webhooks",
+            "Ordering and delivery workflow",
+            "Editorial, brand-first storefront design"
+        ],
+        "stack": [
+            "Next.js",
+            "Laravel"
+        ],
+        "tags": [
+            "E-commerce",
+            "CRM",
+            "Webhooks",
+            "Next.js",
+            "Laravel",
+            "USA"
+        ],
+        "images": [
+            "/projects/roote.png"
+        ]
+    },
+    {
+        "id": "sanovida",
+        "name": "Sanovida",
+        "featured": true,
+        "category": "E-commerce + CMS",
+        "region": "Mexico",
+        "regionCode": "MX",
+        "repoUrl": "",
+        "liveUrl": "https://sanovida.mx",
+        "prodUrls": [
+            "https://sanovida.mx"
+        ],
+        "vercelUrls": [
+            "https://sanovida.vercel.app"
+        ],
+        "description": "Health products store for Mexico. A custom CMS manages the content, Shopify webhooks keep orders and inventory in sync, and the ordering and delivery experience runs on Next.js and Laravel.",
+        "highlights": [
+            "Custom CMS for content and catalogue",
+            "Shopify webhooks for order sync",
+            "Ordering and delivery like a full e-commerce"
+        ],
+        "stack": [
+            "Next.js",
+            "Laravel",
+            "Shopify"
+        ],
+        "tags": [
+            "E-commerce",
+            "Custom CMS",
+            "Shopify",
+            "Webhooks",
+            "Next.js",
+            "Laravel",
+            "Mexico"
+        ],
+        "images": [
+            "/projects/sanovida.png"
+        ]
+    },
+    {
+        "id": "rootedperformance",
+        "name": "Rooted Performance",
+        "featured": true,
+        "category": "Information Management",
+        "region": "United States",
+        "regionCode": "US",
+        "repoUrl": "",
+        "liveUrl": "https://rootedperformance.me",
+        "prodUrls": [
+            "https://rootedperformance.me"
+        ],
+        "vercelUrls": [],
+        "description": "Performance and wellness brand in the US with an information management system and a custom CMS, built with Next.js on Supabase for auth, data and content.",
+        "highlights": [
+            "Information management system",
+            "Custom CMS for editable content",
+            "Supabase-powered data and auth"
+        ],
+        "stack": [
+            "Next.js",
+            "Supabase"
+        ],
+        "tags": [
+            "Information Management",
+            "Custom CMS",
+            "Next.js",
+            "Supabase",
+            "USA"
+        ],
+        "images": [
+            "/projects/rootedperformance.png"
+        ]
+    },
+    {
         "id": "xpg-mainweb",
         "name": "XPG Main Website",
         "repoUrl": "https://github.com/justinetobithe/XPG-LTD_XPGMainWebsite",

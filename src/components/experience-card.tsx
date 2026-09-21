@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import AppButton from "@/components/app/app-button";
+import AppCard from "@/components/app/app-card";
 
 export default function ExperienceCard({
     title,
@@ -19,33 +19,34 @@ export default function ExperienceCard({
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            className="relative pl-8"
+            initial={{ opacity: 0, x: -14 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.22 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
         >
-            <Card className="rounded-2xl bg-background/30 backdrop-blur">
-                <CardHeader className="flex flex-row items-start justify-between gap-4">
+            <span className="absolute left-0 top-7 h-3 w-3 -translate-x-1/2 rounded-full bg-linear-to-br from-violet-400 to-cyan-300 ring-4 ring-background" />
+
+            <AppCard className="rounded-2xl">
+                <div className="flex items-start justify-between gap-4 p-5">
                     <div className="space-y-1">
-                        <div className="font-semibold">{title}</div>
+                        <div className="font-display text-lg font-semibold tracking-tight">{title}</div>
                         <div className="text-sm text-muted-foreground">{meta}</div>
                     </div>
 
-                    <Button
-                        variant="secondary"
+                    <AppButton
+                        variant="glass"
+                        size="sm"
                         className="rounded-xl"
+                        aria-expanded={open}
                         onClick={() => setOpen((v) => !v)}
                     >
-                        <span className="mr-2">{open ? "Hide" : "Details"}</span>
-                        <motion.span
-                            animate={{ rotate: open ? 180 : 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="inline-flex"
-                        >
+                        {open ? "Hide" : "Details"}
+                        <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }} className="inline-flex">
                             <ChevronDown className="h-4 w-4" />
                         </motion.span>
-                    </Button>
-                </CardHeader>
+                    </AppButton>
+                </div>
 
                 <AnimatePresence initial={false}>
                     {open ? (
@@ -54,31 +55,27 @@ export default function ExperienceCard({
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.25, ease: "easeOut" }}
+                            className="overflow-hidden"
                         >
-                            <CardContent className="pt-0">
-                                <motion.ul
-                                    initial="hidden"
-                                    animate="show"
-                                    variants={{
-                                        hidden: { opacity: 0 },
-                                        show: { opacity: 1, transition: { staggerChildren: 0.06 } }
-                                    }}
-                                    className="list-disc space-y-1 pl-5 text-sm text-muted-foreground"
-                                >
-                                    {bullets.map((b) => (
-                                        <motion.li
-                                            key={b}
-                                            variants={{ hidden: { opacity: 0, y: 6 }, show: { opacity: 1, y: 0 } }}
-                                        >
-                                            {b}
-                                        </motion.li>
-                                    ))}
-                                </motion.ul>
-                            </CardContent>
+                            <motion.ul
+                                initial="hidden"
+                                animate="show"
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    show: { opacity: 1, transition: { staggerChildren: 0.06 } }
+                                }}
+                                className="list-disc space-y-1.5 px-5 pb-5 pl-10 text-[15px] leading-relaxed text-muted-foreground"
+                            >
+                                {bullets.map((b) => (
+                                    <motion.li key={b} variants={{ hidden: { opacity: 0, y: 6 }, show: { opacity: 1, y: 0 } }}>
+                                        {b}
+                                    </motion.li>
+                                ))}
+                            </motion.ul>
                         </motion.div>
                     ) : null}
                 </AnimatePresence>
-            </Card>
+            </AppCard>
         </motion.div>
     );
 }

@@ -4,11 +4,18 @@ export type Project = {
     repoUrl: string;
     liveUrl: string;
     prodUrls?: string[];
+    vercelUrls?: string[];
     description: string;
     tags: string[];
     images: string[];
+    featured?: boolean;
+    category?: string;
+    region?: string;
+    regionCode?: string;
+    highlights?: string[];
+    stack?: string[];
 };
- 
+
 export async function fetchProjects(): Promise<Project[]> {
     const res = await fetch("/data/projects.json", { cache: "no-store" });
     if (!res.ok) throw new Error("Failed to load projects");
