@@ -9,6 +9,7 @@ import AppBadge from "@/components/app/app-badge";
 import AppBrowserFrame from "@/components/app/app-browser-frame";
 import AppButton from "@/components/app/app-button";
 import AppImage from "@/components/app/app-image";
+import ProjectFacts from "@/components/project-facts";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 const FRONT_END = ["Next.js", "React", "Vite"];
@@ -67,10 +68,44 @@ export default function ProjectDetailSheet({ project, trigger }: { project: Proj
                         <SheetTitle className="font-display text-4xl font-extrabold leading-none tracking-tight">
                             {project.name}
                         </SheetTitle>
+                        {project.tagline ? <p className="font-hand text-3xl leading-tight text-tomato">{project.tagline}</p> : null}
                         <SheetDescription className="text-base leading-relaxed text-foreground/80">
                             {project.description}
                         </SheetDescription>
                     </SheetHeader>
+
+                    {project.notice ? (
+                        <p className="rounded-xl border-2 border-foreground bg-sun px-4 py-3 text-sm font-medium leading-snug">{project.notice}</p>
+                    ) : null}
+
+                    {project.facts?.length ? <ProjectFacts facts={project.facts} /> : null}
+
+                    {project.overview?.length ? (
+                        <section className="space-y-3">
+                            <h3 className="font-mono text-xs font-medium uppercase tracking-[0.18em]">The story</h3>
+                            <div className="space-y-3 text-[15px] leading-relaxed text-foreground/80">
+                                {project.overview.map((o) => (
+                                    <p key={o}>{o}</p>
+                                ))}
+                            </div>
+                        </section>
+                    ) : null}
+
+                    {project.steps?.length ? (
+                        <section className="space-y-3">
+                            <h3 className="font-mono text-xs font-medium uppercase tracking-[0.18em]">How it works</h3>
+                            <ol className="space-y-3">
+                                {project.steps.map((s, i) => (
+                                    <li key={s.title} className="grid grid-cols-[1.75rem_1fr] gap-2 text-[15px] leading-snug">
+                                        <span className="font-hand text-2xl font-bold leading-none text-tomato">{i + 1}.</span>
+                                        <span>
+                                            <strong className="font-bold">{s.title}.</strong> {s.text}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ol>
+                        </section>
+                    ) : null}
 
                     <section className="space-y-3">
                         <h3 className="font-mono text-xs font-medium uppercase tracking-[0.18em]">What I built</h3>
@@ -95,12 +130,24 @@ export default function ProjectDetailSheet({ project, trigger }: { project: Proj
                         </section>
                     ) : null}
 
+                    {project.features?.length ? (
+                        <section className="space-y-3">
+                            <h3 className="font-mono text-xs font-medium uppercase tracking-[0.18em]">What&apos;s inside</h3>
+                            <ul className="list-disc space-y-1.5 pl-5 text-[15px] leading-snug">
+                                {project.features.map((f) => (
+                                    <li key={f}>{f}</li>
+                                ))}
+                            </ul>
+                        </section>
+                    ) : null}
+
                     <section className="space-y-2">
                         <h3 className="font-mono text-xs font-medium uppercase tracking-[0.18em]">Project info</h3>
                         <dl className="rounded-xl border-2 border-foreground bg-card px-4">
                             {project.region ? <Row label="Market">{project.region}</Row> : null}
                             {front.length ? <Row label="Front end">{front.join(", ")}</Row> : null}
                             {back.length ? <Row label="Back end">{back.join(", ")}</Row> : null}
+                            {project.hosting ? <Row label="Hosting">{project.hosting}</Row> : null}
                             {!project.stack?.length ? <Row label="Built with">{stack.join(", ")}</Row> : null}
                             {project.liveUrl ? <Row label="Website">{hostOf(project.liveUrl)}</Row> : null}
                         </dl>

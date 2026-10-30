@@ -11,6 +11,7 @@ import AppBrowserFrame from "@/components/app/app-browser-frame";
 import AppButton from "@/components/app/app-button";
 import AppImage from "@/components/app/app-image";
 import ProjectDetailSheet from "@/components/project-detail-sheet";
+import ProjectFacts from "@/components/project-facts";
 
 function FeaturedItem({ project, index }: { project: Project; index: number }) {
     const reduce = useReducedMotion();
@@ -25,7 +26,7 @@ function FeaturedItem({ project, index }: { project: Project; index: number }) {
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="overflow-hidden rounded-3xl border-2 border-foreground bg-card shadow-hard-lg"
         >
-            <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]">
                 <div
                     className={cn(
                         "relative overflow-hidden border-b-2 border-foreground p-5 sm:p-8 lg:border-b-0 lg:p-10",
@@ -37,7 +38,7 @@ function FeaturedItem({ project, index }: { project: Project; index: number }) {
                         aria-hidden
                         className="text-outline pointer-events-none absolute -bottom-6 right-3 select-none font-display text-[8rem] font-extrabold leading-none opacity-40 sm:text-[10rem]"
                     >
-                        {String(index + 1).padStart(2, "0")}
+                        {String(index + 2).padStart(2, "0")}
                     </span>
                     <motion.a
                         href={project.liveUrl}
@@ -73,7 +74,11 @@ function FeaturedItem({ project, index }: { project: Project; index: number }) {
                         {project.name}
                     </h3>
 
+                    {project.tagline ? <p className="font-hand text-2xl leading-tight text-tomato sm:text-3xl">{project.tagline}</p> : null}
+
                     <p className="text-base leading-relaxed text-foreground/80">{project.description}</p>
+
+                    {project.facts?.length ? <ProjectFacts facts={project.facts} /> : null}
 
                     {project.highlights?.length ? (
                         <ul className="space-y-2.5">
@@ -94,7 +99,8 @@ function FeaturedItem({ project, index }: { project: Project; index: number }) {
 
                     <div className="flex flex-wrap items-center gap-3 pt-1">
                         <AppButton href={project.liveUrl} iconEnd={ArrowUpRight}>
-                            Visit {hostOf(project.liveUrl)}
+                            <span className="sm:hidden">Visit site</span>
+                            <span className="hidden sm:inline">Visit {hostOf(project.liveUrl)}</span>
                         </AppButton>
                         <ProjectDetailSheet
                             project={project}

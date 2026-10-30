@@ -34,9 +34,13 @@ export function periodLabel(job: Job) {
     return `${formatMonth(job.from)} – ${job.to ? formatMonth(job.to) : "Present"}`;
 }
 
-export function durationLabel(job: Job, now = new Date()) {
+export function jobMonths(job: Job, now = new Date()) {
     const end = job.to ?? nowYearMonth(now);
-    const total = toIndex(end) - toIndex(job.from) + 1;
+    return toIndex(end) - toIndex(job.from) + 1;
+}
+
+export function durationLabel(job: Job, now = new Date()) {
+    const total = jobMonths(job, now);
     const years = Math.floor(total / 12);
     const months = total % 12;
     const parts: string[] = [];
@@ -49,55 +53,52 @@ export const JOBS: Job[] = [
     {
         company: "Code Squirrel",
         role: "Full Stack Developer",
-        place: "Australia based, remote",
+        place: "Australia based company, remote, full time",
         from: { year: 2023, month: 4 },
         to: { year: 2026, month: 9 },
         bullets: [
-            "Deliver full-stack features across multiple client projects, from online stores to member portals",
-            "Back-end development with Laravel and PHP for scalable systems, APIs and webhooks",
-            "Front-end development with React JS and Next JS",
-            "Build polished, responsive UI with strong attention to detail and performance"
+            "Built and maintained full stack web applications for client projects using Laravel and PHP on the back end and React and Next.js on the front end",
+            "Designed and documented REST APIs, authentication flows and role based access consumed by web front ends",
+            "Integrated Zoho and Softr into Laravel projects through APIs to sync CRM data, automate workflows and apply business logic",
+            "Deployed and maintained applications with Docker and Docker Compose on VPS servers and on Vercel, including environment configuration and production troubleshooting",
+            "Collaborated with team members and clients on requirements, code reviews and ongoing feature updates, and reported progress on active projects"
         ]
     },
     {
         company: "University of Southeastern Philippines",
         role: "Science Research Assistant / Developer",
-        place: "Bo. Obrero, Iñigo St, Poblacion District, Davao City",
+        place: "Davao City, Philippines",
         from: { year: 2021, month: 4 },
         to: { year: 2023, month: 4 },
         bullets: [
-            "Built full-stack modules for research and internal applications",
-            "Back-end development with Laravel and PHP for APIs and data workflows",
-            "Front-end development with React JS for dashboards and screens",
-            "Focused on stable, maintainable code and clear usability"
+            "Developed full stack research and information systems using Laravel and PHP for the back end and React JS for the front end",
+            "Analyzed requirements from researchers and staff and translated them into working features, data structures and user interfaces",
+            "Maintained and improved existing systems, fixing bugs and delivering updates"
         ]
     },
     {
         company: "Power Virtual Solutions",
         role: "Systems Developer",
-        place: "Door 1, 726 YLS Bldg, Veloso St. Obrero, Davao City",
+        place: "Davao City, Philippines",
         from: { year: 2019, month: 12 },
         to: { year: 2021, month: 2 },
         bullets: [
-            "Developed mobile app features and UI workflows",
-            "Built front-end and back-end components for internal tools",
-            "Managed CMS updates and site and admin maintenance",
-            "Maintained a CRM VoIP app and shipped UI/UX improvements",
-            "Delivered usable layouts for real operations and daily workflows"
+            "Developed mobile applications and web systems, covering both front end and back end work",
+            "Built cross platform mobile apps for iOS and Android with Flutter (Dart) and React Native, connected to REST APIs with user authentication",
+            "Managed the company CMS and a CRM VoIP application used in daily operations",
+            "Designed user interfaces and user experience flows for internal and client applications"
         ]
     },
     {
         company: "AYP Holdings Inc.",
         role: "IT Staff (Software)",
-        place: "G.B CAM Bldg. Monteverde Avenue, Davao City",
+        place: "Davao City, Philippines",
         from: { year: 2019, month: 4 },
         to: { year: 2019, month: 12 },
         bullets: [
-            "Troubleshot computer hardware and software and resolved daily IT issues",
-            "Managed network and basic server operations to keep systems up",
-            "Handled configurations and installations for office systems",
-            "Supported front-end and back-end tasks when needed",
-            "Created designs and videos for marketing and ads"
+            "Developed front end and back end features for company systems",
+            "Managed networks and servers, handled configurations and installations, and troubleshot computer hardware and software issues",
+            "Produced designs and promotional videos for advertising and company materials"
         ]
     }
 ];

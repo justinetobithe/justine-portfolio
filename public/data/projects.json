@@ -1,5 +1,286 @@
 [
     {
+        "id": "wecare",
+        "name": "WeCare360",
+        "featured": true,
+        "category": "Digital health platform",
+        "region": "Austria and Germany",
+        "regionCode": "AT",
+        "repoUrl": "",
+        "liveUrl": "https://wecare360.de",
+        "prodUrls": [
+            "https://wecare360.de"
+        ],
+        "vercelUrls": [],
+        "description": "Online access to prescription medical cannabis for patients in Austria and Germany. People pick what they need help with, answer a short guided assessment and get matched with one or two suitable options. A doctor reviews the answers before anything can be prescribed.",
+        "highlights": [
+            "Guided assessment for sleep, pain, stress and anxiety, and migraine",
+            "Answers matched to one or two suitable options",
+            "Medical review before any prescription is issued",
+            "German and English throughout, with customer accounts"
+        ],
+        "stack": [
+            "Next.js",
+            "Laravel"
+        ],
+        "tags": [
+            "Health",
+            "Next.js",
+            "Laravel",
+            "Assessment",
+            "Multilingual",
+            "Austria",
+            "Germany"
+        ],
+        "images": [
+            "/projects/wecare.png"
+        ],
+        "scope": [
+            "Next.js front end",
+            "Laravel API",
+            "Guided assessment",
+            "Matching logic",
+            "Accounts",
+            "German and English content"
+        ],
+        "top": true,
+        "tagline": "A 60-second questionnaire that ends with a doctor's review, not a shopping cart.",
+        "overview": [
+            "Most stores open with a catalogue. This one deliberately doesn't. The product is regulated, so the whole site is built around one guided path: choose a concern, answer the questions, see what fits, and let a doctor decide.",
+            "I worked across the Next.js front end and the Laravel API, so the assessment, the accounts, the bilingual content and the information pages all behave as one product."
+        ],
+        "steps": [
+            {
+                "title": "Pick a concern",
+                "text": "Four entry points, each with its own page and its own questions."
+            },
+            {
+                "title": "Answer",
+                "text": "A short guided assessment that takes about 60 to 90 seconds."
+            },
+            {
+                "title": "See the match",
+                "text": "One or two suitable options, with no confusing catalogue to dig through."
+            },
+            {
+                "title": "Medical review",
+                "text": "A doctor reviews the answers, and delivery runs through a licensed pharmacy partner."
+            }
+        ],
+        "facts": [
+            {
+                "value": "60–90s",
+                "label": "To finish the assessment"
+            },
+            {
+                "value": "4",
+                "label": "Concern areas"
+            },
+            {
+                "value": "1–2",
+                "label": "Matched options"
+            },
+            {
+                "value": "DE + EN",
+                "label": "Languages"
+            }
+        ],
+        "features": [
+            "Condition pages for each concern area",
+            "Multi-step assessment and matching",
+            "Login and registration",
+            "How it works, costs, FAQ and contact pages",
+            "Legal pages: terms, privacy, cookies, imprint, shipping and refunds"
+        ]
+    },
+    {
+        "id": "8killo",
+        "name": "8killo",
+        "featured": true,
+        "category": "E-commerce + CMS",
+        "region": "Israel",
+        "regionCode": "IL",
+        "repoUrl": "",
+        "liveUrl": "https://8killo.com",
+        "prodUrls": [
+            "https://8killo.com"
+        ],
+        "vercelUrls": [],
+        "tagline": "A one-page sales site up front, a full control center behind it.",
+        "description": "Product store for the Israeli market. A one-page Hebrew sales site sells packages by length and dosage, and a custom admin runs everything after the click: orders, customers, shipping, stock, coupons and support.",
+        "overview": [
+            "The public side is one focused sales page. The real work is behind it: a custom admin the team uses for daily operations, with sales and stock on a single dashboard.",
+            "Built with Next.js and a Laravel API, and deployed on a virtual host server using Nginx and Apache."
+        ],
+        "highlights": [
+            "One-page Hebrew sales site priced in shekels",
+            "Admin dashboard for sales, orders and low-stock alerts",
+            "Harbiz app activation tracked per customer",
+            "Staff roles, permissions, activity log and login history"
+        ],
+        "facts": [
+            {
+                "value": "1 · 3 · 6",
+                "label": "Month packages"
+            },
+            {
+                "value": "5",
+                "label": "Dosage options"
+            },
+            {
+                "value": "HE",
+                "label": "Hebrew sales site"
+            }
+        ],
+        "features": [
+            "Orders, customers, payments and shipping, coupons",
+            "Products, packages and inventory by dosage",
+            "Site content, legal pages and FAQ editing",
+            "Live chat and customer messages",
+            "Reports, staff users, roles and permissions"
+        ],
+        "stack": [
+            "Next.js",
+            "Laravel"
+        ],
+        "hosting": "Virtual host server with Nginx and Apache",
+        "tags": [
+            "E-commerce",
+            "Next.js",
+            "Laravel",
+            "Custom CMS",
+            "Nginx",
+            "Apache",
+            "Israel"
+        ],
+        "images": [
+            "/projects/8killo.png"
+        ],
+        "scope": [
+            "One-page sales site",
+            "Custom admin",
+            "Orders and shipping",
+            "Inventory",
+            "Laravel API",
+            "Server deployment"
+        ]
+    },
+    {
+        "id": "sanovida",
+        "name": "Sanovida",
+        "featured": true,
+        "category": "E-commerce + CMS",
+        "region": "Mexico",
+        "regionCode": "MX",
+        "repoUrl": "",
+        "liveUrl": "https://sanovida.mx",
+        "prodUrls": [
+            "https://sanovida.mx"
+        ],
+        "vercelUrls": [
+            "https://sanovida.vercel.app"
+        ],
+        "description": "Natural wellness store for Mexico, on the same foundation as 8killo. Customers buy products and programs, and the team runs orders, inventory, content and questionnaires from a custom admin.",
+        "highlights": [
+            "Storefront for products and programs in Mexico",
+            "Questionnaires and quiz submissions in the admin",
+            "Inventory, packages and categories managed in-house",
+            "Sales reports and operational alerts on the dashboard"
+        ],
+        "stack": [
+            "Next.js",
+            "Laravel"
+        ],
+        "tags": [
+            "E-commerce",
+            "Next.js",
+            "Laravel",
+            "Custom CMS",
+            "Nginx",
+            "Apache",
+            "Mexico"
+        ],
+        "images": [
+            "/projects/sanovida.png"
+        ],
+        "scope": [
+            "Storefront UI",
+            "Custom admin",
+            "Questionnaires",
+            "Orders and shipping",
+            "Inventory",
+            "Laravel API",
+            "Server deployment"
+        ],
+        "tagline": "Same engine as 8killo, reshaped for a Spanish-speaking wellness brand.",
+        "overview": [
+            "Sanovida and 8killo share an approach: a selling front end in Next.js and a Laravel API with a custom admin. What changes is the market, the language and the catalogue.",
+            "Here the admin adds programs, categories, questionnaires and quiz submissions on top of the usual orders and stock. It's deployed on a virtual host server using Nginx and Apache."
+        ],
+        "features": [
+            "Orders, customers, payments and shipping, coupons",
+            "Products, packages, inventory, programs and categories",
+            "Website content, FAQ and app management",
+            "Questionnaires and quiz submissions",
+            "Messages, user accounts, roles and permissions"
+        ],
+        "hosting": "Virtual host server with Nginx and Apache"
+    },
+    {
+        "id": "roote",
+        "name": "Rooté",
+        "featured": true,
+        "category": "E-commerce + CRM",
+        "region": "United States",
+        "regionCode": "US",
+        "repoUrl": "",
+        "liveUrl": "https://roote.us",
+        "prodUrls": [
+            "https://roote.us"
+        ],
+        "vercelUrls": [],
+        "description": "Hair analysis platform and store for the US market. Visitors take a quiz, create an account or sign in with Google, and order from a brand-first storefront connected to a CRM through webhooks.",
+        "highlights": [
+            "Hair analysis quiz with user accounts",
+            "Google sign in through NextAuth",
+            "CRM connected through webhooks",
+            "Ordering and delivery workflow"
+        ],
+        "stack": [
+            "Next.js",
+            "Laravel",
+            "NextAuth",
+            "Docker"
+        ],
+        "tags": [
+            "E-commerce",
+            "CRM",
+            "Webhooks",
+            "Next.js",
+            "Laravel",
+            "NextAuth",
+            "Docker",
+            "USA"
+        ],
+        "images": [
+            "/projects/roote.png"
+        ],
+        "scope": [
+            "Hair analysis quiz",
+            "Accounts and Google sign in",
+            "Storefront UI",
+            "CRM webhooks",
+            "Ordering",
+            "Laravel API"
+        ],
+        "tagline": "A hair analysis quiz that turns into a personal recommendation.",
+        "overview": [
+            "The quiz is the front door, so it had to feel like part of the brand and not a form bolted on. Accounts and Google sign in keep each person's results attached to them.",
+            "Next.js and NextAuth on the front, a Laravel API behind, and Docker for deployment."
+        ],
+        "hosting": "Docker"
+    },
+    {
         "id": "shanyliving",
         "name": "Shany Living",
         "featured": true,
@@ -39,136 +320,10 @@
             "Online payments",
             "Custom CMS",
             "Laravel API"
-        ]
-    },
-    {
-        "id": "wecare",
-        "name": "WeCare360",
-        "featured": true,
-        "category": "E-commerce",
-        "region": "Germany",
-        "regionCode": "DE",
-        "repoUrl": "",
-        "liveUrl": "https://wecare360.de",
-        "prodUrls": [
-            "https://wecare360.de"
         ],
-        "vercelUrls": [],
-        "description": "CBD wellness store serving customers in Germany. Clean, trustworthy product browsing with a complete ordering and delivery experience, powered by a Next.js front end and a Laravel back end.",
-        "highlights": [
-            "Ordering and delivery tracking",
-            "Product catalogue built for a regulated category",
-            "Fast, responsive Next.js storefront"
-        ],
-        "stack": [
-            "Next.js",
-            "Laravel"
-        ],
-        "tags": [
-            "E-commerce",
-            "Next.js",
-            "Laravel",
-            "Delivery",
-            "Germany"
-        ],
-        "images": [
-            "/projects/wecare.png"
-        ],
-        "scope": [
-            "Storefront UI",
-            "Ordering",
-            "Delivery",
-            "Laravel API"
-        ]
-    },
-    {
-        "id": "roote",
-        "name": "Rooté",
-        "featured": true,
-        "category": "E-commerce + CRM",
-        "region": "United States",
-        "regionCode": "US",
-        "repoUrl": "",
-        "liveUrl": "https://roote.us",
-        "prodUrls": [
-            "https://roote.us"
-        ],
-        "vercelUrls": [],
-        "description": "Personalized hair-growth brand for the US market. Combines a premium storefront with a CRM and webhook integrations, plus the same ordering and delivery pipeline, all on Next.js and Laravel.",
-        "highlights": [
-            "CRM connected through webhooks",
-            "Ordering and delivery workflow",
-            "Editorial, brand-first storefront design"
-        ],
-        "stack": [
-            "Next.js",
-            "Laravel"
-        ],
-        "tags": [
-            "E-commerce",
-            "CRM",
-            "Webhooks",
-            "Next.js",
-            "Laravel",
-            "USA"
-        ],
-        "images": [
-            "/projects/roote.png"
-        ],
-        "scope": [
-            "Storefront UI",
-            "CRM",
-            "Webhooks",
-            "Ordering",
-            "Delivery",
-            "Laravel API"
-        ]
-    },
-    {
-        "id": "sanovida",
-        "name": "Sanovida",
-        "featured": true,
-        "category": "E-commerce + CMS",
-        "region": "Mexico",
-        "regionCode": "MX",
-        "repoUrl": "",
-        "liveUrl": "https://sanovida.mx",
-        "prodUrls": [
-            "https://sanovida.mx"
-        ],
-        "vercelUrls": [
-            "https://sanovida.vercel.app"
-        ],
-        "description": "Health products store for Mexico. A custom CMS manages the content, Shopify webhooks keep orders and inventory in sync, and the ordering and delivery experience runs on Next.js and Laravel.",
-        "highlights": [
-            "Custom CMS for content and catalogue",
-            "Shopify webhooks for order sync",
-            "Ordering and delivery like a full e-commerce"
-        ],
-        "stack": [
-            "Next.js",
-            "Laravel",
-            "Shopify"
-        ],
-        "tags": [
-            "E-commerce",
-            "Custom CMS",
-            "Shopify",
-            "Webhooks",
-            "Next.js",
-            "Laravel",
-            "Mexico"
-        ],
-        "images": [
-            "/projects/sanovida.png"
-        ],
-        "scope": [
-            "Storefront UI",
-            "Custom CMS",
-            "Shopify webhooks",
-            "Ordering",
-            "Delivery",
-            "Laravel API"
+        "tagline": "A furniture store the team can run without calling a developer.",
+        "overview": [
+            "Furniture needs room to breathe, so the storefront is led by imagery and brand. Behind it, a custom CMS lets the team change products, content and orders on their own."
         ]
     },
     {
@@ -209,6 +364,273 @@
             "Custom CMS",
             "Supabase data and auth",
             "Website UI"
+        ],
+        "tagline": "A brand site with its own information system behind it.",
+        "overview": [
+            "A public site and a private system in one project. Next.js handles both, and Supabase takes care of login, data and editable content."
+        ]
+    },
+    {
+        "id": "rallydvo",
+        "name": "RallyDVO",
+        "community": true,
+        "category": "Booking + directory",
+        "region": "Davao City, Philippines",
+        "regionCode": "PH",
+        "repoUrl": "",
+        "liveUrl": "https://rally-dvo.vercel.app",
+        "prodUrls": [],
+        "vercelUrls": [
+            "https://rally-dvo.vercel.app"
+        ],
+        "tagline": "Built for a city that still has paddles out at 2 AM.",
+        "description": "Pickleball hub for Davao City. Find a court from 74 venues, send a booking request, join an open play solo and log your score to climb the city leaderboard. Built with Next.js and SQLite, with venue data from a spreadsheet.",
+        "overview": [
+            "RallyDVO puts pickleball in Davao City in one place: where to play, how late a court is open and what it costs per hour.",
+            "It's built with Next.js and SQLite, with venue details coming from spreadsheet data."
+        ],
+        "highlights": [
+            "Directory of 74 venues with area and late-hours filters",
+            "Booking requests, plus a find-my-booking page",
+            "Open plays you can join solo",
+            "Weekly scoreboard and city leaderboard"
+        ],
+        "facts": [
+            {
+                "value": "74",
+                "label": "Venues listed"
+            },
+            {
+                "value": "9",
+                "label": "Open 24 hours"
+            },
+            {
+                "value": "35",
+                "label": "Play past midnight"
+            },
+            {
+                "value": "₱150",
+                "label": "Lowest hourly rate"
+            }
+        ],
+        "features": [
+            "Courts directory with a last-call board by closing time",
+            "Open play sessions",
+            "Results and leaderboard",
+            "Blog with guides on rates and etiquette",
+            "Sign in and account pages"
+        ],
+        "stack": [
+            "Next.js",
+            "SQLite"
+        ],
+        "hosting": "Vercel",
+        "tags": [
+            "Booking",
+            "Next.js",
+            "SQLite",
+            "Directory",
+            "Sports",
+            "Philippines",
+            "Vercel"
+        ],
+        "images": [
+            "/projects/rallydvo.png"
+        ],
+        "scope": [
+            "Court directory",
+            "Booking requests",
+            "Open plays",
+            "Leaderboard",
+            "Blog",
+            "Accounts"
+        ]
+    },
+    {
+        "id": "cabalseasaga",
+        "name": "Cabal Sea Saga Wiki",
+        "community": true,
+        "category": "Game wiki + build planner",
+        "repoUrl": "",
+        "liveUrl": "https://cabalseasaga.vercel.app",
+        "prodUrls": [],
+        "vercelUrls": [
+            "https://cabalseasaga.vercel.app"
+        ],
+        "tagline": "A wiki that does the math for your character build.",
+        "description": "Wiki and build planner for Cabal Sea Saga. Look up skills, gear and systems for all nine classes, then plan a character: pick a class and focus, and the planner ranks the stats, fills in the build and adds up the totals. Next.js only, with all the computation in the app.",
+        "overview": [
+            "The wiki puts class guides, game systems and a searchable database in one place, using values from the game client.",
+            "The build planner is the fun part. Choose a class, PvP or PvE and a damage type, and it works out what to prioritize across each game system and shows a build power score. You can save builds, compare two side by side, and share one with a build code. There's no back end: it's all Next.js and computation."
+        ],
+        "highlights": [
+            "Build planner with PvE and PvP presets for each damage type",
+            "Stat totals and build power worked out live",
+            "Save builds, compare two, and share with a build code",
+            "Searchable database of skills, items, runes and titles"
+        ],
+        "facts": [
+            {
+                "value": "9",
+                "label": "Classes"
+            },
+            {
+                "value": "560",
+                "label": "Skills"
+            },
+            {
+                "value": "1,403",
+                "label": "Items"
+            },
+            {
+                "value": "633",
+                "label": "Achievements"
+            }
+        ],
+        "features": [
+            "Class pages from Warrior to Dark Mage",
+            "Equipment, runes, medals, merit and mastery in one builder",
+            "Guides to Stellar Link, Myth Mastery, Honor Medal and more",
+            "Collections, achievements, trivia, themes and titles"
+        ],
+        "stack": [
+            "Next.js"
+        ],
+        "hosting": "Vercel",
+        "tags": [
+            "Next.js",
+            "Build Planner",
+            "Wiki",
+            "Gaming",
+            "Computation",
+            "Vercel"
+        ],
+        "images": [
+            "/projects/cabalseasaga.png"
+        ],
+        "scope": [
+            "Build planner",
+            "Stat computation",
+            "Class pages",
+            "Item and skill database",
+            "Build sharing"
+        ]
+    },
+    {
+        "id": "uglq-portal",
+        "name": "UGLQ",
+        "repoUrl": "",
+        "liveUrl": "https://connect.uglq.org.au/",
+        "prodUrls": [
+            "https://connect.uglq.org.au/"
+        ],
+        "vercelUrls": [],
+        "description": "Member portal for the United Grand Lodge of Queensland. A private login-protected platform with a report builder, a form builder and a full Masonic name builder, built with Next.js and Laravel.",
+        "tags": [
+            "Portal",
+            "Next.js",
+            "Zustand",
+            "Laravel",
+            "Reports",
+            "Form Builder",
+            "Australia"
+        ],
+        "images": [
+            "/projects/uglq.png"
+        ],
+        "category": "Member portal",
+        "region": "Australia",
+        "regionCode": "AU",
+        "tagline": "Private tools for the members of a Queensland lodge.",
+        "overview": [
+            "Everything sits behind a login, so the public screenshot is only the front door. Inside, members get tools built around how the lodge actually works."
+        ],
+        "highlights": [
+            "Report builder",
+            "Form builder",
+            "Masonic name builder",
+            "Member login with structured workflows"
+        ],
+        "stack": [
+            "Next.js",
+            "Laravel",
+            "Zustand"
+        ],
+        "scope": [
+            "Member login",
+            "Report builder",
+            "Form builder",
+            "Masonic name builder",
+            "Laravel API"
+        ]
+    },
+    {
+        "id": "manpakbet",
+        "name": "ManpakBet",
+        "category": "UI concept",
+        "region": "Philippines",
+        "regionCode": "PH",
+        "repoUrl": "",
+        "liveUrl": "https://manpakbet.vercel.app",
+        "prodUrls": [],
+        "vercelUrls": [
+            "https://manpakbet.vercel.app"
+        ],
+        "notice": "A portfolio UI concept only. It isn't an operating casino or gambling service, and I don't intend to run one.",
+        "tagline": "How far can a busy, game-heavy lobby go and still be easy to use?",
+        "description": "UI portfolio piece: a game lobby concept in the style of popular Filipino gaming apps, built with Next.js and Laravel. Not an operating casino. It exists to show front-end work on a large, content-heavy interface.",
+        "overview": [
+            "Gaming lobbies are a hard interface problem: thousands of tiles, many categories and a lot competing for attention. This one shows how I keep that much content easy to scan on a phone and on a wide screen.",
+            "It's a personal portfolio project, not a business. Nothing here is offered as a real gambling service."
+        ],
+        "highlights": [
+            "Dense game grid with category and studio filters",
+            "Search across games and studios",
+            "Trending, editor's picks and new arrivals rows",
+            "Light and dark themes with mobile-first navigation"
+        ],
+        "facts": [
+            {
+                "value": "2,667+",
+                "label": "Tiles in the demo lobby"
+            },
+            {
+                "value": "48",
+                "label": "Studio filters"
+            },
+            {
+                "value": "7",
+                "label": "Categories"
+            }
+        ],
+        "features": [
+            "Home lobby with ranked rows",
+            "Category pages for each game type",
+            "Search and favorites",
+            "Account, wallet and support screens as UI only"
+        ],
+        "stack": [
+            "Next.js",
+            "Laravel"
+        ],
+        "hosting": "Vercel",
+        "tags": [
+            "UI",
+            "UI Concept",
+            "Next.js",
+            "Laravel",
+            "Gaming",
+            "Philippines"
+        ],
+        "images": [
+            "/projects/manpakbet.png"
+        ],
+        "scope": [
+            "Lobby UI",
+            "Game grid",
+            "Search and filters",
+            "Theme switching",
+            "Mobile navigation"
         ]
     },
     {
@@ -230,7 +652,7 @@
             "XPG"
         ],
         "images": [
-            "/projects/xpg-mainweb.png"
+            "/projects/xpg-live.png"
         ]
     },
     {
@@ -255,7 +677,7 @@
             "XPG"
         ],
         "images": [
-            "/projects/xpg-clientarea-ui.png"
+            "/projects/clientarea-xpg.png"
         ]
     },
     {
@@ -302,27 +724,6 @@
         "images": [
             "/projects/xpg-manual.png"
         ]
-    },
-    {
-        "id": "uglq-portal",
-        "name": "UGLQ",
-        "repoUrl": "",
-        "liveUrl": "https://connect.uglq.org.au/",
-        "prodUrls": [
-            "https://connect.uglq.org.au/"
-        ],
-        "vercelUrls": [],
-        "description": "Member portal for UGLQ (Australia). Built as a modern internal platform for lodge members with powerful tools like a report builder, form builder, and a full Masonic name builder. Designed for structured workflows, fast access to member utilities, and scalable feature growth.",
-        "tags": [
-            "Portal",
-            "Next.js",
-            "Zustand",
-            "Laravel",
-            "Reports",
-            "Form Builder",
-            "Australia"
-        ],
-        "images": []
     },
     {
         "id": "your-reformer",

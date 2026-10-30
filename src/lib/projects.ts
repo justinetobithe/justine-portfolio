@@ -15,7 +15,20 @@ export type Project = {
     highlights?: string[];
     stack?: string[];
     scope?: string[];
+    top?: boolean;
+    community?: boolean;
+    tagline?: string;
+    overview?: string[];
+    features?: string[];
+    facts?: ProjectFact[];
+    steps?: ProjectStep[];
+    hosting?: string;
+    notice?: string;
 };
+
+export type ProjectFact = { value: string; label: string };
+
+export type ProjectStep = { title: string; text: string };
 
 export async function fetchProjects(): Promise<Project[]> {
     const res = await fetch("/data/projects.json", { cache: "no-store" });

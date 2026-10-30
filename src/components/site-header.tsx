@@ -36,7 +36,8 @@ export default function SiteHeader() {
                     <span className="min-w-0 leading-tight">
                         <span className="block truncate font-display text-base font-bold tracking-tight">{SITE.name}</span>
                         <span className="block truncate font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-                            {SITE.role}
+                            <span className="sm:hidden">Full stack + mobile</span>
+                            <span className="hidden sm:inline">{SITE.role}</span>
                         </span>
                     </span>
                 </Link>
@@ -93,7 +94,7 @@ export default function SiteHeader() {
             </div>
 
             <div className="mx-auto w-full max-w-6xl px-4 pb-3 sm:px-6 md:hidden">
-                <div className="flex gap-2 overflow-x-auto pb-1">
+                <div className="flex gap-2 pb-1">
                     {nav.map((item) => {
                         const active = pathname === item.href;
                         const Icon = item.icon;
@@ -103,7 +104,7 @@ export default function SiteHeader() {
                                 key={item.href}
                                 href={item.href}
                                 className={cn(
-                                    "inline-flex shrink-0 items-center gap-2 rounded-full border-2 border-foreground px-4 py-1.5 text-sm font-semibold",
+                                    "inline-flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full border-2 border-foreground px-2 py-1.5 text-sm font-semibold sm:flex-none sm:gap-2 sm:px-4",
                                     active ? "bg-foreground text-background" : "bg-card"
                                 )}
                             >

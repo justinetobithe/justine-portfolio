@@ -6,11 +6,14 @@ Personal portfolio built with Next.js 16, React 19, Tailwind CSS 4, shadcn/ui an
 
 | Project | Market | Stack |
 | --- | --- | --- |
+| [WeCare360](https://wecare360.de) (top project) | Austria and Germany | Next.js, Laravel |
+| [8killo](https://8killo.com) | Israel | Next.js, Laravel |
+| [Sanovida](https://sanovida.mx) | Mexico | Next.js, Laravel |
+| [Rooté](https://roote.us) | United States | Next.js, Laravel, NextAuth, Docker |
 | [Shany Living](https://shanyliving.com) | Israel | Next.js, Laravel |
-| [WeCare360](https://wecare360.de) | Germany | Next.js, Laravel |
-| [Rooté](https://roote.us) | United States | Next.js, Laravel |
-| [Sanovida](https://sanovida.mx) | Mexico | Next.js, Laravel, Shopify |
 | [Rooted Performance](https://rootedperformance.me) | United States | Next.js, Supabase |
+| [RallyDVO](https://rally-dvo.vercel.app) | Davao City, Philippines | Next.js, SQLite |
+| [Cabal Sea Saga Wiki](https://cabalseasaga.vercel.app) | Game community | Next.js |
 
 ## Getting started
 
@@ -24,5 +27,5 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Editing content
 
 - Projects live in `public/data/projects.json`. Screenshots go in `public/projects/`.
-- The downloadable resume is `public/files/Justine Resume.pdf`; links are configured in `src/lib/site.ts`.
+- The downloadable resume is `public/Justine_Tobithe_Doloiras_Resume.pdf`; links are configured in `src/lib/site.ts`.
 - Shared UI wrappers built on shadcn/ui live in `src/components/app/` (`AppButton`, `AppCard`, `AppBadge`, `AppLink`, `AppImage`, `AppSectionHeading`, `AppBrowserFrame`).

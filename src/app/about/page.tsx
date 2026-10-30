@@ -1,7 +1,7 @@
 "use client";
 
 import { Download, GraduationCap, Mail, MapPin, Sparkles } from "lucide-react";
-import { JOBS, formatMonth, CAREER_START, yearsOfExperience } from "@/lib/career";
+import { JOBS, formatMonth, jobMonths, periodLabel, CAREER_START, yearsOfExperience } from "@/lib/career";
 import { SITE } from "@/lib/site";
 import AppBadge from "@/components/app/app-badge";
 import AppButton from "@/components/app/app-button";
@@ -13,46 +13,89 @@ import Reveal from "@/components/reveal";
 
 const skillGroups = [
     {
-        title: "Front end",
-        tone: "bg-sun",
-        items: ["React JS", "Next JS", "TypeScript", "Tailwind CSS", "shadcn/ui", "Framer Motion", "React Native"]
-    },
-    {
         title: "Back end",
         tone: "bg-sky",
-        items: ["Laravel", "PHP", "Supabase", "Firebase (Auth, Firestore, Storage)", "REST APIs", "Webhooks"]
+        items: ["Laravel", "PHP", "REST API design", "Laravel Sanctum", "Auth and roles", "Google OAuth", "Queues and mail", "Supabase", "Firebase", "SQLite"]
     },
     {
-        title: "Commerce and CMS",
-        tone: "bg-blush",
-        items: ["Custom CMS", "CRM integrations", "Shopify webhooks and themes", "WordPress page builders"]
+        title: "Front end",
+        tone: "bg-sun",
+        items: ["Next.js", "React", "Vue.js", "TypeScript", "JavaScript", "HTML", "CSS", "Tailwind CSS", "NextAuth", "Responsive UI"]
     },
     {
-        title: "Design and practice",
+        title: "Mobile",
         tone: "bg-sage",
-        items: [
-            "UI/UX and web design",
-            "System analysis",
-            "Multimedia editing",
-            "Configuration and installations",
-            "Working under pressure"
-        ]
+        items: ["Flutter", "Dart", "React Native", "Android Studio", "iOS and Android", "Push notifications", "Local storage"]
+    },
+    {
+        title: "DevOps and hosting",
+        tone: "bg-tomato/80",
+        items: ["Docker", "Docker Compose", "Linux VPS", "Nginx", "Apache", "Virtual hosts", "CloudPanel", "Vercel", "Git and GitHub"]
+    },
+    {
+        title: "Integrations and CMS",
+        tone: "bg-blush",
+        items: ["Zoho", "Softr", "Custom CMS", "VoIP CRM app", "Shopify webhooks", "Third party APIs", "Webhooks"]
+    },
+    {
+        title: "Everything else",
+        tone: "bg-sky",
+        items: ["UI/UX design", "Systems analysis", "Networks and servers", "Hardware troubleshooting", "Video editing", "Working under pressure"]
     }
 ];
 
 const markets = [
-    { country: "Israel", work: ["Shany Living"] },
-    { country: "Germany", work: ["WeCare360"] },
+    { country: "Austria and Germany", work: ["WeCare360"] },
+    { country: "Israel", work: ["8killo", "Shany Living"] },
     { country: "United States", work: ["Rooté", "Rooted Performance"] },
     { country: "Mexico", work: ["Sanovida"] },
-    { country: "Australia and New Zealand", work: ["UGLQ", "Your Reformer"] }
+    { country: "Australia and New Zealand", work: ["UGLQ", "Your Reformer"] },
+    { country: "Philippines", work: ["RallyDVO"] }
 ];
+
+const TIMELINE_TONES = ["bg-sun", "bg-sky", "bg-blush", "bg-sage"];
+
+const workingWithMe = [
+    { title: "Used to remote", text: "Over three years on a remote, full time team at an Australia based company, working with clients abroad." },
+    { title: "Easy time zone", text: "Davao City is UTC+8. That's the same as Perth, and a few hours behind Sydney." },
+    { title: "Clear English", text: "Requirements, code reviews and progress updates, in writing or on a call." },
+    { title: "End to end", text: "From the first requirement to the server it runs on, and the bug report after launch." }
+];
+
+function CareerTimeline() {
+    const chronological = [...JOBS].reverse();
+
+    return (
+        <div className="space-y-4 rounded-2xl border-2 border-foreground bg-card p-5 shadow-hard sm:p-6">
+            <div className="flex h-8 overflow-hidden rounded-md border-2 border-foreground" aria-hidden>
+                {chronological.map((job, i) => (
+                    <span
+                        key={job.company}
+                        style={{ flexGrow: jobMonths(job) }}
+                        className={`${TIMELINE_TONES[i % TIMELINE_TONES.length]} border-r-2 border-foreground last:border-r-0`}
+                    />
+                ))}
+            </div>
+            <ul className="grid gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-4">
+                {chronological.map((job, i) => (
+                    <li key={job.company} className="flex items-start gap-2.5">
+                        <span className={`${TIMELINE_TONES[i % TIMELINE_TONES.length]} mt-1 h-3 w-3 flex-none rounded-sm border-2 border-foreground`} />
+                        <span className="leading-snug">
+                            <span className="block text-sm font-bold">{job.company}</span>
+                            <span className="block font-mono text-[11px] uppercase tracking-wide text-muted-foreground">{periodLabel(job)}</span>
+                        </span>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
 
 function Fact({ label, children }: { label: string; children: React.ReactNode }) {
     return (
         <div className="grid grid-cols-[7rem_1fr] gap-3 border-b-2 border-foreground/15 py-3 text-[15px] last:border-b-0">
             <dt className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">{label}</dt>
-            <dd className="font-medium">{children}</dd>
+            <dd className="min-w-0 font-medium [overflow-wrap:anywhere]">{children}</dd>
         </div>
     );
 }
@@ -77,12 +120,16 @@ export default function AboutPage() {
 
                     <div className="max-w-xl space-y-4 text-lg leading-relaxed text-foreground/80">
                         <p>
-                            I&apos;m {SITE.firstName}, but you can call me <strong className="bg-sun px-1.5 font-bold text-foreground">{SITE.nickname}</strong>. I&apos;m a full stack developer in {SITE.location}. I started in {formatMonth(CAREER_START)} as IT
+                            I&apos;m {SITE.firstName}, but you can call me <strong className="bg-sun px-1.5 font-bold text-foreground">{SITE.nickname}</strong>. I&apos;m a full stack and mobile developer in {SITE.location}. I started in {formatMonth(CAREER_START)} as IT
                             staff, moved into systems development and research software, and for{" "}
                             <strong className="font-bold text-foreground" suppressHydrationWarning>
                                 {years}+ years
                             </strong>{" "}
                             I&apos;ve been building things people use every day.
+                        </p>
+                        <p>
+                            Most of my days are Laravel back ends and Next.js or React front ends, with Flutter and React Native when
+                            the product needs an app. I also like seeing a project through to the server it runs on.
                         </p>
                         <p>
                             <strong className="bg-sun px-1.5 font-bold text-foreground">
@@ -124,7 +171,7 @@ export default function AboutPage() {
                                 Looking for work · remote, full-time or part-time
                             </span>
                         </Fact>
-                        <Fact label="Main stack">Next.js, Laravel, Supabase, Tailwind CSS</Fact>
+                        <Fact label="Main stack">Laravel, Next.js, React, Vue.js, Flutter, React Native</Fact>
                         <Fact label="Works with">Claude and ChatGPT as coding assistants</Fact>
                         <Fact label="Contact">
                             {SITE.email} · {SITE.phone}
@@ -160,6 +207,25 @@ export default function AboutPage() {
                 </AppCard>
             </Reveal>
 
+            <section className="space-y-8">
+                <div className="flex items-baseline gap-3">
+                    <h2 className="font-display text-4xl font-extrabold leading-[1.02] tracking-tight sm:text-5xl">
+                        Working <Mark>with me</Mark>
+                    </h2>
+                    <span className="hidden -rotate-2 font-hand text-2xl font-bold text-tomato sm:inline">the short version</span>
+                </div>
+                <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+                    {workingWithMe.map((w, i) => (
+                        <Reveal key={w.title} delay={i * 0.05}>
+                            <div className="space-y-2 border-t-4 border-foreground pt-3">
+                                <h3 className="font-display text-xl font-extrabold tracking-tight">{w.title}</h3>
+                                <p className="text-[15px] leading-relaxed text-foreground/80">{w.text}</p>
+                            </div>
+                        </Reveal>
+                    ))}
+                </div>
+            </section>
+
             <section className="space-y-12">
                 <AppSectionHeading
                     index="01"
@@ -171,7 +237,7 @@ export default function AboutPage() {
                     }
                     description="The tools I reach for on client projects, grouped by what they're for."
                 />
-                <div className="grid gap-6 sm:grid-cols-2">
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {skillGroups.map((g, i) => (
                         <Reveal key={g.title} delay={i * 0.05}>
                             <AppCard className="h-full">
@@ -202,6 +268,9 @@ export default function AboutPage() {
                     }
                     description="Four teams over the years, from office IT to remote client work. Open any role for what I did there."
                 />
+                <Reveal>
+                    <CareerTimeline />
+                </Reveal>
                 <div className="relative space-y-6">
                     <div aria-hidden className="absolute bottom-6 left-0 top-6 w-0.5 bg-foreground" />
                     {JOBS.map((job, i) => (
@@ -222,7 +291,7 @@ export default function AboutPage() {
                                 Bachelor of Science in Information Technology
                             </div>
                             <div className="font-medium">Holy Cross of Davao College Inc.</div>
-                            <div className="text-sm text-muted-foreground">2015 – 2019 · Sta. Ana Ave., Davao City</div>
+                            <div className="text-sm text-muted-foreground">2015 – 2019 · Davao City, Philippines</div>
                         </div>
                     </AppCard>
                 </Reveal>

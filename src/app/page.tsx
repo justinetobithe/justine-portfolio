@@ -14,6 +14,8 @@ import {
   Mail,
   MapPin,
   Phone,
+  Plug,
+  Server,
   Smartphone,
   Store
 } from "lucide-react";
@@ -24,6 +26,7 @@ import { SITE } from "@/lib/site";
 import AppButton from "@/components/app/app-button";
 import AppCard from "@/components/app/app-card";
 import AppSectionHeading, { Mark } from "@/components/app/app-section-heading";
+import CommunityBuilds from "@/components/community-builds";
 import Counter from "@/components/counter";
 import FeaturedSkeleton from "@/components/featured-skeleton";
 import FeaturedWork from "@/components/featured-work";
@@ -31,11 +34,12 @@ import Marquee from "@/components/marquee";
 import Polaroid from "@/components/polaroid";
 import Reveal from "@/components/reveal";
 import RotatingText from "@/components/rotating-text";
+import TopProject from "@/components/top-project";
 
 const words = ["online stores", "custom CMS", "client portals", "mobile apps"];
 
-const tickerA = ["Next.js", "Laravel", "TypeScript", "Supabase", "Shopify", "React Native", "Firebase", "Webhooks"];
-const tickerB = ["E-commerce", "Custom CMS", "Client portals", "CRM", "Ordering", "Delivery", "Payments", "Dashboards"];
+const tickerA = ["Laravel", "Next.js", "Flutter", "React Native", "Vue.js", "Docker", "Nginx", "Apache"];
+const tickerB = ["E-commerce", "Custom CMS", "Client portals", "CRM", "Zoho", "Softr", "REST APIs", "Dashboards"];
 
 const capabilities = [
   {
@@ -47,28 +51,40 @@ const capabilities = [
   {
     icon: Layers,
     title: "CMS and CRM",
-    text: "Admin panels the team can actually run: content, orders, customers. Connected to Shopify and other tools through webhooks.",
+    text: "Admin panels the team can actually run: content, orders, customers, roles. Connected to other tools through APIs and webhooks.",
     tone: "bg-sky"
   },
   {
     icon: Database,
-    title: "Data and auth",
-    text: "Laravel APIs, Supabase and Firebase for login, roles, storage and information systems that stay tidy as they grow.",
+    title: "APIs and auth",
+    text: "Laravel REST APIs with Sanctum, Google sign in, NextAuth, queues and mail, documented so the front end team isn't guessing.",
     tone: "bg-blush"
   },
   {
     icon: Smartphone,
-    title: "Web and mobile",
-    text: "Layouts that hold up from a phone to a wide monitor, plus React Native screens when the product needs an app.",
+    title: "Mobile apps",
+    text: "Cross platform apps for iOS and Android in Flutter and React Native, with REST APIs, push notifications and local storage.",
     tone: "bg-sage"
+  },
+  {
+    icon: Server,
+    title: "Servers and deploys",
+    text: "Docker on a VPS, virtual hosts on Nginx and Apache, CloudPanel or Vercel. I can also fix it when production misbehaves.",
+    tone: "bg-tomato/80"
+  },
+  {
+    icon: Plug,
+    title: "Integrations",
+    text: "Zoho and Softr wired into Laravel to sync CRM data, automate workflows and apply the business rules a client really has.",
+    tone: "bg-sun"
   }
 ];
 
 const steps = [
   { title: "Understand", text: "What the business sells, who buys it and where orders get stuck today." },
   { title: "Shape", text: "Sketch the flow and the pages first, so the build has a clear target." },
-  { title: "Build", text: "Next.js front end, Laravel or Supabase back end, tested on real devices." },
-  { title: "Ship and support", text: "Launch, watch how it behaves in production, then keep improving it." }
+  { title: "Build", text: "Next.js front end, Laravel back end, tested on real devices, with regular progress updates." },
+  { title: "Ship and support", text: "Deploy, watch how it behaves in production, then keep improving it." }
 ];
 
 function Squiggle() {
@@ -153,11 +169,11 @@ function Hero() {
         </motion.div>
 
         <motion.p {...rise(0.14)} className="max-w-xl text-lg leading-relaxed text-foreground/80">
-          Full stack developer from Davao City with{" "}
+          Full stack and mobile developer from Davao City with{" "}
           <strong className="font-bold text-foreground" suppressHydrationWarning>
             {years}+ years
           </strong>{" "}
-          of experience. I make e-commerce sites, custom CMS and client portals with Next.js, Laravel and Supabase.{" "}
+          of experience. I build web apps, stores and APIs with Laravel and Next.js, and mobile apps with Flutter and React Native.{" "}
           <strong className="bg-sun px-1.5 font-bold text-foreground">
             Now open to remote work, full-time or part-time.
           </strong>
@@ -221,7 +237,9 @@ export default function HomePage() {
   });
 
   const list = useMemo(() => (data || []) as Project[], [data]);
-  const featured = useMemo(() => list.filter((p) => p.featured), [list]);
+  const top = useMemo(() => list.find((p) => p.top), [list]);
+  const featured = useMemo(() => list.filter((p) => p.featured && !p.top), [list]);
+  const community = useMemo(() => list.filter((p) => p.community), [list]);
   const years = yearsOfExperience();
 
   return (
@@ -244,7 +262,7 @@ export default function HomePage() {
             <Counter to={Math.max(list.length, 20)} suffix="+" />
           </Stat>
           <Stat tone="bg-blush" label="Countries served">
-            <Counter to={6} />
+            <Counter to={8} />
           </Stat>
           <Stat tone="bg-sage" label="Main stack">
             <span className="text-3xl sm:text-4xl">
@@ -258,13 +276,27 @@ export default function HomePage() {
       <section id="work" className="scroll-mt-28 space-y-12">
         <AppSectionHeading
           index="01"
+          eyebrow="Top project"
+          title={
+            <>
+              The one I&apos;d <Mark>show you first</Mark>
+            </>
+          }
+          description="Regulated product, two languages, and a path that has to feel simple even though a doctor sits at the end of it."
+        />
+        {isLoading ? <FeaturedSkeleton count={1} /> : top ? <TopProject project={top} /> : null}
+      </section>
+
+      <section className="space-y-12">
+        <AppSectionHeading
+          index="02"
           eyebrow="Selected work"
           title={
             <>
               Sites people <Mark>order from</Mark>
             </>
           }
-          description="Live stores and platforms I built for clients in four regions. Each one has ordering, delivery, CMS or CRM work behind the pretty part."
+          description="Live stores and platforms for clients in Israel, Mexico and the US. Each one has ordering, delivery, CMS or CRM work behind the pretty part."
           action={
             <AppButton href="/projects" variant="paper" iconEnd={ArrowRight}>
               All projects
@@ -276,7 +308,21 @@ export default function HomePage() {
 
       <section className="space-y-12">
         <AppSectionHeading
-          index="02"
+          index="03"
+          eyebrow="Community builds"
+          title={
+            <>
+              For the people <Mark>who actually play</Mark>
+            </>
+          }
+          description="Two sites for players: court bookings for pickleball in Davao City, and a wiki that works out your Cabal character build."
+        />
+        {isLoading ? <FeaturedSkeleton count={1} /> : <CommunityBuilds projects={community} />}
+      </section>
+
+      <section className="space-y-12">
+        <AppSectionHeading
+          index="04"
           eyebrow="What I do"
           title={
             <>
@@ -285,7 +331,7 @@ export default function HomePage() {
           }
           description="I own the whole path: what visitors see, and the systems that keep the business running behind it."
         />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.06}>
               <AppCard className={i % 2 === 0 ? "h-full lg:-rotate-1" : "h-full lg:rotate-1"}>
@@ -305,7 +351,7 @@ export default function HomePage() {
 
       <section className="space-y-12">
         <AppSectionHeading
-          index="03"
+          index="05"
           eyebrow="How I work"
           title={
             <>
