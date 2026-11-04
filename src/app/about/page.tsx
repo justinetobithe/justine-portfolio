@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, GraduationCap, Mail, MapPin, Sparkles } from "lucide-react";
+import { Download, GraduationCap, Mail, MapPin } from "lucide-react";
 import { JOBS, formatMonth, jobMonths, periodLabel, CAREER_START, yearsOfExperience } from "@/lib/career";
 import { SITE } from "@/lib/site";
 import AppBadge from "@/components/app/app-badge";
@@ -104,7 +104,7 @@ export default function AboutPage() {
     const years = yearsOfExperience();
 
     return (
-        <div className="space-y-24 md:space-y-32">
+        <div className="space-y-16 md:space-y-24">
             <section className="grid items-center gap-14 lg:grid-cols-[1.25fr_0.75fr] lg:gap-8">
                 <div className="space-y-7">
                     <div className="flex items-center gap-3 font-mono text-xs font-medium uppercase tracking-[0.18em]">
@@ -172,38 +172,10 @@ export default function AboutPage() {
                             </span>
                         </Fact>
                         <Fact label="Main stack">Laravel, Next.js, React, Vue.js, Flutter, React Native</Fact>
-                        <Fact label="Works with">Claude and ChatGPT as coding assistants</Fact>
                         <Fact label="Contact">
                             {SITE.email} · {SITE.phone}
                         </Fact>
                     </dl>
-                </AppCard>
-            </Reveal>
-
-            <Reveal>
-                <AppCard interactive={false}>
-                    <div className="grid md:grid-cols-[auto_1fr]">
-                        <div className="flex items-center gap-3 border-b-2 border-foreground bg-sage px-6 py-5 md:border-b-0 md:border-r-2 md:px-8">
-                            <Sparkles className="h-8 w-8" strokeWidth={2.25} />
-                            <span className="font-display text-2xl font-extrabold leading-tight tracking-tight">
-                                How I use
-                                <br />
-                                AI tools
-                            </span>
-                        </div>
-                        <div className="space-y-4 p-6 md:p-8">
-                            <p className="text-lg leading-relaxed">
-                                I keep <strong className="bg-sun px-1.5 font-bold">Claude</strong> and{" "}
-                                <strong className="bg-sky px-1.5 font-bold">ChatGPT</strong> beside me as coding companions,
-                                bringing them in whenever a task calls for a faster path, and leaning on my own judgment for
-                                everything that needs a human touch.
-                            </p>
-                            <p className="text-[15px] leading-relaxed text-muted-foreground">
-                                They help me move quicker on the work in front of me, so more of my time goes into the parts
-                                clients actually feel: how it looks, how it behaves and how it holds up.
-                            </p>
-                        </div>
-                    </div>
                 </AppCard>
             </Reveal>
 
@@ -226,7 +198,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            <section className="space-y-12">
+            <section className="space-y-10">
                 <AppSectionHeading
                     index="01"
                     eyebrow="Toolbox"
@@ -257,7 +229,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            <section className="space-y-12">
+            <section className="space-y-10">
                 <AppSectionHeading
                     index="02"
                     eyebrow="Career"

@@ -55,7 +55,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                     <div className="space-y-2">
                         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                             <h3 className="font-display text-2xl font-extrabold leading-tight tracking-tight">{project.name}</h3>
-                            {project.featured ? <AppBadge variant="brand">Featured</AppBadge> : null}
+                            {project.top ? <AppBadge variant="brand">Top project</AppBadge> : project.featured ? <AppBadge variant="brand">Featured</AppBadge> : null}
                             {project.community ? <AppBadge variant="sky">Community</AppBadge> : null}
                             {project.notice ? <AppBadge variant="sky">UI concept</AppBadge> : null}
                         </div>

@@ -34,7 +34,6 @@ import Marquee from "@/components/marquee";
 import Polaroid from "@/components/polaroid";
 import Reveal from "@/components/reveal";
 import RotatingText from "@/components/rotating-text";
-import TopProject from "@/components/top-project";
 
 const words = ["online stores", "custom CMS", "client portals", "mobile apps"];
 
@@ -237,13 +236,12 @@ export default function HomePage() {
   });
 
   const list = useMemo(() => (data || []) as Project[], [data]);
-  const top = useMemo(() => list.find((p) => p.top), [list]);
-  const featured = useMemo(() => list.filter((p) => p.featured && !p.top), [list]);
+  const featured = useMemo(() => list.filter((p) => p.featured), [list]);
   const community = useMemo(() => list.filter((p) => p.community), [list]);
   const years = yearsOfExperience();
 
   return (
-    <div id="top" className="space-y-24 md:space-y-32">
+    <div id="top" className="space-y-16 md:space-y-24">
       <Hero />
 
       <div className="relative left-1/2 w-screen -translate-x-1/2 py-6" aria-hidden>
@@ -273,30 +271,16 @@ export default function HomePage() {
         </section>
       </Reveal>
 
-      <section id="work" className="scroll-mt-28 space-y-12">
+      <section id="work" className="scroll-mt-28 space-y-10">
         <AppSectionHeading
           index="01"
-          eyebrow="Top project"
-          title={
-            <>
-              The one I&apos;d <Mark>show you first</Mark>
-            </>
-          }
-          description="Regulated product, two languages, and a path that has to feel simple even though a doctor sits at the end of it."
-        />
-        {isLoading ? <FeaturedSkeleton count={1} /> : top ? <TopProject project={top} /> : null}
-      </section>
-
-      <section className="space-y-12">
-        <AppSectionHeading
-          index="02"
           eyebrow="Selected work"
           title={
             <>
               Sites people <Mark>order from</Mark>
             </>
           }
-          description="Live stores and platforms for clients in Israel, Mexico and the US. Each one has ordering, delivery, CMS or CRM work behind the pretty part."
+          description="Live stores and platforms for clients in Austria, Germany, Israel, Mexico and the US. Each one has ordering, delivery, CMS or CRM work behind the pretty part."
           action={
             <AppButton href="/projects" variant="paper" iconEnd={ArrowRight}>
               All projects
@@ -306,9 +290,9 @@ export default function HomePage() {
         {isLoading ? <FeaturedSkeleton count={2} /> : <FeaturedWork projects={featured} />}
       </section>
 
-      <section className="space-y-12">
+      <section className="space-y-10">
         <AppSectionHeading
-          index="03"
+          index="02"
           eyebrow="Community builds"
           title={
             <>
@@ -320,9 +304,9 @@ export default function HomePage() {
         {isLoading ? <FeaturedSkeleton count={1} /> : <CommunityBuilds projects={community} />}
       </section>
 
-      <section className="space-y-12">
+      <section className="space-y-10">
         <AppSectionHeading
-          index="04"
+          index="03"
           eyebrow="What I do"
           title={
             <>
@@ -349,9 +333,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="space-y-12">
+      <section className="space-y-10">
         <AppSectionHeading
-          index="05"
+          index="04"
           eyebrow="How I work"
           title={
             <>

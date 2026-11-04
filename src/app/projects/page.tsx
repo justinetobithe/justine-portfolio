@@ -6,7 +6,6 @@ import { Search, SearchX, X } from "lucide-react";
 import { fetchProjects } from "@/lib/projects";
 import { useProjectsStore } from "@/store/projects-store";
 import ProjectCard from "@/components/project-card";
-import TopProject from "@/components/top-project";
 import Skeleton from "./skeleton";
 import AppButton from "@/components/app/app-button";
 import AppSectionHeading, { Mark } from "@/components/app/app-section-heading";
@@ -113,15 +112,7 @@ export default function ProjectsPage() {
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
                 {isLoading
                     ? Array.from({ length: 6 }).map((_, i) => <Skeleton key={i} />)
-                    : filtered.map((p) =>
-                          p.top ? (
-                              <div key={p.id} className="sm:col-span-2 xl:col-span-3">
-                                  <TopProject project={p} />
-                              </div>
-                          ) : (
-                              <ProjectCard key={p.id} project={p} />
-                          )
-                      )}
+                    : filtered.map((p) => <ProjectCard key={p.id} project={p} />)}
             </div>
 
             {!isLoading && !isError && filtered.length === 0 ? (

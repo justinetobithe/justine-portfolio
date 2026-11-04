@@ -29,7 +29,7 @@ function FeaturedItem({ project, index }: { project: Project; index: number }) {
             <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]">
                 <div
                     className={cn(
-                        "relative overflow-hidden border-b-2 border-foreground p-5 sm:p-8 lg:border-b-0 lg:p-10",
+                        "relative flex flex-col justify-center overflow-hidden border-b-2 border-foreground p-5 sm:p-8 lg:border-b-0 lg:p-10",
                         panelFor(index),
                         flip ? "lg:order-2 lg:border-l-2" : "lg:border-r-2"
                     )}
@@ -38,7 +38,7 @@ function FeaturedItem({ project, index }: { project: Project; index: number }) {
                         aria-hidden
                         className="text-outline pointer-events-none absolute -bottom-6 right-3 select-none font-display text-[8rem] font-extrabold leading-none opacity-40 sm:text-[10rem]"
                     >
-                        {String(index + 2).padStart(2, "0")}
+                        {String(index + 1).padStart(2, "0")}
                     </span>
                     <motion.a
                         href={project.liveUrl}
@@ -62,11 +62,23 @@ function FeaturedItem({ project, index }: { project: Project; index: number }) {
                             )}
                         </AppBrowserFrame>
                     </motion.a>
+
+                    {project.highlights?.length ? (
+                        <ul className="relative mt-6 grid gap-2.5 rounded-xl border-2 border-foreground bg-card p-4 shadow-hard-sm sm:mt-8 sm:grid-cols-2 sm:gap-x-5">
+                            {project.highlights.map((h) => (
+                                <li key={h} className="flex items-start gap-2 text-sm leading-snug">
+                                    <Asterisk className="mt-0.5 h-4 w-4 flex-none text-tomato" strokeWidth={3} />
+                                    {h}
+                                </li>
+                            ))}
+                        </ul>
+                    ) : null}
                 </div>
 
-                <div className={cn("space-y-5 p-6 sm:p-8 lg:p-10", flip && "lg:order-1")}>
+                <div className={cn("space-y-5 p-6 sm:p-8 lg:p-9", flip && "lg:order-1")}>
                     <div className="flex flex-wrap items-center gap-2">
-                        <AppBadge variant="brand">{project.category}</AppBadge>
+                        {project.top ? <AppBadge variant="brand">Top project</AppBadge> : null}
+                        <AppBadge variant={project.top ? "paper" : "brand"}>{project.category}</AppBadge>
                         {project.region ? <AppBadge variant="sky">{project.region}</AppBadge> : null}
                     </div>
 
@@ -79,17 +91,6 @@ function FeaturedItem({ project, index }: { project: Project; index: number }) {
                     <p className="text-base leading-relaxed text-foreground/80">{project.description}</p>
 
                     {project.facts?.length ? <ProjectFacts facts={project.facts} /> : null}
-
-                    {project.highlights?.length ? (
-                        <ul className="space-y-2.5">
-                            {project.highlights.map((h) => (
-                                <li key={h} className="flex items-start gap-2.5 text-[15px] leading-snug">
-                                    <Asterisk className="mt-0.5 h-4 w-4 flex-none text-tomato" strokeWidth={3} />
-                                    {h}
-                                </li>
-                            ))}
-                        </ul>
-                    ) : null}
 
                     <div className="flex flex-wrap gap-2">
                         {(project.stack || []).map((s) => (
@@ -119,7 +120,7 @@ function FeaturedItem({ project, index }: { project: Project; index: number }) {
 
 export default function FeaturedWork({ projects }: { projects: Project[] }) {
     return (
-        <div className="space-y-10 sm:space-y-14">
+        <div className="space-y-8 sm:space-y-10">
             {projects.map((p, i) => (
                 <FeaturedItem key={p.id} project={p} index={i} />
             ))}
